@@ -1,6 +1,3 @@
-# pohja
+# ohj2
 
-Pohja kevään 2020 harjoitustöiden GIT-repoille
-
-Lue käyttöohjeet TIMistä: <https://tim.jyu.fi/view/kurssit/tie/ohj2/tyokalut/git/ohj2git#fork>
-
+Kirjarekisteri. Harjoitustyö Jyväskylän yliopiston kevään 2020 Ohjelmointi 2 -kurssille.
