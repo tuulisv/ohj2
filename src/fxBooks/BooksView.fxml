@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import fi.jyu.mit.fxgui.ListChooser?>
+<?import fi.jyu.mit.fxgui.RadioButtonChooser?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <left>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Author" textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </VBox.margin></Label>
+                <Separator prefWidth="200.0" />
+                <Label text="Search">
+                    <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                    </padding></Label>
+                <TextField>
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin></TextField>
+                <ListChooser maxHeight="1.7976931348623157E308" rivit="J. R. R. Tolkien&#10;Antoine de Saint-Exupéry&#10;Paulo Coelho&#10;Jacob Grimm&#10;Wilhelm Grimm&#10;J. K. Rowling" VBox.vgrow="ALWAYS" />
+            </children>
+            <padding>
+                <Insets left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <BorderPane.margin>
+                <Insets left="5.0" />
+            </BorderPane.margin>
+        </VBox>
+    </left>
+    <center>
+        <VBox maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER_LEFT">
+            <children>
+                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Author's Works">
+                    <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </VBox.margin>
+                    <BorderPane.margin>
+                        <Insets top="10.0" />
+                    </BorderPane.margin></Label>
+                <Separator>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </Separator>
+                <ListChooser maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" rivit="The Lord of the Rings&#10;The Hobbit" BorderPane.alignment="BOTTOM_LEFT" VBox.vgrow="ALWAYS">
+                    <BorderPane.margin>
+                        <Insets top="10.0" />
+                    </BorderPane.margin>
+                    <VBox.margin>
+                        <Insets top="8.0" />
+                    </VBox.margin></ListChooser>
+            </children>
+            <padding>
+                <Insets left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </VBox>
+    </center>
+    <right>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="TOP_LEFT">
+            <BorderPane.margin>
+                <Insets left="5.0" right="5.0" />
+            </BorderPane.margin>
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Book" textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </VBox.margin>
+                </Label>
+                <Separator maxWidth="1.7976931348623157E308" />
+                <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                    <content>
+                        <GridPane hgap="10.0" maxHeight="1.7976931348623157E308" vgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES" />
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES" />
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES" />
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES" />
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES" />
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES" />
+                                <RowConstraints fillHeight="false" prefHeight="40.0" valignment="TOP" vgrow="NEVER" />
+                                <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Title">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Label text="The Lord of the Rings" GridPane.columnIndex="1" />
+                                <Label text="Original Title" GridPane.rowIndex="1">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Label text="The Lord of the Rings" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Author" GridPane.rowIndex="2">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Label text="J. R. R. Tolkien" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Publication Year" GridPane.rowIndex="3">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Label text="1954" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="Publisher" GridPane.rowIndex="4">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Label text="Allen &amp; Unwin" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Language" GridPane.rowIndex="5">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Label text="English" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label alignment="TOP_RIGHT" contentDisplay="TOP" text="Reading Status" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <GridPane.margin>
+                                        <Insets />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="Rating" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <GridPane.margin>
+                                        <Insets />
+                                    </GridPane.margin>
+                                </Label>
+                                <RadioButtonChooser rivit="read&#10;unread" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="-1.0" />
+                                    </padding>
+                                </RadioButtonChooser>
+                                <RadioButtonChooser rivit="5&#10;4&#10;3&#10;2&#10;1&#10;0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="-1.0" />
+                                    </padding>
+                                </RadioButtonChooser>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </GridPane>
+                    </content>
+                    <VBox.margin>
+                        <Insets top="13.0" />
+                    </VBox.margin>
+                </ScrollPane>
+            </children>
+            <padding>
+                <Insets right="5.0" top="5.0" />
+            </padding>
+        </VBox>
+    </right>
+    <bottom>
+        <HBox alignment="TOP_RIGHT" prefWidth="754.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Edit">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Add a book">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Save" />
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>
