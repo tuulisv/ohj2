@@ -37,6 +37,7 @@ gradle-app.setting
 ## IntelliJ
 ##############################
 out/
+src/META-INF
 .idea/
 .idea_modules/
 *.iml
