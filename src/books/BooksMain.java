@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 public class BooksMain extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxBooks/BooksView.fxml"));
-        primaryStage.setTitle("Books");
-        primaryStage.setScene(new Scene(root, 850, 550));
-        primaryStage.show();
+        stage.setTitle("Books");
+        stage.setScene(new Scene(root, 850, 550));
+        stage.show();
     }
 
     public static void main(String[] args) {
