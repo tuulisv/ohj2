@@ -18,23 +18,27 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="books.BooksMainController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Save" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleQuit" text="Quit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleAdd" text="Add a book..." />
+                        <MenuItem mnemonicParsing="false" onAction="#handleEdit" text="Edit a book..." />
+                        <MenuItem mnemonicParsing="false" onAction="#handleRemove" text="Remove a book..." />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
                     </items>
                 </Menu>
             </menus>
@@ -52,11 +56,11 @@
                     <padding>
                         <Insets bottom="5.0" top="5.0" />
                     </padding></Label>
-                <TextField>
+                <TextField fx:id="textSearch" onKeyTyped="#handleSearch">
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin></TextField>
-                <ListChooser maxHeight="1.7976931348623157E308" rivit="J. R. R. Tolkien&#10;Antoine de Saint-Exupéry&#10;Paulo Coelho&#10;Jacob Grimm&#10;Wilhelm Grimm&#10;J. K. Rowling" VBox.vgrow="ALWAYS" />
+                <ListChooser maxHeight="1.7976931348623157E308" onMouseClicked="#handleSelectAuthor" rivit="J. R. R. Tolkien&#10;Antoine de Saint-Exupéry&#10;Paulo Coelho&#10;Jacob Grimm&#10;Wilhelm Grimm&#10;J. K. Rowling" VBox.vgrow="ALWAYS" />
             </children>
             <padding>
                 <Insets left="5.0" right="5.0" top="5.0" />
@@ -81,7 +85,7 @@
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </Separator>
-                <ListChooser maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" rivit="The Lord of the Rings&#10;The Hobbit" BorderPane.alignment="BOTTOM_LEFT" VBox.vgrow="ALWAYS">
+                <ListChooser maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleSelectBook" rivit="The Lord of the Rings&#10;The Hobbit" BorderPane.alignment="BOTTOM_LEFT" VBox.vgrow="ALWAYS">
                     <BorderPane.margin>
                         <Insets top="10.0" />
                     </BorderPane.margin>
@@ -179,7 +183,7 @@
                                         <Insets />
                                     </GridPane.margin>
                                 </Label>
-                                <RadioButtonChooser rivit="read&#10;unread" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                <RadioButtonChooser onMouseClicked="#handleSelectStatus" rivit="read&#10;unread" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
@@ -187,7 +191,7 @@
                                         <Insets left="-1.0" />
                                     </padding>
                                 </RadioButtonChooser>
-                                <RadioButtonChooser rivit="5&#10;4&#10;3&#10;2&#10;1&#10;0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                <RadioButtonChooser onMouseClicked="#handleSelectRating" rivit="5&#10;4&#10;3&#10;2&#10;1&#10;0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
@@ -214,17 +218,17 @@
     <bottom>
         <HBox alignment="TOP_RIGHT" prefWidth="754.0" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
-                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Edit">
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleEdit" text="Edit">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>
                 </Button>
-                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Add a book">
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAdd" text="Add a book">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>
                 </Button>
-                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Save" />
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleSave" text="Save" />
             </children>
             <BorderPane.margin>
                 <Insets />
