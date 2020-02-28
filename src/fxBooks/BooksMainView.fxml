@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="books.BooksMainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxBooks.BooksMainController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -85,7 +85,7 @@
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </Separator>
-                <ListChooser maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleSelectBook" rivit="The Lord of the Rings&#10;The Hobbit" BorderPane.alignment="BOTTOM_LEFT" VBox.vgrow="ALWAYS">
+                <ListChooser fx:id="chooserBooks" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleSelectBook" rivit="The Lord of the Rings&#10;The Hobbit" BorderPane.alignment="BOTTOM_LEFT" VBox.vgrow="ALWAYS">
                     <BorderPane.margin>
                         <Insets top="10.0" />
                     </BorderPane.margin>
@@ -113,7 +113,7 @@
                     </VBox.margin>
                 </Label>
                 <Separator maxWidth="1.7976931348623157E308" />
-                <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="300" VBox.vgrow="ALWAYS">
                     <content>
                         <GridPane hgap="10.0" maxHeight="1.7976931348623157E308" vgap="10.0">
                             <columnConstraints>
@@ -136,37 +136,37 @@
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label text="The Lord of the Rings" GridPane.columnIndex="1" />
+                                <Label fx:id="labelBookTitle" text="" GridPane.columnIndex="1" />
                                 <Label text="Original Title" GridPane.rowIndex="1">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label text="The Lord of the Rings" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="labelOrigTitle" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Label text="Author" GridPane.rowIndex="2">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label text="J. R. R. Tolkien" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label fx:id="labelAuthor" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <Label text="Publication Year" GridPane.rowIndex="3">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label text="1954" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label fx:id="labelPubYear" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 <Label text="Publisher" GridPane.rowIndex="4">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label text="Allen &amp; Unwin" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label fx:id="labelPub" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                 <Label text="Language" GridPane.rowIndex="5">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label text="English" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label fx:id="labelLang" text="" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                 <Label alignment="TOP_RIGHT" contentDisplay="TOP" text="Reading Status" GridPane.rowIndex="6" GridPane.valignment="TOP">
                                     <opaqueInsets>
                                         <Insets />
@@ -183,7 +183,7 @@
                                         <Insets />
                                     </GridPane.margin>
                                 </Label>
-                                <RadioButtonChooser onMouseClicked="#handleSelectStatus" rivit="read&#10;unread" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                <RadioButtonChooser fx:id="chooserStatus" onMouseClicked="#handleSelectStatus" rivit="read&#10;unread" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
@@ -191,7 +191,7 @@
                                         <Insets left="-1.0" />
                                     </padding>
                                 </RadioButtonChooser>
-                                <RadioButtonChooser onMouseClicked="#handleSelectRating" rivit="5&#10;4&#10;3&#10;2&#10;1&#10;0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                <RadioButtonChooser fx:id="chooserRating" onMouseClicked="#handleSelectRating" rivit="0&#10;1&#10;2&#10;3&#10;4&#10;5" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="books.BooksAddAuthController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxBooks.BooksAddAuthController">
    <children>
       <Label text="Enter author name">
          <VBox.margin>
@@ -18,8 +18,8 @@
       <TextField fx:id="textAuthor" />
       <HBox spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleAddAuthor" text="OK" />
-            <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+            <Button mnemonicParsing="false" fx:id="okButton" onAction="#handleAddAuthor" text="OK" />
+            <Button mnemonicParsing="false" fx:id="cancelButton" onAction="#handleCancel" text="Cancel" />
          </children>
          <VBox.margin>
             <Insets />
