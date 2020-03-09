@@ -63,7 +63,7 @@ public class Book {
      * Returns the identifier of the book
      * @return identifier
      */
-    public int getIdentifier() {
+    public int getId() {
         return this.identifier;
     }
 

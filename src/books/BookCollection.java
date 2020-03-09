@@ -31,6 +31,14 @@ public class BookCollection {
     }
 
     /**
+     * Adds an author to the author list
+     * @param author added author
+     */
+    public void addAuthor(Author author) {
+        this.authors.addAuthor(author);
+    }
+
+    /**
      * Get the book at index i
      * @param i index of the book
      * @return book at index i
@@ -40,10 +48,27 @@ public class BookCollection {
     }
 
     /**
+     * Get the author at index i
+     * @param i index of the author
+     * @return author at index i
+     */
+    public Author getAuthor(int i) {
+        return this.authors.getAuthorByIndex(i);
+    }
+
+    /**
      * Get the number of books in the collection
      * @return number of books
      */
     public int getNoOfBooks() {
-        return books.getNoOfBooks();
+        return this.books.getNoOfBooks();
+    }
+
+    /**
+     * Get the number of authors in the collection
+     * @return number of authors
+     */
+    public int getNoOfAuthors() {
+        return this.authors.getNoOfAuthors();
     }
 }

@@ -26,10 +26,26 @@ public class Author {
     /**
      * Sets test values
      */
-    public void testAuthor() {
+    public void exampleAuthor() {
         this.identifier = 1;
         this.author = "J. R. R. Tolkien";
         Author.nextIdentifier = 2;
+    }
+
+    /**
+     * Returns the identifier of the author
+     * @return id
+     */
+    public int getId() {
+        return this.identifier;
+    }
+
+    /**
+     * Returns the name of the author
+     * @return name
+     */
+    public String getName() {
+        return this.author;
     }
 
     /**
@@ -40,14 +56,6 @@ public class Author {
         this.identifier = Author.nextIdentifier;
         Author.nextIdentifier++;
 
-        return this.identifier;
-    }
-
-    /**
-     * Returns the identifier of the author
-     * @return id
-     */
-    public int getIdentifier() {
         return this.identifier;
     }
 

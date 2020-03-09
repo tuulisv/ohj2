@@ -30,7 +30,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleAdd" text="Add a book..." />
+                        <MenuItem mnemonicParsing="false" onAction="#handleAddBook" text="Add a book..." />
                         <MenuItem mnemonicParsing="false" onAction="#handleEdit" text="Edit a book..." />
                         <MenuItem mnemonicParsing="false" onAction="#handleRemove" text="Remove a book..." />
                     </items>
@@ -60,7 +60,7 @@
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin></TextField>
-                <ListChooser maxHeight="1.7976931348623157E308" onMouseClicked="#handleSelectAuthor" rivit="J. R. R. Tolkien&#10;Antoine de Saint-Exupéry&#10;Paulo Coelho&#10;Jacob Grimm&#10;Wilhelm Grimm&#10;J. K. Rowling" VBox.vgrow="ALWAYS" />
+                <ListChooser fx:id="chooserAuthors" maxHeight="1.7976931348623157E308" onMouseClicked="#handleSelectAuthor" rivit="J. R. R. Tolkien" VBox.vgrow="ALWAYS" />
             </children>
             <padding>
                 <Insets left="5.0" right="5.0" top="5.0" />
@@ -223,7 +223,12 @@
                         <Insets />
                     </HBox.margin>
                 </Button>
-                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAdd" text="Add a book">
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddBook" text="Add a book">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddAuthor" text="Add an author">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>

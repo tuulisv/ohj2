@@ -1,5 +1,6 @@
 package fxBooks;
 
+import books.Author;
 import books.Book;
 import books.BookCollection;
 import books.StoreException;
@@ -28,6 +29,7 @@ public class BooksMainController implements Initializable {
 
     @FXML private TextField textSearch;
     @FXML private ListChooser<Book> chooserBooks;
+    @FXML private ListChooser<Author> chooserAuthors;
     @FXML private Label labelBookTitle;
     @FXML private Label labelOrigTitle;
     @FXML private Label labelAuthor;
@@ -43,8 +45,13 @@ public class BooksMainController implements Initializable {
     }
 
     @FXML
-    void handleAdd() {
+    void handleAddBook() {
         newBook();
+    }
+
+    @FXML
+    void handleAddAuthor() {
+        newAuthor();
     }
 
     @FXML
@@ -137,7 +144,18 @@ public class BooksMainController implements Initializable {
             return;
         }
 
-        chooseBookById(book.getIdentifier());
+        chooseBookById(book.getId());
+    }
+
+    /**
+     * Adds a new author with test values
+     */
+    private void newAuthor() {
+        Author author = new Author();
+        author.register();
+        author.exampleAuthor();
+        books.addAuthor(author);
+        chooseAuthorById(author.getId());
     }
 
     /**
@@ -149,7 +167,7 @@ public class BooksMainController implements Initializable {
         int index = 0;
         for (int i = 0; i < books.getNoOfBooks(); i++) {
             Book book = books.getBook(i);
-            if (book.getIdentifier() == id) {
+            if (book.getId() == id) {
                 index = i;
             }
 
@@ -157,6 +175,25 @@ public class BooksMainController implements Initializable {
         }
 
         chooserBooks.setSelectedIndex(index);
+    }
+
+    /**
+     * Chooses the author corresponding to the id
+     * @param id author id
+     */
+    private void chooseAuthorById(int id) {
+        chooserAuthors.clear();
+        int index = 0;
+        for (int i = 0; i < books.getNoOfAuthors(); i++) {
+            Author author = books.getAuthor(i);
+            if (books.getAuthor(i).getId() == id) {
+                index = i;
+            }
+
+            chooserAuthors.add("" + author.getName(), author);
+        }
+
+        chooserAuthors.setSelectedIndex(index);
     }
 
     /**

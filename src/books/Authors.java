@@ -45,11 +45,24 @@ public class Authors {
         Author searchedAuthor = new Author();
 
         for (Author auth: this.authors) {
-            if (auth.getIdentifier() == id) {
+            if (auth.getId() == id) {
                 searchedAuthor = auth;
             }
         }
 
         return searchedAuthor;
+    }
+
+    /**
+     * Returns the author at the given index
+     * @param index index of the author
+     * @return author
+     */
+    public Author getAuthorByIndex(int index) {
+        for (int i = 0; i < getNoOfAuthors(); i++) {
+            if (index == i) return this.authors.get(i);
+        }
+
+        return new Author();
     }
 }

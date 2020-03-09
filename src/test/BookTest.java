@@ -17,7 +17,7 @@ public class BookTest {
     @Test
     public void testGetDefaultIdentifier() {
         Book book = new Book();
-        assertEquals(-1, book.getIdentifier());
+        assertEquals(-1, book.getId());
     }
 
     @Test
