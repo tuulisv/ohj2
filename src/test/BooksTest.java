@@ -18,7 +18,7 @@ public class BooksTest {
         Book book = new Book();
         book.exampleBook();
         books.addBook(book);
-        assertEquals("The Lord of the Rings", books.getBookByIndex(0).getTitle());
+        assertEquals("The Lord of the Rings 0", books.getBookByIndex(0).getTitle());
     }
 
     @Test

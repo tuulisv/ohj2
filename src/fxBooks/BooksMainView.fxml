@@ -60,7 +60,7 @@
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin></TextField>
-                <ListChooser fx:id="chooserAuthors" maxHeight="1.7976931348623157E308" onMouseClicked="#handleSelectAuthor" rivit="J. R. R. Tolkien" VBox.vgrow="ALWAYS" />
+                <ListChooser fx:id="chooserAuthors" maxHeight="1.7976931348623157E308" onMouseClicked="#handleSelectAuthor" VBox.vgrow="ALWAYS" />
             </children>
             <padding>
                 <Insets left="5.0" right="5.0" top="5.0" />
@@ -223,12 +223,17 @@
                         <Insets />
                     </HBox.margin>
                 </Button>
-                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddBook" text="Add a book">
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddBook" text="New book">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>
                 </Button>
-                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddAuthor" text="Add an author">
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddAuthor" text="New author">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddPublisher" text="New publisher">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>

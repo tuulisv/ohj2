@@ -3,8 +3,7 @@ package fxBooks;
 import books.Author;
 import books.Book;
 import books.BookCollection;
-import books.StoreException;
-import fi.jyu.mit.fxgui.Dialogs;
+import books.Publisher;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.RadioButtonChooser;
 import javafx.application.Platform;
@@ -16,12 +15,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import java.net.URL;
+import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 /**
  * Event handling in the main view
- *
  * @author Tuuli Veini
  * @version 31.1.2020
  */
@@ -42,6 +43,7 @@ public class BooksMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
         initializeBooks();
+        initializeAuthors();
     }
 
     @FXML
@@ -52,6 +54,11 @@ public class BooksMainController implements Initializable {
     @FXML
     void handleAddAuthor() {
         newAuthor();
+    }
+
+    @FXML
+    void handleAddPublisher() {
+        newPublisher();
     }
 
     @FXML
@@ -87,7 +94,7 @@ public class BooksMainController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(aboutRoot));
             stage.show();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -99,7 +106,7 @@ public class BooksMainController implements Initializable {
 
     @FXML
     void handleSelectAuthor() {
-        BooksMain.errorGeneral();
+        showAuthorsWorks();
     }
 
     @FXML
@@ -130,69 +137,68 @@ public class BooksMainController implements Initializable {
     }
 
     /**
-     * Adds a new book with test values
+     * Clears the author list
      */
-    private void newBook() {
-        Book book = new Book();
-        book.register();
-        book.exampleBook();
-
-        try {
-            books.addBook(book);
-        } catch (StoreException e) {
-            Dialogs.showMessageDialog("Error in adding book\n" + e.getMessage());
-            return;
-        }
-
-        chooseBookById(book.getId());
+    private void initializeAuthors() {
+        chooserAuthors.clear();
+        chooserAuthors.addSelectionListener((event) -> showAuthorsWorks());
     }
 
     /**
-     * Adds a new author with test values
+     * Adds a new book with test values
+     */
+    private void newBook() {
+        Author selectedAuthor = chooserAuthors.getSelectedObject();
+        if (selectedAuthor == null) {
+            BooksMain.errorGeneral();
+            return;
+        }
+
+        Book book = new Book(selectedAuthor.getId());
+        book.register();
+        book.exampleBook();
+        books.addBook(book);
+        showAuthorsWorks();
+    }
+
+    /**
+     * Adds a new author with example values
      */
     private void newAuthor() {
         Author author = new Author();
         author.register();
         author.exampleAuthor();
         books.addAuthor(author);
-        chooseAuthorById(author.getId());
+        addAuthorToList(author.getId());
     }
 
     /**
-     * Chooses the book corresponding to the id
-     * @param id id of the book
+     * Adds a new publisher with example values
      */
-    private void chooseBookById(int id) {
-        chooserBooks.clear();
-        int index = 0;
-        for (int i = 0; i < books.getNoOfBooks(); i++) {
-            Book book = books.getBook(i);
-            if (book.getId() == id) {
-                index = i;
-            }
-
-            chooserBooks.add("" + book.getTitle(), book);
-        }
-
-        chooserBooks.setSelectedIndex(index);
+    private void newPublisher() {
+        Publisher publisher = new Publisher();
+        publisher.register();
+        publisher.examplePublisher();
+        books.addPublisher(publisher);
     }
 
     /**
-     * Chooses the author corresponding to the id
+     * Adds the author to the author list chooser and sets it as selected
      * @param id author id
      */
-    private void chooseAuthorById(int id) {
-        chooserAuthors.clear();
-        int index = 0;
-        for (int i = 0; i < books.getNoOfAuthors(); i++) {
+    private void addAuthorToList(int id) {
+        //chooserAuthors.clear();
+        int index = books.getNoOfAuthors() - 1;
+        /*for (int i = 0; i < books.getNoOfAuthors(); i++) {
             Author author = books.getAuthor(i);
             if (books.getAuthor(i).getId() == id) {
                 index = i;
             }
 
             chooserAuthors.add("" + author.getName(), author);
-        }
-
+        }*/
+        Author author = books.getAuthorById(id);
+        chooserAuthors.add("" + author.getName(), author);
         chooserAuthors.setSelectedIndex(index);
     }
 
@@ -200,20 +206,59 @@ public class BooksMainController implements Initializable {
      * Shows the attribute values of the book
      */
     private void showBook() {
+        Author selectedAuthor = chooserAuthors.getSelectedObject();
         Book selectedBook = chooserBooks.getSelectedObject();
         if (selectedBook == null) return;
 
         labelBookTitle.setText(selectedBook.getTitle());
         labelOrigTitle.setText(selectedBook.getOrigTitle());
-        labelAuthor.setText("" + selectedBook.getAuthorIndex());
+        labelAuthor.setText("" + selectedAuthor.getName());
         labelPubYear.setText("" + selectedBook.getPubYear());
-        labelPub.setText("" + selectedBook.getPubIndex());
+
+        if (books.getNoOfPublishers() == 0) {
+            labelPub.setText("");
+        } else {
+            Publisher pub = books.getRandomPublisher();
+            labelPub.setText("" + pub.getPublisher());
+        }
+
         labelLang.setText(selectedBook.getLanguage());
         int status = 0;
         if (!selectedBook.getStatus()) status = 1;
         chooserStatus.setSelectedIndex(status, true);
         int rating = selectedBook.getRating();
         chooserRating.setSelectedIndex(rating, true);
+    }
+
+    /**
+     * Shows empty attribute values of a book
+     */
+    private void showEmptyBook() {
+        labelBookTitle.setText("");
+        labelOrigTitle.setText("");
+        labelAuthor.setText("");
+        labelPubYear.setText("");
+        labelPub.setText("");
+        labelLang.setText("");
+        chooserStatus.setSelectedIndex(0, false);
+        chooserRating.setSelectedIndex(0, false);
+    }
+
+    /**
+     * Shows the books by the selected author
+     */
+    private void showAuthorsWorks() {
+        Author selectedAuthor = chooserAuthors.getSelectedObject();
+        if (selectedAuthor == null) return;
+
+        List<Book> works = books.getAuthorsWorks(selectedAuthor);
+        if (works.isEmpty()) showEmptyBook();
+
+        chooserBooks.clear();
+        for (int i = 0; i < works.size(); i++) {
+            chooserBooks.add("" + works.get(i).getTitle(), works.get(i));
+            chooserBooks.setSelectedIndex(i);
+        }
     }
 
     /**

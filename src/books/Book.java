@@ -15,48 +15,60 @@ public class Book {
     private int identifier;
     private String title;
     private String originalTitle;
-    private int authorIndex;
+    private int authorId;
     private int pubYear;
     private int pubIndex;
     private String language;
     private boolean status;
     private int rating;
 
-    private static int nextIdentifier;
+    private static int nextIdentifier = 1;
 
     /**
      * Default constructor
      */
     public Book() {
-        this.identifier = -1;
         this.title = "";
         this.originalTitle = "";
-        this.authorIndex = -1;
+        this.authorId = -1;
         this.pubYear = 0;
         this.pubIndex = -1;
         this.language = "";
         this.status = false;
         this.rating = 0;
+    }
 
-        nextIdentifier = 1;
+    /**
+     * Constructor that sets the author id
+     * @param authorId
+     */
+    public Book(int authorId) {
+        this.authorId = authorId;
     }
 
     /**
      * Sets example values for the book
      */
     public void exampleBook() {
-        this.identifier = 1;
-        this.title = "The Lord of the Rings";
+        this.title = "The Lord of the Rings " + this.identifier;
         this.originalTitle = "The Lord of the Rings";
-        this.authorIndex = 2;
         this.pubYear = 1954;
         this.pubIndex = 2;
         this.language = "English";
         this.status = true;
         Random r = new Random();
         this.rating = r.nextInt(6);
+    }
 
-        Book.nextIdentifier = 2;
+    /**
+     * Assigns the next available identifier to the book
+     * @return identifier of the book
+     */
+    public void register() {
+        this.identifier = Book.nextIdentifier;
+        Book.nextIdentifier++;
+
+        // return this.identifier;
     }
 
     /**
@@ -87,8 +99,8 @@ public class Book {
      * Returns the index of the author
      * @return index of the author
      */
-    public int getAuthorIndex() {
-        return this.authorIndex;
+    public int getAuthorId() {
+        return this.authorId;
     }
 
     /**
@@ -132,25 +144,14 @@ public class Book {
     }
 
     /**
-     * Assigns the next available identifier to the book
-     * @return identifier of the book
-     */
-    public int register() {
-        this.identifier = Book.nextIdentifier;
-        Book.nextIdentifier++;
-
-        return this.identifier;
-    }
-
-    /**
      * Prints information about the book
      * @param out output stream
      */
     public void print(PrintStream out) {
         out.println(this.identifier + " " + this.title + " (" + this.originalTitle + ")");
-        out.println("author: " + this.authorIndex);
-        out.println("published by: " + this.pubIndex + ", " + this.pubYear);
-        out.println("read: " + this.status);
-        out.println("rating: " + this.rating);
+        out.println("  author: " + this.authorId);
+        out.println("  published by: " + this.pubIndex + ", " + this.pubYear);
+        out.println("  read: " + this.status);
+        out.println("  rating: " + this.rating);
     }
 }

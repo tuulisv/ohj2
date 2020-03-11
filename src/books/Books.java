@@ -1,5 +1,8 @@
 package books;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Handles having several books in the program; can add, edit, and remove books.
  *
@@ -12,7 +15,7 @@ public class Books {
     private String fileName;
     private Book[] books;
 
-    private static final int MAX_BOOKS = 10;
+    private static int MAX_BOOKS = 10;
 
     /**
      * Default constructor
@@ -43,14 +46,41 @@ public class Books {
     /**
      * Add a book to the data structure
      * @param book added book
-     * @throws StoreException if too many items
      */
-    public void addBook(Book book) throws StoreException {
+    public void addBook(Book book) {
         if (this.no >= books.length) {
-            throw new StoreException("Too many items");
+            updateBookArray();
         }
 
         this.books[no] = book;
         this.no++;
+    }
+
+    /**
+     * Grows the size of the book array if it's full
+     */
+    public void updateBookArray() {
+        MAX_BOOKS += 10;
+        Book[] updatedArray = new Book[MAX_BOOKS];
+        for (int i = 0; i < books.length; i++) {
+            updatedArray[i] = books[i];
+        }
+
+        books = updatedArray;
+    }
+
+    /**
+     * Returns a list of the author's books
+     * @param author author
+     * @return list of the author's books
+     */
+    public List<Book> getAuthorsWorks(Author author) {
+        List<Book> works = new ArrayList<>();
+        for (int i = 0; i < getNoOfBooks(); i++) {
+            Book book = getBookByIndex(i);
+            if (book.getAuthorId() == author.getId()) works.add(book);
+        }
+
+        return works;
     }
 }

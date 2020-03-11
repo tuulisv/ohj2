@@ -17,7 +17,7 @@ public class BookTest {
     @Test
     public void testGetDefaultIdentifier() {
         Book book = new Book();
-        assertEquals(-1, book.getId());
+        assertEquals(0, book.getId());
     }
 
     @Test
@@ -30,7 +30,7 @@ public class BookTest {
     public void testGetExampleTitle() {
         Book book = new Book();
         book.exampleBook();
-        assertEquals("The Lord of the Rings", book.getTitle());
+        assertEquals("The Lord of the Rings 0", book.getTitle());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class BookTest {
     @Test
     public void testGetDefaultAuthorIndex() {
         Book book = new Book();
-        assertEquals(-1, book.getAuthorIndex());
+        assertEquals(-1, book.getAuthorId());
     }
 
     @Test
