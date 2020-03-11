@@ -6,7 +6,6 @@ import java.util.Random;
 /**
  * Class for creating Book objects that have a title, author, publication year
  * and other information about the book.
- *
  * @author Tuuli Veini
  * @version 1.0 21.2.2020
  */
@@ -17,7 +16,7 @@ public class Book {
     private String originalTitle;
     private int authorId;
     private int pubYear;
-    private int pubIndex;
+    private int pubId;
     private String language;
     private boolean status;
     private int rating;
@@ -32,7 +31,7 @@ public class Book {
         this.originalTitle = "";
         this.authorId = -1;
         this.pubYear = 0;
-        this.pubIndex = -1;
+        this.pubId = -1;
         this.language = "";
         this.status = false;
         this.rating = 0;
@@ -40,10 +39,12 @@ public class Book {
 
     /**
      * Constructor that sets the author id
-     * @param authorId
+     * @param authorId author id
+     * @param pubId publisher id
      */
-    public Book(int authorId) {
+    public Book(int authorId, int pubId) {
         this.authorId = authorId;
+        this.pubId = pubId;
     }
 
     /**
@@ -53,7 +54,6 @@ public class Book {
         this.title = "The Lord of the Rings " + this.identifier;
         this.originalTitle = "The Lord of the Rings";
         this.pubYear = 1954;
-        this.pubIndex = 2;
         this.language = "English";
         this.status = true;
         Random r = new Random();
@@ -62,13 +62,10 @@ public class Book {
 
     /**
      * Assigns the next available identifier to the book
-     * @return identifier of the book
      */
     public void register() {
         this.identifier = Book.nextIdentifier;
         Book.nextIdentifier++;
-
-        // return this.identifier;
     }
 
     /**
@@ -115,8 +112,8 @@ public class Book {
      * Returns the publisher index
      * @return publisher index
      */
-    public int getPubIndex() {
-        return this.pubIndex;
+    public int getPubId() {
+        return this.pubId;
     }
 
     /**
@@ -150,7 +147,7 @@ public class Book {
     public void print(PrintStream out) {
         out.println(this.identifier + " " + this.title + " (" + this.originalTitle + ")");
         out.println("  author: " + this.authorId);
-        out.println("  published by: " + this.pubIndex + ", " + this.pubYear);
+        out.println("  published by: " + this.pubId + ", " + this.pubYear);
         out.println("  read: " + this.status);
         out.println("  rating: " + this.rating);
     }

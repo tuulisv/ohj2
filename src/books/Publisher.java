@@ -18,7 +18,6 @@ public class Publisher {
      * Default constructor
      */
     public Publisher() {
-        this.identifier = -1;
         this.publisher = "";
     }
 
@@ -49,8 +48,15 @@ public class Publisher {
      * Returns the publisher name
      * @return publisher name
      */
-    public String getPublisher() {
+    public String getName() {
         return this.publisher;
+    }
+
+    /**
+     * Resets the id to 1
+     */
+    public static void clearIdentifier(){
+        Publisher.nextIdentifier = 1;
     }
 
     /**

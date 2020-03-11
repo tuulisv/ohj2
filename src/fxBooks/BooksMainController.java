@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 /**
@@ -149,15 +148,22 @@ public class BooksMainController implements Initializable {
      */
     private void newBook() {
         Author selectedAuthor = chooserAuthors.getSelectedObject();
+        Publisher publisher;
+        if (books.getNoOfPublishers() == 0) {
+            publisher = new Publisher();
+        } else {
+            publisher = books.getRandomPublisher();
+        }
+
         if (selectedAuthor == null) {
             BooksMain.errorGeneral();
             return;
         }
 
-        Book book = new Book(selectedAuthor.getId());
+        Book book = new Book(selectedAuthor.getId(), publisher.getId());
         book.register();
         book.exampleBook();
-        books.addBook(book);
+        books.add(book);
         showAuthorsWorks();
     }
 
@@ -168,7 +174,7 @@ public class BooksMainController implements Initializable {
         Author author = new Author();
         author.register();
         author.exampleAuthor();
-        books.addAuthor(author);
+        books.add(author);
         addAuthorToList(author.getId());
     }
 
@@ -179,7 +185,7 @@ public class BooksMainController implements Initializable {
         Publisher publisher = new Publisher();
         publisher.register();
         publisher.examplePublisher();
-        books.addPublisher(publisher);
+        books.add(publisher);
     }
 
     /**
@@ -208,21 +214,16 @@ public class BooksMainController implements Initializable {
     private void showBook() {
         Author selectedAuthor = chooserAuthors.getSelectedObject();
         Book selectedBook = chooserBooks.getSelectedObject();
+        Publisher publisher = books.getPublisherById(selectedBook.getPubId());
         if (selectedBook == null) return;
 
         labelBookTitle.setText(selectedBook.getTitle());
         labelOrigTitle.setText(selectedBook.getOrigTitle());
         labelAuthor.setText("" + selectedAuthor.getName());
         labelPubYear.setText("" + selectedBook.getPubYear());
-
-        if (books.getNoOfPublishers() == 0) {
-            labelPub.setText("");
-        } else {
-            Publisher pub = books.getRandomPublisher();
-            labelPub.setText("" + pub.getPublisher());
-        }
-
+        labelPub.setText("" + publisher.getName());
         labelLang.setText(selectedBook.getLanguage());
+
         int status = 0;
         if (!selectedBook.getStatus()) status = 1;
         chooserStatus.setSelectedIndex(status, true);

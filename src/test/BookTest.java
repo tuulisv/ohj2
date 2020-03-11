@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class BookTest {
 
     @Test
-    public void testGetDefaultIdentifier() {
+    public void testGetDefaultId() {
         Book book = new Book();
         assertEquals(0, book.getId());
     }
@@ -41,9 +41,15 @@ public class BookTest {
     }
 
     @Test
-    public void testGetDefaultAuthorIndex() {
+    public void testGetDefaultAuthorId() {
         Book book = new Book();
         assertEquals(-1, book.getAuthorId());
+    }
+
+    @Test
+    public void testGetGivenAuthorId() {
+        Book book = new Book(5, 3);
+        assertEquals(5, book.getAuthorId());
     }
 
     @Test
@@ -56,7 +62,13 @@ public class BookTest {
     @Test
     public void testGetDefaultPubIndex() {
         Book book = new Book();
-        assertEquals(-1, book.getPubIndex());
+        assertEquals(-1, book.getPubId());
+    }
+
+    @Test
+    public void testGetGivenPubId() {
+        Book book = new Book(5, 3);
+        assertEquals(3, book.getPubId());
     }
 
     @Test
@@ -70,6 +82,17 @@ public class BookTest {
     public void testGetDefaultStatus() {
         Book book = new Book();
         assertEquals(false, book.getStatus());
+    }
+
+    @Test
+    public void testRegisteringGrowsNextId() {
+        Book book1 = new Book();
+        Book book2 = new Book();
+        Book book3 = new Book();
+        book1.register();
+        book2.register();
+        book3.register();
+        assertEquals(3, book3.getId());
     }
 
     @Test

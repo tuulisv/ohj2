@@ -18,7 +18,6 @@ public class Author {
      * Default constructor
      */
     public Author() {
-        this.identifier = -1;
         this.author = "";
     }
 
@@ -51,6 +50,13 @@ public class Author {
      */
     public String getName() {
         return this.author;
+    }
+
+    /**
+     * Resets the id to 1
+     */
+    public static void clearIdentifier(){
+        Author.nextIdentifier = 1;
     }
 
     /**

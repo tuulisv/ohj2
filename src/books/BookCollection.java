@@ -28,7 +28,7 @@ public class BookCollection {
      * Adds a book to the collection
      * @param book added book
      */
-    public void addBook(Book book) {
+    public void add(Book book) {
         this.books.addBook(book);
     }
 
@@ -36,7 +36,7 @@ public class BookCollection {
      * Adds an author to the author list
      * @param author added author
      */
-    public void addAuthor(Author author) {
+    public void add(Author author) {
         this.authors.addAuthor(author);
     }
 
@@ -44,7 +44,7 @@ public class BookCollection {
      * Adds a publisher to the publisher list
      * @param publisher added publisher
      */
-    public void addPublisher(Publisher publisher) {
+    public void add(Publisher publisher) {
         this.publishers.addPublisher(publisher);
     }
 
@@ -82,6 +82,15 @@ public class BookCollection {
      */
     public Publisher getPublisher(int i) {
         return this.publishers.getPublisherByIndex(i);
+    }
+
+    /**
+     * Get the publisher with the given id
+     * @param id publisher id
+     * @return publisher
+     */
+    public Publisher getPublisherById(int id) {
+        return this.publishers.getPublisherById(id);
     }
 
     /**
