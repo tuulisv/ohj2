@@ -3,7 +3,6 @@ package test;
 import books.Author;
 import books.Book;
 import books.Books;
-import books.StoreException;
 import org.junit.Test;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class BooksTest {
         Books books = new Books();
         Book book = new Book();
         book.exampleBook();
-        books.addBook(book);
+        books.add(book);
         assertEquals("The Lord of the Rings 0", books.getBookByIndex(0).getTitle());
     }
 
@@ -34,7 +33,7 @@ public class BooksTest {
     public void testGetNonemptyNoOfBooks() {
         Books books = new Books();
         Book book = new Book();
-        books.addBook(book);
+        books.add(book);
         assertEquals(1, books.getNoOfBooks());
     }
 
@@ -43,7 +42,7 @@ public class BooksTest {
         Books books = new Books();
         for (int i = 0; i < 15; i++) {
             Book book = new Book();
-            books.addBook(book);
+            books.add(book);
         }
 
         assertEquals(15, books.getNoOfBooks());
@@ -59,9 +58,9 @@ public class BooksTest {
         Book book1 = new Book(1, 3);
         Book book2 = new Book(1, 2);
         Book book3 = new Book(2, 3);
-        books.addBook(book1);
-        books.addBook(book2);
-        books.addBook(book3);
+        books.add(book1);
+        books.add(book2);
+        books.add(book3);
         List<Book> works1 = books.getAuthorsWorks(author1);
         assertEquals(2, works1.size());
     }

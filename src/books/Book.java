@@ -1,5 +1,7 @@
 package books;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 import java.io.PrintStream;
 import java.util.Random;
 
@@ -18,7 +20,7 @@ public class Book {
     private int pubYear;
     private int pubId;
     private String language;
-    private boolean status;
+    private int status;
     private int rating;
 
     private static int nextIdentifier = 1;
@@ -33,7 +35,7 @@ public class Book {
         this.pubYear = 0;
         this.pubId = -1;
         this.language = "";
-        this.status = false;
+        this.status = 0;
         this.rating = 0;
     }
 
@@ -55,7 +57,7 @@ public class Book {
         this.originalTitle = "The Lord of the Rings";
         this.pubYear = 1954;
         this.language = "English";
-        this.status = true;
+        this.status = 1;
         Random r = new Random();
         this.rating = r.nextInt(6);
     }
@@ -128,7 +130,7 @@ public class Book {
      * Returns the reading status
      * @return status
      */
-    public boolean getStatus() {
+    public int getStatus() {
         return this.status;
     }
 
@@ -141,6 +143,32 @@ public class Book {
     }
 
     /**
+     * Sets the book id and grows nextIdentifier if necessary
+     * @param id set id
+     */
+    private void setIdentifier(int id) {
+        this.identifier = id;
+        if (this.identifier >= Book.nextIdentifier) Book.nextIdentifier++;
+    }
+
+    /**
+     * Parse book information from the line
+     * @param line
+     */
+    public void parse(String line) {
+        StringBuilder sb = new StringBuilder(line);
+        setIdentifier(Mjonot.erota(sb, '|', this.identifier));
+        this.title = Mjonot.erota(sb, '|', this.title);
+        this.originalTitle = Mjonot.erota(sb, '|', this.originalTitle);
+        this.authorId = Mjonot.erota(sb, '|', this.authorId);
+        this.pubYear = Mjonot.erota(sb, '|', this.pubYear);
+        this.pubId = Mjonot.erota(sb, '|', this.pubId);
+        this.language = Mjonot.erota(sb, '|', this.language);
+        this.status = (Mjonot.erota(sb, '|', 0) == 1) ? 1 : 0;
+        this.rating = Mjonot.erota(sb, '|', this.rating);
+    }
+
+    /**
      * Prints information about the book
      * @param out output stream
      */
@@ -150,5 +178,23 @@ public class Book {
         out.println("  published by: " + this.pubId + ", " + this.pubYear);
         out.println("  read: " + this.status);
         out.println("  rating: " + this.rating);
+    }
+
+    /**
+     * Returns book in String format
+     * @return book as String
+     */
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.identifier + "|");
+        sb.append(this.title + "|");
+        sb.append(this.originalTitle + "|");
+        sb.append(this.authorId + "|");
+        sb.append(this.pubYear + "|");
+        sb.append(this.pubId + "|");
+        sb.append(this.language + "|");
+        sb.append(this.status + "|");
+        sb.append(this.rating);
+        return sb.toString();
     }
 }

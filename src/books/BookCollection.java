@@ -29,7 +29,7 @@ public class BookCollection {
      * @param book added book
      */
     public void add(Book book) {
-        this.books.addBook(book);
+        this.books.add(book);
     }
 
     /**
@@ -37,7 +37,7 @@ public class BookCollection {
      * @param author added author
      */
     public void add(Author author) {
-        this.authors.addAuthor(author);
+        this.authors.add(author);
     }
 
     /**
@@ -45,7 +45,7 @@ public class BookCollection {
      * @param publisher added publisher
      */
     public void add(Publisher publisher) {
-        this.publishers.addPublisher(publisher);
+        this.publishers.add(publisher);
     }
 
     /**
@@ -134,5 +134,37 @@ public class BookCollection {
      */
     public int getNoOfPublishers() {
         return this.publishers.getNoOfPublishers();
+    }
+
+    /**
+     * Save changes to all files
+     */
+    public void save() throws StoreException {
+        String error = "";
+        try {
+            this.books.save();
+        } catch (StoreException e) {
+            error += e.getMessage();
+        }
+
+        try {
+            this.authors.save();
+        } catch (StoreException e) {
+            error += e.getMessage();
+        }
+
+        try {
+            this.publishers.save();
+        } catch (StoreException e) {
+            error += e.getMessage();
+        }
+
+        if (error.length() > 0) throw new StoreException(error);
+    }
+
+    public void readFile() throws StoreException {
+        books.readFile();
+        authors.readFile();
+        publishers.readFile();
     }
 }

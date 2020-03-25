@@ -1,5 +1,7 @@
 package books;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 import java.io.PrintStream;
 
 /**
@@ -53,10 +55,29 @@ public class Publisher {
     }
 
     /**
+     * Sets the publisher id and grows next id if necessary
+     * @param id set id
+     */
+    private void setIdentifier(int id) {
+        this.identifier = id;
+        if (this.identifier >= Publisher.nextIdentifier) Publisher.nextIdentifier++;
+    }
+
+    /**
      * Resets the id to 1
      */
     public static void clearIdentifier(){
         Publisher.nextIdentifier = 1;
+    }
+
+    /**
+     * Parse author information from the line
+     * @param line
+     */
+    public void parse(String line) {
+        StringBuilder sb = new StringBuilder(line);
+        setIdentifier(Mjonot.erota(sb, '|', this.identifier));
+        this.publisher = Mjonot.erota(sb, '|', this.publisher);
     }
 
     /**
@@ -65,5 +86,16 @@ public class Publisher {
      */
     public void print(PrintStream out) {
         out.println(this.identifier + " " + this.publisher);
+    }
+
+    /**
+     * Returns publisher in String format
+     * @return publisher as String
+     */
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.identifier + "|");
+        sb.append(this.publisher);
+        return sb.toString();
     }
 }

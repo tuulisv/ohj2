@@ -21,7 +21,7 @@ public class AuthorsTest {
     public void testGetNonemptyNoOfAuthors() {
         Authors authors = new Authors();
         Author author = new Author();
-        authors.addAuthor(author);
+        authors.add(author);
         assertEquals(1, authors.getNoOfAuthors());
     }
 
@@ -33,8 +33,8 @@ public class AuthorsTest {
         auth1.register();
         auth2.register();
         auth2.exampleAuthor();
-        authors.addAuthor(auth1);
-        authors.addAuthor(auth2);
+        authors.add(auth1);
+        authors.add(auth2);
         assertEquals("J. R. R. Tolkien 2", authors.getAuthorById(2).getName());
     }
 
@@ -46,8 +46,8 @@ public class AuthorsTest {
         Author a2 = new Author();
         a1.register();
         a2.register();
-        a.addAuthor(a1);
-        a.addAuthor(a2);
+        a.add(a1);
+        a.add(a2);
         assertEquals(1, a.getAuthorByIndex(0).getId());
     }
 }

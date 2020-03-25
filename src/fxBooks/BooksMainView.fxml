@@ -118,7 +118,7 @@
                         <GridPane hgap="10.0" maxHeight="1.7976931348623157E308" vgap="10.0">
                             <columnConstraints>
                                 <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
-                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                                <ColumnConstraints hgrow="SOMETIMES" prefWidth="200.0" maxWidth="1.7976931348623157E308" minWidth="20.0" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES" />
@@ -136,19 +136,19 @@
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label fx:id="labelBookTitle" text="" GridPane.columnIndex="1" />
+                                <Label fx:id="labelBookTitle" text="" wrapText="true" GridPane.columnIndex="1" />
                                 <Label text="Original Title" GridPane.rowIndex="1">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label fx:id="labelOrigTitle" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="labelOrigTitle" text="" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Label text="Author" GridPane.rowIndex="2">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label fx:id="labelAuthor" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label fx:id="labelAuthor" text="" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <Label text="Publication Year" GridPane.rowIndex="3">
                                     <opaqueInsets>
                                         <Insets />
@@ -160,13 +160,13 @@
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label fx:id="labelPub" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label fx:id="labelPub" text="" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                 <Label text="Language" GridPane.rowIndex="5">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Label>
-                                <Label fx:id="labelLang" text="" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label fx:id="labelLang" text="" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                 <Label alignment="TOP_RIGHT" contentDisplay="TOP" text="Reading Status" GridPane.rowIndex="6" GridPane.valignment="TOP">
                                     <opaqueInsets>
                                         <Insets />
@@ -183,7 +183,7 @@
                                         <Insets />
                                     </GridPane.margin>
                                 </Label>
-                                <RadioButtonChooser fx:id="chooserStatus" onMouseClicked="#handleSelectStatus" rivit="read&#10;unread" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                <RadioButtonChooser fx:id="chooserStatus" onMouseClicked="#handleSelectStatus" rivit="unread&#10;read" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>

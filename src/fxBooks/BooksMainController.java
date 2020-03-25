@@ -1,9 +1,7 @@
 package fxBooks;
 
-import books.Author;
-import books.Book;
-import books.BookCollection;
-import books.Publisher;
+import books.*;
+import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.RadioButtonChooser;
 import javafx.application.Platform;
@@ -12,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -62,12 +61,13 @@ public class BooksMainController implements Initializable {
 
     @FXML
     void handleEdit() {
+        //editBook();
         BooksMain.errorGeneral();
     }
 
     @FXML
     void handleSave() {
-        BooksMain.errorGeneral();
+        save();
     }
 
     @FXML
@@ -125,7 +125,7 @@ public class BooksMainController implements Initializable {
 
     //==============================================================================
 
-    BookCollection books;
+    private BookCollection books;
 
     /**
      * Clears the book list
@@ -168,6 +168,13 @@ public class BooksMainController implements Initializable {
     }
 
     /**
+     * Edit the selected book
+     */
+    private void editBook() {
+        //BookDialogController.getBook(null, chooserBooks.getSelectedObject());
+    }
+
+    /**
      * Adds a new author with example values
      */
     private void newAuthor() {
@@ -193,18 +200,17 @@ public class BooksMainController implements Initializable {
      * @param id author id
      */
     private void addAuthorToList(int id) {
-        //chooserAuthors.clear();
+        chooserAuthors.clear();
         int index = books.getNoOfAuthors() - 1;
-        /*for (int i = 0; i < books.getNoOfAuthors(); i++) {
+        for (int i = 0; i < books.getNoOfAuthors(); i++) {
             Author author = books.getAuthor(i);
             if (books.getAuthor(i).getId() == id) {
                 index = i;
             }
 
             chooserAuthors.add("" + author.getName(), author);
-        }*/
-        Author author = books.getAuthorById(id);
-        chooserAuthors.add("" + author.getName(), author);
+        }
+
         chooserAuthors.setSelectedIndex(index);
     }
 
@@ -212,6 +218,7 @@ public class BooksMainController implements Initializable {
      * Shows the attribute values of the book
      */
     private void showBook() {
+        if (chooserBooks.getObjects().isEmpty()) return;
         Author selectedAuthor = chooserAuthors.getSelectedObject();
         Book selectedBook = chooserBooks.getSelectedObject();
         Publisher publisher = books.getPublisherById(selectedBook.getPubId());
@@ -224,8 +231,7 @@ public class BooksMainController implements Initializable {
         labelPub.setText("" + publisher.getName());
         labelLang.setText(selectedBook.getLanguage());
 
-        int status = 0;
-        if (!selectedBook.getStatus()) status = 1;
+        int status = selectedBook.getStatus() == 1 ? 1 : 0;
         chooserStatus.setSelectedIndex(status, true);
         int rating = selectedBook.getRating();
         chooserRating.setSelectedIndex(rating, true);
@@ -241,8 +247,8 @@ public class BooksMainController implements Initializable {
         labelPubYear.setText("");
         labelPub.setText("");
         labelLang.setText("");
-        chooserStatus.setSelectedIndex(0, false);
-        chooserRating.setSelectedIndex(0, false);
+        chooserStatus.setSelectedIndex(chooserStatus.getSelectedIndex(), false);
+        chooserRating.setSelectedIndex(chooserStatus.getSelectedIndex(), false); // ei toimi, jää valituksi
     }
 
     /**
@@ -259,6 +265,38 @@ public class BooksMainController implements Initializable {
         for (int i = 0; i < works.size(); i++) {
             chooserBooks.add("" + works.get(i).getTitle(), works.get(i));
             chooserBooks.setSelectedIndex(i);
+        }
+    }
+
+    /**
+     * Check if changes are saved
+     * @return true if saved
+     */
+    public boolean canClose() {
+        save();
+        return true;
+    }
+
+    /**
+     * Save changes to all files
+     */
+    private void save() {
+        try {
+            books.save();
+        } catch (StoreException e) {
+            Dialogs.showMessageDialog("Error in saving files: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Reads files
+     */
+    public void readFile() {
+        try {
+            books.readFile();
+            addAuthorToList(0);
+        } catch (StoreException e) {
+            Dialogs.showMessageDialog("Error in reading file: " + e.getMessage());
         }
     }
 

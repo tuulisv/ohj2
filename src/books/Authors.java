@@ -1,7 +1,9 @@
 package books;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Handles having several authors in the program
@@ -12,20 +14,25 @@ import java.util.List;
 public class Authors {
 
     private List<Author> authors;
+    private File file;
+    private boolean changed;
 
     /**
      * Default constructor
      */
     public Authors() {
         this.authors = new ArrayList<>();
+        this.file = new File("authors.dat");
+        this.changed = false;
     }
 
     /**
      * Adds a new author
      * @param author added author
      */
-    public void addAuthor(Author author) {
+    public void add(Author author) {
         this.authors.add(author);
+        this.changed = true;
     }
 
     /**
@@ -64,5 +71,46 @@ public class Authors {
         }
 
         return new Author();
+    }
+
+    /**
+     * Saves changes to authors file
+     * @throws StoreException if problems in writing in the file
+     */
+    public void save() throws StoreException {
+        if (!this.changed) return;
+        try (PrintStream ps = new PrintStream(new FileOutputStream(file))) {
+            ps.println(";authid|author");
+            for (int i = 0; i < getNoOfAuthors(); i++) {
+                Author author = getAuthorByIndex(i);
+                ps.println(author.toString());
+            }
+        } catch (FileNotFoundException e) {
+            throw new StoreException("Can't open file " + file.getName());
+        } /*catch (IOException e) {
+            throw new StoreException("Failed to write in file " + file.getName());
+        }*/
+
+        this.changed = false;
+    }
+
+    /**
+     * Read the authors file
+     * @throws StoreException if failed to open file
+     */
+    public void readFile() throws StoreException {
+        try (Scanner s = new Scanner(new FileInputStream(file))) {
+            while (s.hasNextLine()) {
+                String line = s.nextLine().trim();
+                if (line.length() == 0 || line.charAt(0) == ';') continue;
+                Author author = new Author();
+                author.parse(line);
+                add(author);
+            }
+        } catch (FileNotFoundException e) {
+            throw new StoreException("Can't open file " + file.getName());
+        } /*catch (IOException e) {
+            throw new StoreException("Failed to read " + file.getName());
+        }*/
     }
 }

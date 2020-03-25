@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * @author Tuuli Veini
  * @version 31.1.2020
  */
-public class BooksAddAuthController {
+public class AuthorDialogController {
 
     @FXML private TextField textAuthor;
     @FXML private javafx.scene.control.Button cancelButton;

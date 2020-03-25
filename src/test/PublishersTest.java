@@ -19,8 +19,8 @@ public class PublishersTest {
         Publishers pub = new Publishers();
         Publisher p1 = new Publisher();
         Publisher p2 = new Publisher();
-        pub.addPublisher(p1);
-        pub.addPublisher(p2);
+        pub.add(p1);
+        pub.add(p2);
         assertEquals(2, pub.getNoOfPublishers());
     }
 
@@ -34,8 +34,8 @@ public class PublishersTest {
         pub2.register();
         pub1.examplePublisher();
         pub2.examplePublisher();
-        pub.addPublisher(pub1);
-        pub.addPublisher(pub2);
+        pub.add(pub1);
+        pub.add(pub2);
         assertEquals("Allen & Unwin 2", pub.getPublisherById(2).getName());
     }
 
@@ -48,8 +48,8 @@ public class PublishersTest {
         p2.register();
         p1.examplePublisher();
         p2.examplePublisher();
-        pub.addPublisher(p1);
-        pub.addPublisher(p2);
+        pub.add(p1);
+        pub.add(p2);
         assertEquals("Allen & Unwin 2", pub.getPublisherByIndex(1).getName());
     }
 }
