@@ -152,6 +152,13 @@ public class Book {
     }
 
     /**
+     * Resets the id to 1
+     */
+    public static void clearIdentifier() {
+        Book.nextIdentifier = 1;
+    }
+
+    /**
      * Parse book information from the line
      * @param line
      */

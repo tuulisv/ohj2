@@ -6,9 +6,6 @@ import books.BookCollection;
 import books.Publisher;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -27,6 +24,7 @@ public class BookCollectionTest {
 
     @Test
     public void testGetExampleAuthor() {
+        Author.clearIdentifier();
         BookCollection bc = new BookCollection();
         Author author = new Author();
         author.register();

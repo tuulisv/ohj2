@@ -50,6 +50,7 @@ public class BooksTest {
 
     @Test
     public void testGetAuthorsWorks() {
+        Author.clearIdentifier();
         Books books = new Books();
         Author author1 = new Author();
         Author author2 = new Author();

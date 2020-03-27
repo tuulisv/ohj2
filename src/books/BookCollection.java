@@ -11,9 +11,9 @@ import java.util.Random;
  */
 public class BookCollection {
 
-    Books books;
-    Authors authors;
-    Publishers publishers;
+    private Books books;
+    private Authors authors;
+    private Publishers publishers;
 
     /**
      * Default constructor
@@ -138,6 +138,7 @@ public class BookCollection {
 
     /**
      * Save changes to all files
+     * @throws StoreException
      */
     public void save() throws StoreException {
         String error = "";
@@ -162,6 +163,10 @@ public class BookCollection {
         if (error.length() > 0) throw new StoreException(error);
     }
 
+    /**
+     * Reads all files
+     * @throws StoreException
+     */
     public void readFile() throws StoreException {
         books.readFile();
         authors.readFile();

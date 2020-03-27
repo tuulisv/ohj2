@@ -41,6 +41,7 @@ public class PublishersTest {
 
     @Test
     public void testGetPublisherByIndex() {
+        Publisher.clearIdentifier();
         Publishers pub = new Publishers();
         Publisher p1 = new Publisher();
         Publisher p2 = new Publisher();

@@ -1,8 +1,12 @@
 package test;
 
 import books.Book;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,11 +85,12 @@ public class BookTest {
     @Test
     public void testGetDefaultStatus() {
         Book book = new Book();
-        assertEquals(false, book.getStatus());
+        assertEquals(0, book.getStatus());
     }
 
     @Test
     public void testRegisteringGrowsNextId() {
+        Book.clearIdentifier();
         Book book1 = new Book();
         Book book2 = new Book();
         Book book3 = new Book();
@@ -113,5 +118,30 @@ public class BookTest {
             book.exampleBook();
             assertTrue(book.getRating() >= 0 && book.getRating() <= 5);
         }
+    }
+
+    @Test
+    public void testParseBookSetsBookTitle() {
+        Book book = new Book();
+        book.parse("10|1Q84|1Q84|7|2009|7|Japanese|0|0");
+        assertEquals("1Q84", book.getTitle());
+    }
+
+    @Test
+    public void testParseBookSetsAuthorId() {
+        Book book = new Book();
+        book.parse("10|1Q84|1Q84|7|2009|7|Japanese|0|0");
+        assertEquals(7, book.getAuthorId());
+    }
+
+    @Test
+    public void testBookToString() {
+        Book.clearIdentifier();
+        Book book = new Book(1, 1);
+        book.register();
+        book.exampleBook();
+        int rating = book.getRating();
+        assertEquals("1|The Lord of the Rings 1|The Lord of the Rings|1|1954|1|English|1|" + rating,
+                     book.toString());
     }
 }
