@@ -72,6 +72,15 @@ public class Publishers {
     }
 
     /**
+     * Sets a new file name
+     * @param fileName file name
+     */
+    public void setFile(String fileName) {
+        if (fileName.isEmpty()) return;
+        this.file = new File(fileName);
+    }
+
+    /**
      * Saves changes to publishers file
      * @throws StoreException if problems in writing in the file
      */

@@ -294,7 +294,7 @@ public class BooksMainController implements Initializable {
     public void readFile() {
         try {
             books.readFile();
-            addAuthorToList(0);
+            addAuthorToList(0); //refreshes the author list
         } catch (StoreException e) {
             Dialogs.showMessageDialog("Error in reading file: " + e.getMessage());
         }

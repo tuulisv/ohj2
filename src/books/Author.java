@@ -92,6 +92,7 @@ public class Author {
      * Returns author in String format
      * @return author as String
      */
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.identifier + "|");

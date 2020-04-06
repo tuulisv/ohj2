@@ -191,6 +191,7 @@ public class Book {
      * Returns book in String format
      * @return book as String
      */
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.identifier + "|");

@@ -74,6 +74,15 @@ public class Authors {
     }
 
     /**
+     * Sets a new file name
+     * @param fileName file name
+     */
+    public void setFile(String fileName) {
+        if (fileName.isEmpty()) return;
+        this.file = new File(fileName);
+    }
+
+    /**
      * Saves changes to authors file
      * @throws StoreException if problems in writing in the file
      */

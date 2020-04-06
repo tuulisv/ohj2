@@ -92,6 +92,7 @@ public class Publisher {
      * Returns publisher in String format
      * @return publisher as String
      */
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.identifier + "|");

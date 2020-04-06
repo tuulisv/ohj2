@@ -36,10 +36,6 @@ public class AuthorsTest {
         auth2.exampleAuthor();
         authors.add(auth1);
         authors.add(auth2);
-        int id = auth2.getId();
-        int id2 = authors.getAuthorById(2).getId();
-        String nimi = auth2.getName();
-        String nimi2 = authors.getAuthorById(2).getName();
         assertEquals("J. R. R. Tolkien 2", authors.getAuthorById(2).getName());
     }
 

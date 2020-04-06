@@ -137,6 +137,18 @@ public class BookCollection {
     }
 
     /**
+     * Sets new file names
+     * @param booksFile file name for books
+     * @param authFile file name for authors
+     * @param pubFile file name for publishers
+     */
+    public void setFileNames(String booksFile, String authFile, String pubFile) {
+        this.books.setFile(booksFile);
+        this.authors.setFile(authFile);
+        this.publishers.setFile(pubFile);
+    }
+
+    /**
      * Save changes to all files
      * @throws StoreException
      */
