@@ -61,8 +61,8 @@ public class BooksMainController implements Initializable {
 
     @FXML
     void handleEdit() {
-        //editBook();
-        BooksMain.errorGeneral();
+        editBook();
+        //BooksMain.errorGeneral();
     }
 
     @FXML
@@ -171,7 +171,7 @@ public class BooksMainController implements Initializable {
      * Edit the selected book
      */
     private void editBook() {
-        //BookDialogController.getBook(null, chooserBooks.getSelectedObject());
+        BookDialogController.getBook(null, chooserBooks.getSelectedObject());
     }
 
     /**
@@ -306,5 +306,6 @@ public class BooksMainController implements Initializable {
      */
     public void setBookCollection(BookCollection books) {
         this.books = books;
+        BookDialogController.setBookCollection(books);
     }
 }

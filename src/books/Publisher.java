@@ -81,22 +81,22 @@ public class Publisher {
     }
 
     /**
-     * Prints publisher information
-     * @param out output stream
+     * Returns publisher id and name as string
+     * @return publisher id and name
      */
-    public void print(PrintStream out) {
-        out.println(this.identifier + " " + this.publisher);
-    }
-
-    /**
-     * Returns publisher in String format
-     * @return publisher as String
-     */
-    @Override
-    public String toString() {
+    public String print() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.identifier + "|");
         sb.append(this.publisher);
         return sb.toString();
+    }
+
+    /**
+     * Returns publisher name as string
+     * @return publisher as string
+     */
+    @Override
+    public String toString() {
+        return this.publisher;
     }
 }

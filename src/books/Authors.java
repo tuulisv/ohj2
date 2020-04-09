@@ -36,6 +36,14 @@ public class Authors {
     }
 
     /**
+     * Returns the list of authors
+     * @return list of authors
+     */
+    public List<Author> getAuthors() {
+        return this.authors;
+    }
+
+    /**
      * Returns the number of authors
      * @return number of authors
      */
@@ -92,7 +100,7 @@ public class Authors {
             ps.println(";authid|author");
             for (int i = 0; i < getNoOfAuthors(); i++) {
                 Author author = getAuthorByIndex(i);
-                ps.println(author.toString());
+                ps.println(author.print());
             }
         } catch (FileNotFoundException e) {
             throw new StoreException("Can't open file " + file.getName());

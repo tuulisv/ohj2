@@ -81,22 +81,22 @@ public class Author {
     }
 
     /**
-     * Prints author information
-     * @param out output stream
+     * Returns author id and name as string
+     * @return author id and name
      */
-    public void print(PrintStream out) {
-        out.println(this.identifier + "  " + this.author);
-    }
-
-    /**
-     * Returns author in String format
-     * @return author as String
-     */
-    @Override
-    public String toString() {
+    public String print() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.identifier + "|");
         sb.append(this.author);
         return sb.toString();
+    }
+
+    /**
+     * Returns author name in String format
+     * @return author as String
+     */
+    @Override
+    public String toString() {
+        return this.author;
     }
 }

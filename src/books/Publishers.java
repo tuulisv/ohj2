@@ -36,6 +36,14 @@ public class Publishers {
     }
 
     /**
+     * Returns the list of publishers
+     * @return list of publishers
+     */
+    public List<Publisher> getPublishers() {
+        return this.publishers;
+    }
+
+    /**
      * Returns the number of publishers
      * @return number of publishers
      */
@@ -90,7 +98,7 @@ public class Publishers {
             ps.println(";pubid|publisher");
             for (int i = 0; i < getNoOfPublishers(); i++) {
                 Publisher pub = getPublisherByIndex(i);
-                ps.println(pub.toString());
+                ps.println(pub.print());
             }
         } catch (FileNotFoundException e) {
             throw new StoreException("Can't open file " + file.getName());

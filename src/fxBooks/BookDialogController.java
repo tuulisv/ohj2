@@ -4,21 +4,23 @@ import books.Author;
 import books.Book;
 import books.BookCollection;
 import books.Publisher;
+import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.fxgui.RadioButtonChooser;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -69,8 +71,9 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @FXML
     void handleCancel() {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        //Stage stage = (Stage) cancelButton.getScene().getWindow();
+        //stage.close();
+        ModalController.closeStage(labelError);
     }
 
     @FXML
@@ -79,22 +82,26 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         if (pubYear.matches("^\\d{4}$")) {
             showError("Invalid publication year");
             return;
-        }
+        }*/
 
-        ModalController.closeStage(labelError);*/
+        ModalController.closeStage(labelError);
 
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        //Stage stage = (Stage) cancelButton.getScene().getWindow();
+        //stage.close();
     }
 
     //==============================================================================
 
-    private BookCollection books;
+    private static BookCollection books;
+    private Book selectedBook;
 
-    /*
-    protected void setBookCollection(BookCollection books) {
-        this.books = books;
-    } */
+    /**
+     * Sets the BookCollection
+     * @param bc BookCollection
+     */
+    protected static void setBookCollection(BookCollection bc) {
+        books = bc;
+    }
 
     @Override
     public Book getResult() {
@@ -103,7 +110,8 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @Override
     public void setDefault(Book book) {
-
+        selectedBook = book;
+        showBook(selectedBook);
     }
 
     @Override
@@ -111,9 +119,22 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     }
 
-    @Override
+    @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        assert dropdownAuthors != null : "dropdownAuthors was not injected";
+        assert dropdownPublishers != null : "dropdownPublishers was not injected";
+        assert textTitle != null : "textTitle was not initialized";
 
+        /*List<String> authorsList = new ArrayList<>();
+        for (int i = 0; i < books.getNoOfAuthors(); i++) {
+            authorsList.add(books.getAuthor(i).getName());
+        }*/
+
+        //ObservableList<String> authorList = FXCollections.observableArrayList(authorsList);
+        ObservableList<Author> authorList = FXCollections.observableArrayList(books.getAuthors());
+        dropdownAuthors.setItems(authorList);
+        ObservableList<Publisher> pubList = FXCollections.observableArrayList(books.getPublishers());
+        dropdownPublishers.setItems(pubList);
     }
 
     /**
@@ -160,7 +181,8 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      * @return edited data or null if pressed cancel
      */
     public static Book getBook(Stage stage, Book book) {
-        return ModalController.showModal(BookDialogController.class.getResource("BookDialogView.fxml"),"Book", stage, book, null);
+        return ModalController.showModal(BookDialogController.class.getResource("BookDialogView.fxml"),
+                                         "Book", stage, book, null);
     }
 
 }

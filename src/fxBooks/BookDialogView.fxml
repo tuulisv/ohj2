@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ComboBox?>
 <VBox stylesheets="@books.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxBooks.BookDialogController">
     <children>
-        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="New book" />
         <Separator maxWidth="1.7976931348623157E308" prefWidth="200.0">
             <VBox.margin>
                 <Insets bottom="5.0" top="5.0" />
@@ -79,9 +79,9 @@
                         <TextField fx:id="textLang" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Button mnemonicParsing="false" onAction="#handleNewAuthor" text="Add author" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#handleNewPublisher" text="Add publisher" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <ComboBoxChooser id="dropdownAuthors" maxWidth="1.7976931348623157E308" rivit="J. R. R. Tolkien&#10;Antoine de Saint-Exupéry&#10;Paulo Coelho&#10;Jacob Grimm&#10;Wilhelm Grimm&#10;J. K. Rowling" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ComboBoxChooser id="dropdownPublishers" maxWidth="1.7976931348623157E308" rivit="Allen &amp; Unwin&#10;Reynal &amp; Hitchcock&#10;Rocco&#10;Bloomsbury" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <RadioButtonChooser id="chooserRating" rivit="5&#10;4&#10;3&#10;2&#10;1&#10;0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                  <ComboBox fx:id="dropdownAuthors" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="dropdownPublishers" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <RadioButtonChooser fx:id="chooserRating" rivit="0&#10;1&#10;2&#10;3&#10;4&#10;5" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -89,7 +89,7 @@
                         <Insets left="-1.0" />
                      </padding>
                   </RadioButtonChooser>
-                  <RadioButtonChooser id="chooserStatus" rivit="read&#10;unread" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <RadioButtonChooser fx:id="chooserStatus" rivit="unread&#10;read" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -109,7 +109,7 @@
         </ScrollPane>
         <HBox alignment="TOP_RIGHT" spacing="10.0">
             <children>
-                <Label id="labelError" />
+                <Label fx:id="labelError" />
                 <Button mnemonicParsing="false" fx:id="okButton" onAction="#handleSave" text="Save" />
                 <Button mnemonicParsing="false" fx:id="cancelButton" onAction="#handleCancel" text="Cancel" />
             </children>

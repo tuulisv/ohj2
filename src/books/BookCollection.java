@@ -104,6 +104,22 @@ public class BookCollection {
     }
 
     /**
+     * Returns the list of authors
+     * @return authors in a list
+     */
+    public List<Author> getAuthors() {
+        return this.authors.getAuthors();
+    }
+
+    /**
+     * Returns the list of publishers
+     * @return publishers in a list
+     */
+    public List<Publisher> getPublishers() {
+        return this.publishers.getPublishers();
+    }
+
+    /**
      * Returns the list of the author's books
      * @param author author
      * @return list of the author's books
