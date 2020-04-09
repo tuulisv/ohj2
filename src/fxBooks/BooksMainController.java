@@ -162,6 +162,7 @@ public class BooksMainController implements Initializable {
 
         Book book = new Book();
         book = BookDialogController.getBook(null, book);
+        if (book == null) return;
         book.register();
         books.add(book);
         showAuthorsWorks();

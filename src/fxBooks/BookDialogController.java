@@ -68,6 +68,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @FXML
     void handleCancel() {
+        selectedBook = null;
         ModalController.closeStage(labelError);
     }
 
@@ -77,6 +78,9 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         String pubYear = textPubYear.getText();
         if (bookTitle.isEmpty()) {
             showError("Title cannot be empty", textTitle);
+            return;
+        } else if (dropdownAuthors.getValue().getName().isEmpty()) {
+            showError("Author cannot be empty", null);
             return;
         } else if (!pubYear.matches("^\\d{4}$")) {
             showError("Invalid publication year", textPubYear);
