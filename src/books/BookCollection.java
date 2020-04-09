@@ -1,5 +1,6 @@
 package books;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -158,6 +159,10 @@ public class BookCollection {
      */
     public int getNoOfPublishers() {
         return this.publishers.getNoOfPublishers();
+    }
+
+    public List<Author> search(String searchTerm) {
+        return this.authors.search(searchTerm);
     }
 
     /**

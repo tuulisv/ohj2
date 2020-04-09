@@ -86,8 +86,7 @@ public class Author {
      */
     public String print() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.identifier + "|");
-        sb.append(this.author);
+        sb.append(this.identifier).append("|").append(this.author);
         return sb.toString();
     }
 

@@ -258,14 +258,14 @@ public class Book {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.identifier + "|");
-        sb.append(this.title + "|");
-        sb.append(this.originalTitle + "|");
-        sb.append(this.authorId + "|");
-        sb.append(this.pubYear + "|");
-        sb.append(this.pubId + "|");
-        sb.append(this.language + "|");
-        sb.append(this.status + "|");
+        sb.append(this.identifier).append("|");
+        sb.append(this.title).append("|");
+        sb.append(this.originalTitle).append("|");
+        sb.append(this.authorId).append("|");
+        sb.append(this.pubYear).append("|");
+        sb.append(this.pubId).append("|");
+        sb.append(this.language).append("|");
+        sb.append(this.status).append("|");
         sb.append(this.rating);
         return sb.toString();
     }

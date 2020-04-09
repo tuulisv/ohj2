@@ -86,8 +86,7 @@ public class Publisher {
      */
     public String print() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.identifier + "|");
-        sb.append(this.publisher);
+        sb.append(this.identifier).append("|").append(this.publisher);
         return sb.toString();
     }
 

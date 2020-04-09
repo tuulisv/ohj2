@@ -100,7 +100,7 @@ public class BooksMainController implements Initializable {
 
     @FXML
     void handleSearch() {
-        BooksMain.errorGeneral();
+        //search(textSearch.getText());
     }
 
     @FXML
@@ -141,6 +141,7 @@ public class BooksMainController implements Initializable {
     private void initializeAuthors() {
         chooserAuthors.clear();
         chooserAuthors.addSelectionListener((event) -> showAuthorsWorks());
+        textSearch.setOnKeyReleased((event) -> search(textSearch.getText()));
     }
 
     /**
@@ -271,6 +272,17 @@ public class BooksMainController implements Initializable {
             chooserBooks.add("" + works.get(i).getTitle(), works.get(i));
             chooserBooks.setSelectedIndex(i);
         }
+    }
+
+    public void search(String str) {
+        List<Author> foundAuthors = books.search(str);
+        chooserAuthors.clear();
+        for (int i = 0; i < foundAuthors.size(); i++) {
+            Author author = foundAuthors.get(i);
+            chooserAuthors.add("" + author.getName(), author);
+        }
+
+        chooserAuthors.setSelectedIndex(foundAuthors.size() - 1);
     }
 
     /**

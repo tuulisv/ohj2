@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Handles having several authors in the program
@@ -82,6 +83,23 @@ public class Authors {
     }
 
     /**
+     * Finds authors matching to the search term and returns them as a list
+     * @param str search term
+     * @return matching authors
+     */
+    public List<Author> search(String str) {
+        List<Author> items = new ArrayList<>();
+        String regex = "(?i).*(" + Pattern.quote(str) + ").*";
+
+        for (int i = 0; i < getNoOfAuthors(); i++) {
+            Author author = this.authors.get(i);
+            if (author.getName().matches(regex)) items.add(author);
+        }
+
+        return items;
+    }
+
+    /**
      * Sets a new file name
      * @param fileName file name
      */
@@ -104,9 +122,7 @@ public class Authors {
             }
         } catch (FileNotFoundException e) {
             throw new StoreException("Can't open file " + file.getName());
-        } /*catch (IOException e) {
-            throw new StoreException("Failed to write in file " + file.getName());
-        }*/
+        }
 
         this.changed = false;
     }
@@ -126,8 +142,6 @@ public class Authors {
             }
         } catch (FileNotFoundException e) {
             throw new StoreException("Can't open file " + file.getName());
-        } /*catch (IOException e) {
-            throw new StoreException("Failed to read " + file.getName());
-        }*/
+        }
     }
 }
