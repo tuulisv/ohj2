@@ -75,6 +75,22 @@ public class Books {
     }
 
     /**
+     * Replaces a book or adds a new book if it's not in the collection
+     * @param book new book
+     */
+    public void replaceOrAdd(Book book) {
+        for (int i = 0; i < getNoOfBooks(); i++) {
+            if (this.books[i].getId() == book.getId()) {
+                this.books[i] = book;
+                this.changed = true;
+                return;
+            }
+        }
+
+        add(book);
+    }
+
+    /**
      * Returns a list of the author's books
      * @param author author
      * @return list of the author's books

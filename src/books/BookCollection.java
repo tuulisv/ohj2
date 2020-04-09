@@ -49,6 +49,14 @@ public class BookCollection {
     }
 
     /**
+     * Replaces a book or adds a new book if it's not in the collection
+     * @param book new book
+     */
+    public void replaceOrAdd(Book book) {
+        this.books.replaceOrAdd(book);
+    }
+
+    /**
      * Get the book at index i
      * @param i index of the book
      * @return book at index i

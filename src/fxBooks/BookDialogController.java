@@ -4,7 +4,6 @@ import books.Author;
 import books.Book;
 import books.BookCollection;
 import books.Publisher;
-import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.fxgui.RadioButtonChooser;
@@ -19,8 +18,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -71,23 +68,23 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @FXML
     void handleCancel() {
-        //Stage stage = (Stage) cancelButton.getScene().getWindow();
-        //stage.close();
         ModalController.closeStage(labelError);
     }
 
     @FXML
     void handleSave() {
-        /*String pubYear = textPubYear.getText();
-        if (pubYear.matches("^\\d{4}$")) {
-            showError("Invalid publication year");
+        String bookTitle = textTitle.getText();
+        String pubYear = textPubYear.getText();
+        if (bookTitle.isEmpty()) {
+            showError("Title cannot be empty", textTitle);
             return;
-        }*/
+        } else if (!pubYear.matches("^\\d{4}$")) {
+            showError("Invalid publication year", textPubYear);
+            return;
+        }
 
+        handleChanges();
         ModalController.closeStage(labelError);
-
-        //Stage stage = (Stage) cancelButton.getScene().getWindow();
-        //stage.close();
     }
 
     //==============================================================================
@@ -105,7 +102,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @Override
     public Book getResult() {
-        return null;
+        return selectedBook;
     }
 
     @Override
@@ -116,7 +113,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @Override
     public void handleShown() {
-
+        textTitle.requestFocus();
     }
 
     @FXML
@@ -125,12 +122,6 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         assert dropdownPublishers != null : "dropdownPublishers was not injected";
         assert textTitle != null : "textTitle was not initialized";
 
-        /*List<String> authorsList = new ArrayList<>();
-        for (int i = 0; i < books.getNoOfAuthors(); i++) {
-            authorsList.add(books.getAuthor(i).getName());
-        }*/
-
-        //ObservableList<String> authorList = FXCollections.observableArrayList(authorsList);
         ObservableList<Author> authorList = FXCollections.observableArrayList(books.getAuthors());
         dropdownAuthors.setItems(authorList);
         ObservableList<Publisher> pubList = FXCollections.observableArrayList(books.getPublishers());
@@ -141,13 +132,15 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      * Shows error message at the bottom of the window
      * @param msg error message
      */
-    private void showError(String msg) {
+    private void showError(String msg, TextField field) {
         if (msg.isEmpty()) {
             labelError.setText("");
-            //textPubYear.getStyleClass().removeAll("error");
+            textPubYear.getStyleClass().removeAll("error");
         } else {
             labelError.setText(msg);
-            //textPubYear.getStyleClass().add("error");
+            if (field == textPubYear) {
+                field.getStyleClass().add("error");
+            }
         }
     }
 
@@ -175,6 +168,20 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     }
 
     /**
+     * Updates all values for the book
+     */
+    private void handleChanges() {
+        selectedBook.setTitle(textTitle.getText());
+        selectedBook.setOriginalTitle((textOrigTitle.getText()));
+        selectedBook.setAuthorId(dropdownAuthors.getValue().getId());
+        selectedBook.setPubYear(Integer.parseInt(textPubYear.getText()));
+        selectedBook.setPubId(dropdownPublishers.getValue().getId());
+        selectedBook.setLanguage((textLang.getText()));
+        selectedBook.setStatus(chooserStatus.getSelectedIndex());
+        selectedBook.setRating(chooserRating.getSelectedIndex());
+    }
+
+    /**
      * Creates a dialog for retrieving a book
      * @param stage modality stage, for the application the value is null
      * @param book default book shown
@@ -184,5 +191,4 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         return ModalController.showModal(BookDialogController.class.getResource("BookDialogView.fxml"),
                                          "Book", stage, book, null);
     }
-
 }

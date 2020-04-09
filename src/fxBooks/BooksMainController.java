@@ -160,9 +160,9 @@ public class BooksMainController implements Initializable {
             return;
         }
 
-        Book book = new Book(selectedAuthor.getId(), publisher.getId());
+        Book book = new Book();
+        book = BookDialogController.getBook(null, book);
         book.register();
-        book.exampleBook();
         books.add(book);
         showAuthorsWorks();
     }
@@ -171,7 +171,11 @@ public class BooksMainController implements Initializable {
      * Edit the selected book
      */
     private void editBook() {
-        BookDialogController.getBook(null, chooserBooks.getSelectedObject());
+        Book selectedBook = chooserBooks.getSelectedObject();
+        if (selectedBook == null) return;
+        BookDialogController.getBook(null, selectedBook);
+        books.replaceOrAdd(selectedBook);
+        showAuthorsWorks();
     }
 
     /**

@@ -143,6 +143,70 @@ public class Book {
     }
 
     /**
+     * Sets new title
+     * @param title
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * Sets new original title
+     * @param ogTitle
+     */
+    public void setOriginalTitle(String ogTitle) {
+        this.originalTitle = ogTitle;
+    }
+
+    /**
+     * Sets new author id
+     * @param id
+     */
+    public void setAuthorId(int id) {
+        this.authorId = id;
+    }
+
+    /**
+     * Sets new publiscation year
+     * @param year
+     */
+    public void setPubYear(int year) {
+        this.pubYear = year;
+    }
+
+    /**
+     * Sets new publisher id
+     * @param id
+     */
+    public void setPubId(int id) {
+        this.pubId = id;
+    }
+
+    /**
+     * Sets new language
+     * @param lang
+     */
+    public void setLanguage(String lang) {
+        this.language = lang;
+    }
+
+    /**
+     * Sets reading status
+     * @param status
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    /**
+     * Sets rating
+     * @param rating
+     */
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    /**
      * Sets the book id and grows nextIdentifier if necessary
      * @param id set id
      */
