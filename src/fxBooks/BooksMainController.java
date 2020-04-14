@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -62,7 +63,6 @@ public class BooksMainController implements Initializable {
     @FXML
     void handleEdit() {
         editBook();
-        //BooksMain.errorGeneral();
     }
 
     @FXML
@@ -96,11 +96,6 @@ public class BooksMainController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    void handleSearch() {
-        //search(textSearch.getText());
     }
 
     @FXML
@@ -149,12 +144,10 @@ public class BooksMainController implements Initializable {
      */
     private void newBook() {
         Author selectedAuthor = chooserAuthors.getSelectedObject();
-        Publisher publisher;
+        /*Publisher publisher;
         if (books.getNoOfPublishers() == 0) {
             publisher = new Publisher();
-        } else {
-            publisher = books.getRandomPublisher();
-        }
+        }*/
 
         if (selectedAuthor == null) {
             BooksMain.errorGeneral();
@@ -274,6 +267,10 @@ public class BooksMainController implements Initializable {
         }
     }
 
+    /**
+     * Search and display authors based on the search term
+     * @param str search term
+     */
     public void search(String str) {
         List<Author> foundAuthors = books.search(str);
         chooserAuthors.clear();

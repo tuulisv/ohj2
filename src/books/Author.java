@@ -9,7 +9,7 @@ import java.io.PrintStream;
  * @author Tuuli Veini
  * @version 1.0 26.2.2020
  */
-public class Author {
+public class Author implements Comparable<Author> {
 
     private int identifier;
     private String author;
@@ -97,5 +97,15 @@ public class Author {
     @Override
     public String toString() {
         return this.author;
+    }
+
+    /**
+     * Compare authors based on their names
+     * @param o compared author
+     * @return comparison result
+     */
+    @Override
+    public int compareTo(Author o) {
+        return this.author.compareTo(o.getName());
     }
 }

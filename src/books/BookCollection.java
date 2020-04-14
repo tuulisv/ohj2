@@ -161,8 +161,13 @@ public class BookCollection {
         return this.publishers.getNoOfPublishers();
     }
 
-    public List<Author> search(String searchTerm) {
-        return this.authors.search(searchTerm);
+    /**
+     * Finds authors matching to the search term
+     * @param str search term
+     * @return matching authors
+     */
+    public List<Author> search(String str) {
+        return this.authors.search(str);
     }
 
     /**

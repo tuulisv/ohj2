@@ -56,7 +56,7 @@
                     <padding>
                         <Insets bottom="5.0" top="5.0" />
                     </padding></Label>
-                <TextField fx:id="textSearch" onKeyTyped="#handleSearch">
+                <TextField fx:id="textSearch">
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin></TextField>

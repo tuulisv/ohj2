@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Tuuli Veini
  * @version 1.0 21.2.2020
  */
-public class Book {
+public class Book implements Comparable<Book> {
 
     private int identifier;
     private String title;
@@ -268,5 +268,15 @@ public class Book {
         sb.append(this.status).append("|");
         sb.append(this.rating);
         return sb.toString();
+    }
+
+    /**
+     * Compare books based on their titles
+     * @param o compared book
+     * @return comparison result
+     */
+    @Override
+    public int compareTo(Book o) {
+        return this.title.compareTo(o.getTitle());
     }
 }

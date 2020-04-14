@@ -2,6 +2,7 @@ package books;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -33,6 +34,7 @@ public class Authors {
      */
     public void add(Author author) {
         this.authors.add(author);
+        Collections.sort(this.authors);
         this.changed = true;
     }
 
@@ -41,6 +43,7 @@ public class Authors {
      * @return list of authors
      */
     public List<Author> getAuthors() {
+        Collections.sort(this.authors);
         return this.authors;
     }
 
@@ -96,6 +99,7 @@ public class Authors {
             if (author.getName().matches(regex)) items.add(author);
         }
 
+        Collections.sort(items);
         return items;
     }
 

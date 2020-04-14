@@ -2,6 +2,7 @@ package books;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -102,6 +103,7 @@ public class Books {
             if (book.getAuthorId() == author.getId()) works.add(book);
         }
 
+        Collections.sort(works);
         return works;
     }
 
