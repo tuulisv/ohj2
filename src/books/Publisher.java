@@ -60,7 +60,15 @@ public class Publisher {
      */
     private void setIdentifier(int id) {
         this.identifier = id;
-        if (this.identifier >= Publisher.nextIdentifier) Publisher.nextIdentifier++;
+        if (this.identifier >= Publisher.nextIdentifier) Publisher.nextIdentifier = this.identifier + 1;
+    }
+
+    /**
+     * Sets publisher name
+     * @param publisher publisher name
+     */
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 
     /**

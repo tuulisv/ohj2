@@ -1,7 +1,6 @@
 package fxBooks;
 
 import books.Author;
-import books.Book;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.FXML;
@@ -58,15 +57,27 @@ public class AuthorDialogController implements ModalControllerInterface<Author> 
         textAuthor.requestFocus();
     }
 
+    /**
+     * Updates values for the author
+     */
     private void handleChanges() {
         newAuthor.setName(textAuthor.getText());
         newAuthor.register();
     }
 
+    /**
+     * Shows error message in the window
+     */
     private void showError() {
         labelError.setText("Author name cannot be empty");
     }
 
+    /**
+     * Creates a dialog for adding a new author
+     * @param stage modality stage
+     * @param author default author shown
+     * @return edited data or null if pressed cancel
+     */
     public static Author getAuthor(Stage stage, Author author) {
         return ModalController.showModal(AuthorDialogController.class.getResource("AuthorDialogView.fxml"),
                                          "New author", stage, author, null);

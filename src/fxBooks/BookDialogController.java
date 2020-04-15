@@ -10,10 +10,7 @@ import fi.jyu.mit.fxgui.RadioButtonChooser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -51,15 +48,11 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @FXML
     void handleNewPublisher() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxBooks/PubDialogView.fxml"));
-            Parent pubRoot = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(pubRoot));
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        Publisher publisher = new Publisher();
+        publisher = PubDialogController.getPublisher(null, publisher);
+        books.add(publisher);
+        updatePublishers();
+        dropdownPublishers.setValue(publisher);
     }
 
     @FXML
@@ -123,8 +116,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         assert textTitle != null : "textTitle was not initialized";
 
         updateAuthors();
-        ObservableList<Publisher> pubList = FXCollections.observableArrayList(books.getPublishers());
-        dropdownPublishers.setItems(pubList);
+        updatePublishers();
     }
 
     /**
@@ -172,6 +164,14 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     private void updateAuthors() {
         ObservableList<Author> authorList = FXCollections.observableArrayList(books.getAuthors());
         dropdownAuthors.setItems(authorList);
+    }
+
+    /**
+     * Updates publishers in the dropdown menu
+     */
+    private void updatePublishers() {
+        ObservableList<Publisher> pubList = FXCollections.observableArrayList(books.getPublishers());
+        dropdownPublishers.setItems(pubList);
     }
 
     /**

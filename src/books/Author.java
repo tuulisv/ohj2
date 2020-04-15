@@ -35,7 +35,7 @@ public class Author implements Comparable<Author> {
      */
     public void register() {
         this.identifier = Author.nextIdentifier;
-        Author.nextIdentifier += 1;
+        Author.nextIdentifier++;
     }
 
     /**

@@ -138,18 +138,9 @@ public class BooksMainController implements Initializable {
      * Adds a new book with test values
      */
     private void newBook() {
-        Author selectedAuthor = chooserAuthors.getSelectedObject();
-        /*Publisher publisher;
-        if (books.getNoOfPublishers() == 0) {
-            publisher = new Publisher();
-        }*/
-
-        if (selectedAuthor == null) {
-            BooksMain.errorGeneral();
-            return;
-        }
-
+        Author author = chooserAuthors.getSelectedObject();
         Book book = new Book();
+        if (author != null) book.setAuthorId(author.getId());
         book = BookDialogController.getBook(null, book);
         if (book == null) return;
         book.register();
@@ -232,7 +223,8 @@ public class BooksMainController implements Initializable {
         labelPub.setText("");
         labelLang.setText("");
         chooserStatus.setSelectedIndex(chooserStatus.getSelectedIndex(), false);
-        chooserRating.setSelectedIndex(chooserStatus.getSelectedIndex(), false); // ei toimi, jää valituksi
+        //chooserRating.setSelectedIndex(0, true);
+        chooserRating.setSelectedIndex(0, false);
     }
 
     /**
@@ -293,7 +285,7 @@ public class BooksMainController implements Initializable {
     public void readFile() {
         try {
             books.readFile();
-            addAuthorToList(0); //refreshes the author list
+            search(""); //refreshes the author list
         } catch (StoreException e) {
             Dialogs.showMessageDialog("Error in reading file: " + e.getMessage());
         }

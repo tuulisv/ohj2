@@ -1,6 +1,10 @@
 package fxBooks;
 
+import books.Publisher;
+import fi.jyu.mit.fxgui.ModalController;
+import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -10,14 +14,21 @@ import javafx.stage.Stage;
  * @author Tuuli Veini
  * @version 31.1.2020
  */
-public class PubDialogController {
+public class PubDialogController implements ModalControllerInterface<Publisher> {
 
     @FXML private TextField textPublisher;
     @FXML private javafx.scene.control.Button cancelButton;
+    @FXML private Label labelError;
 
     @FXML
     void handleAddPublisher() {
-        BooksMain.errorGeneral();
+        if (textPublisher.getText().trim().isEmpty()) {
+            showError();
+            return;
+        }
+
+        handleChanges();
+        ModalController.closeStage(labelError);
     }
 
     @FXML
@@ -26,4 +37,48 @@ public class PubDialogController {
         stage.close();
     }
 
+    //========================================================================
+
+    private Publisher newPublisher;
+
+    @Override
+    public Publisher getResult() {
+        return this.newPublisher;
+    }
+
+    @Override
+    public void setDefault(Publisher publisher) {
+        this.newPublisher = publisher;
+    }
+
+    @Override
+    public void handleShown() {
+        textPublisher.requestFocus();
+    }
+
+    /**
+     * Updates values for the publisher
+     */
+    private void handleChanges() {
+        newPublisher.setPublisher(textPublisher.getText());
+        newPublisher.register();
+    }
+
+    /**
+     * Shows error message
+     */
+    private void showError() {
+        labelError.setText("Publisher name cannot be empty");
+    }
+
+    /**
+     * Creates a dialog for adding a new publisher
+     * @param stage modality stage
+     * @param publisher default author shown
+     * @return edited data or null if pressed cancel
+     */
+    public static Publisher getPublisher(Stage stage, Publisher publisher) {
+        return ModalController.showModal(PubDialogController.class.getResource("PubDialogView.fxml"),
+                                         "New publisher", stage, publisher, null);
+    }
 }
