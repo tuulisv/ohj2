@@ -22,7 +22,7 @@ public class AuthorDialogController implements ModalControllerInterface<Author> 
 
 
     @FXML
-    void handleAddAuthor() {
+    void handleOk() {
         if (textAuthor.getText().trim().isEmpty()) {
             showError();
             return;
@@ -42,16 +42,27 @@ public class AuthorDialogController implements ModalControllerInterface<Author> 
 
     private Author newAuthor;
 
+    /**
+     * Defines what is returned
+     * @return new author
+     */
     @Override
     public Author getResult() {
         return newAuthor;
     }
 
+    /**
+     * Default value for the author
+     * @param author author
+     */
     @Override
     public void setDefault(Author author) {
         newAuthor = author;
     }
 
+    /**
+     * Focuses to text field when dialog is opened
+     */
     @Override
     public void handleShown() {
         textAuthor.requestFocus();
@@ -70,6 +81,7 @@ public class AuthorDialogController implements ModalControllerInterface<Author> 
      */
     private void showError() {
         labelError.setText("Author name cannot be empty");
+        labelError.getStyleClass().add("error");
     }
 
     /**

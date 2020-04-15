@@ -86,6 +86,19 @@ public class Authors {
     }
 
     /**
+     * Returns the index of the author
+     * @param id author id
+     * @return index of the author
+     */
+    public int getIndex(int id) {
+        for (int i = 0; i < getNoOfAuthors(); i++) {
+            if (getAuthorByIndex(i).getId() == id) return i;
+        }
+
+        return -1;
+    }
+
+    /**
      * Finds authors matching to the search term and returns them as a list
      * @param str search term
      * @return matching authors
@@ -103,13 +116,13 @@ public class Authors {
         return items;
     }
 
-    public void updateNextIdentifier() {
-        int lastId = 0;
-        for (int i = 0; i < getNoOfAuthors(); i++) {
-            int id = getAuthorByIndex(i).getId();
-            if (id > lastId) lastId = id;
-        }
-
+    /**
+     * Remove author from the list
+     * @param author removed author
+     */
+    public void remove(Author author) {
+        this.authors.remove(author);
+        this.changed = true;
     }
 
     /**

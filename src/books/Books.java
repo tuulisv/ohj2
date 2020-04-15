@@ -92,7 +92,35 @@ public class Books {
     }
 
     /**
-     * Returns a list of the author's books
+     * Removes book
+     * @param book removed book
+     */
+    public void remove(Book book) {
+        int index = getIndex(book.getId());
+        this.no--;
+        for (int i = index; i < getNoOfBooks(); i++) {
+            this.books[i] = this.books[i + 1];
+        }
+
+        this.books[no] = null;
+        this.changed = true;
+    }
+
+    /**
+     * Returns the index of the book
+     * @param id book id
+     * @return index of the book
+     */
+    public int getIndex(int id) {
+        for (int i = 0; i < getNoOfBooks(); i++) {
+            if (getBookByIndex(i).getId() == id) return i;
+        }
+
+        return -1;
+    }
+
+    /**
+     * Returns a list of the author's books in alphabetical order
      * @param author author
      * @return list of the author's books
      */
@@ -105,6 +133,21 @@ public class Books {
 
         Collections.sort(works);
         return works;
+    }
+
+    /**
+     * Returns a list of the publisher's books
+     * @param publisher publisher
+     * @return list of publisher's books
+     */
+    public List<Book> getPublishersBooks(Publisher publisher) {
+        List<Book> books = new ArrayList<>();
+        for (int i = 0; i < getNoOfBooks(); i++) {
+            Book book = getBookByIndex(i);
+            if (book.getAuthorId() == publisher.getId()) books.add(book);
+        }
+
+        return books;
     }
 
     /**
@@ -130,9 +173,7 @@ public class Books {
             }
         } catch (FileNotFoundException e) {
             throw new StoreException("Can't open file " + file.getName());
-        } /*catch (IOException e) {
-            throw new StoreException("Failed to write in file " + file.getName());
-        }*/
+        }
 
         this.changed = false;
     }

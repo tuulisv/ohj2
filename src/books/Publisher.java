@@ -2,8 +2,6 @@ package books;
 
 import fi.jyu.mit.ohj2.Mjonot;
 
-import java.io.PrintStream;
-
 /**
  * Class for creating a Publisher object
  * @author Tuuli Veini

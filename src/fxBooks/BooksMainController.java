@@ -10,14 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -51,11 +49,6 @@ public class BooksMainController implements Initializable {
     }
 
     @FXML
-    void handleAddPublisher() {
-        newPublisher();
-    }
-
-    @FXML
     void handleEdit() {
         editBook();
     }
@@ -67,7 +60,7 @@ public class BooksMainController implements Initializable {
 
     @FXML
     void handleRemove() {
-        BooksMain.errorGeneral();
+        remove();
     }
 
     @FXML
@@ -161,16 +154,6 @@ public class BooksMainController implements Initializable {
     }
 
     /**
-     * Adds a new publisher with example values
-     */
-    private void newPublisher() {
-        Publisher publisher = new Publisher();
-        publisher.register();
-        publisher.examplePublisher();
-        books.add(publisher);
-    }
-
-    /**
      * Adds the author to the author list chooser and sets it as selected
      * @param id author id
      */
@@ -257,6 +240,26 @@ public class BooksMainController implements Initializable {
         }
 
         chooserAuthors.setSelectedIndex(foundAuthors.size() - 1);
+    }
+
+    private void remove() {
+        Book book = chooserBooks.getSelectedObject();
+        if (book == null) return;
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Remove book");
+        alert.setHeaderText(null);
+        alert.setContentText("Remove selected book?");
+
+        ButtonType ok = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(ok, cancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ok) {
+            books.remove(book);
+            search(""); // updates author list
+            chooserAuthors.setSelectedIndex(this.books.getAuthorIndex(book.getAuthorId()));
+        }
     }
 
     /**

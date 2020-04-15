@@ -30,8 +30,6 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     @FXML private TextField textPubYear;
     @FXML private TextField textLang;
     @FXML private Label labelError;
-    @FXML private Button okButton;
-    @FXML private Button cancelButton;
     @FXML private RadioButtonChooser<Boolean> chooserStatus;
     @FXML private RadioButtonChooser<Integer> chooserRating;
     @FXML private ComboBox<Author> dropdownAuthors;
@@ -80,6 +78,12 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         ModalController.closeStage(labelError);
     }
 
+    @FXML
+    public void initialize(URL url, ResourceBundle rb) {
+        updateAuthors();
+        updatePublishers();
+    }
+
     //==============================================================================
 
     private static BookCollection books;
@@ -93,30 +97,31 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         books = bc;
     }
 
+    /**
+     * Defines what is returned
+     * @return book
+     */
     @Override
     public Book getResult() {
         return selectedBook;
     }
 
+    /**
+     * Default value for the book
+     * @param book book
+     */
     @Override
     public void setDefault(Book book) {
         selectedBook = book;
         showBook(selectedBook);
     }
 
+    /**
+     * Focuses to the title text field when dialog is opened
+     */
     @Override
     public void handleShown() {
         textTitle.requestFocus();
-    }
-
-    @FXML
-    public void initialize(URL url, ResourceBundle rb) {
-        assert dropdownAuthors != null : "dropdownAuthors was not injected";
-        assert dropdownPublishers != null : "dropdownPublishers was not injected";
-        assert textTitle != null : "textTitle was not initialized";
-
-        updateAuthors();
-        updatePublishers();
     }
 
     /**
@@ -129,6 +134,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
             textPubYear.getStyleClass().removeAll("error");
         } else {
             labelError.setText(msg);
+            labelError.getStyleClass().add("error");
             if (field == textPubYear) {
                 field.getStyleClass().add("error");
             }

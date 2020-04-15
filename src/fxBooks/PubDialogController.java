@@ -41,16 +41,27 @@ public class PubDialogController implements ModalControllerInterface<Publisher> 
 
     private Publisher newPublisher;
 
+    /**
+     * Defines what is returned
+     * @return new author
+     */
     @Override
     public Publisher getResult() {
         return this.newPublisher;
     }
 
+    /**
+     * Default value for the publisher
+     * @param publisher publisher
+     */
     @Override
     public void setDefault(Publisher publisher) {
         this.newPublisher = publisher;
     }
 
+    /**
+     * Focuses to text field when dialog is opened
+     */
     @Override
     public void handleShown() {
         textPublisher.requestFocus();
@@ -69,6 +80,7 @@ public class PubDialogController implements ModalControllerInterface<Publisher> 
      */
     private void showError() {
         labelError.setText("Publisher name cannot be empty");
+        labelError.getStyleClass().add("error");
     }
 
     /**

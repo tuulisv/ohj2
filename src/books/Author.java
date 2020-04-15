@@ -2,8 +2,6 @@ package books;
 
 import fi.jyu.mit.ohj2.Mjonot;
 
-import java.io.PrintStream;
-
 /**
  * Class for creating an Author object
  * @author Tuuli Veini

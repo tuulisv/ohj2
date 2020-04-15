@@ -212,7 +212,7 @@ public class Book implements Comparable<Book> {
      */
     private void setIdentifier(int id) {
         this.identifier = id;
-        if (this.identifier >= Book.nextIdentifier) Book.nextIdentifier++;
+        if (this.identifier >= Book.nextIdentifier) Book.nextIdentifier = this.identifier + 1;
     }
 
     /**

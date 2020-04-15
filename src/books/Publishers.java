@@ -80,6 +80,15 @@ public class Publishers {
     }
 
     /**
+     * Removes publisher from the list
+     * @param publisher removed publisher
+     */
+    public void remove(Publisher publisher) {
+        this.publishers.remove(publisher);
+        this.changed = true;
+    }
+
+    /**
      * Sets a new file name
      * @param fileName file name
      */
@@ -102,9 +111,7 @@ public class Publishers {
             }
         } catch (FileNotFoundException e) {
             throw new StoreException("Can't open file " + file.getName());
-        } /*catch (IOException e) {
-            throw new StoreException("Failed to write in file " + file.getName());
-        }*/
+        }
 
         this.changed = false;
     }
@@ -124,8 +131,6 @@ public class Publishers {
             }
         } catch (FileNotFoundException e) {
             throw new StoreException("Can't open file " + file.getName());
-        } /*catch (IOException e) {
-            throw new StoreException("Failed to read " + file.getName());
-        }*/
+        }
     }
 }

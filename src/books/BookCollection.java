@@ -138,6 +138,15 @@ public class BookCollection {
     }
 
     /**
+     * Returns the list of the publisher's books
+     * @param publisher
+     * @return list of publisher's books
+     */
+    public List<Book> getPublishersBooks(Publisher publisher) {
+        return this.books.getPublishersBooks(publisher);
+    }
+
+    /**
      * Get the number of books in the collection
      * @return number of books
      */
@@ -162,12 +171,12 @@ public class BookCollection {
     }
 
     /**
-     * Finds authors matching to the search term
-     * @param str search term
-     * @return matching authors
+     * Get the index of the author corresponding to the id
+     * @param id author id
+     * @return index
      */
-    public List<Author> search(String str) {
-        return this.authors.search(str);
+    public int getAuthorIndex(int id) {
+        return this.authors.getIndex(id);
     }
 
     /**
@@ -180,6 +189,27 @@ public class BookCollection {
         this.books.setFile(booksFile);
         this.authors.setFile(authFile);
         this.publishers.setFile(pubFile);
+    }
+
+    /**
+     * Finds authors matching to the search term
+     * @param str search term
+     * @return matching authors
+     */
+    public List<Author> search(String str) {
+        return this.authors.search(str);
+    }
+
+    /**
+     * Remove book and its author and publisher if they have no other books
+     * @param book removed book
+     */
+    public void remove(Book book) {
+        Author author = getAuthorById(book.getAuthorId());
+        Publisher publisher = getPublisherById(book.getPubId());
+        this.books.remove(book);
+        if (getAuthorsWorks(author).size() == 0) this.authors.remove(author);
+        if (getPublishersBooks(publisher).size() == 0) this.publishers.remove(publisher);
     }
 
     /**
