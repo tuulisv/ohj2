@@ -20,6 +20,7 @@
          <children>
             <Button mnemonicParsing="false" fx:id="okButton" onAction="#handleAddAuthor" text="OK" />
             <Button mnemonicParsing="false" fx:id="cancelButton" onAction="#handleCancel" text="Cancel" />
+            <Label fx:id="labelError" />
          </children>
          <VBox.margin>
             <Insets />

@@ -51,11 +51,6 @@ public class BooksMainController implements Initializable {
     }
 
     @FXML
-    void handleAddAuthor() {
-        newAuthor();
-    }
-
-    @FXML
     void handleAddPublisher() {
         newPublisher();
     }
@@ -159,6 +154,7 @@ public class BooksMainController implements Initializable {
         if (book == null) return;
         book.register();
         books.add(book);
+        addAuthorToList(book.getAuthorId());
         showAuthorsWorks();
     }
 
@@ -171,17 +167,6 @@ public class BooksMainController implements Initializable {
         BookDialogController.getBook(null, selectedBook);
         books.replaceOrAdd(selectedBook);
         showAuthorsWorks();
-    }
-
-    /**
-     * Adds a new author with example values
-     */
-    private void newAuthor() {
-        Author author = new Author();
-        author.register();
-        author.exampleAuthor();
-        books.add(author);
-        addAuthorToList(author.getId());
     }
 
     /**

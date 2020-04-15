@@ -103,6 +103,15 @@ public class Authors {
         return items;
     }
 
+    public void updateNextIdentifier() {
+        int lastId = 0;
+        for (int i = 0; i < getNoOfAuthors(); i++) {
+            int id = getAuthorByIndex(i).getId();
+            if (id > lastId) lastId = id;
+        }
+
+    }
+
     /**
      * Sets a new file name
      * @param fileName file name

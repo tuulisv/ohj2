@@ -271,12 +271,12 @@ public class Book implements Comparable<Book> {
     }
 
     /**
-     * Compare books based on their titles
+     * Compare books based on their publication years
      * @param o compared book
      * @return comparison result
      */
     @Override
     public int compareTo(Book o) {
-        return this.title.compareTo(o.getTitle());
+        return this.pubYear - o.getPubYear();
     }
 }

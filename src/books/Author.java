@@ -60,7 +60,15 @@ public class Author implements Comparable<Author> {
      */
     private void setIdentifier(int id) {
         this.identifier = id;
-        if (this.identifier >= Author.nextIdentifier) Author.nextIdentifier++;
+        if (this.identifier >= Author.nextIdentifier) Author.nextIdentifier = this.identifier + 1;
+    }
+
+    /**
+     * Sets name for the author
+     * @param name author name
+     */
+    public void setName(String name) {
+        this.author = name;
     }
 
     /**

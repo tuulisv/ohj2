@@ -228,11 +228,6 @@
                         <Insets />
                     </HBox.margin>
                 </Button>
-                <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddAuthor" text="New author">
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                </Button>
                 <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddPublisher" text="New publisher">
                     <HBox.margin>
                         <Insets />

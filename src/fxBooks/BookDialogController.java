@@ -42,15 +42,11 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @FXML
     void handleNewAuthor() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxBooks/AuthorDialogView.fxml"));
-            Parent authRoot = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(authRoot));
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        Author author = new Author();
+        author = AuthorDialogController.getAuthor(null, author);
+        books.add(author);
+        updateAuthors();
+        dropdownAuthors.setValue(author);
     }
 
     @FXML
@@ -126,8 +122,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         assert dropdownPublishers != null : "dropdownPublishers was not injected";
         assert textTitle != null : "textTitle was not initialized";
 
-        ObservableList<Author> authorList = FXCollections.observableArrayList(books.getAuthors());
-        dropdownAuthors.setItems(authorList);
+        updateAuthors();
         ObservableList<Publisher> pubList = FXCollections.observableArrayList(books.getPublishers());
         dropdownPublishers.setItems(pubList);
     }
@@ -169,6 +164,14 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         int status = book.getStatus() == 1 ? 1 : 0;
         chooserStatus.setSelectedIndex(status, true);
         chooserRating.setSelectedIndex(book.getRating(), true);
+    }
+
+    /**
+     * Updates authors in the dropdown menu
+     */
+    private void updateAuthors() {
+        ObservableList<Author> authorList = FXCollections.observableArrayList(books.getAuthors());
+        dropdownAuthors.setItems(authorList);
     }
 
     /**
