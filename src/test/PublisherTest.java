@@ -46,6 +46,15 @@ public class PublisherTest {
         Publisher pub = new Publisher();
         pub.register();
         pub.examplePublisher();
-        assertEquals("1|Allen & Unwin 1", pub.toString());
+        assertEquals("Allen & Unwin 1", pub.toString());
+    }
+
+    @Test
+    public void testPrintPublisher() {
+        Publisher.clearIdentifier();
+        Publisher pub = new Publisher();
+        pub.register();
+        pub.examplePublisher();
+        assertEquals("1|Allen & Unwin 1", pub.print());
     }
 }

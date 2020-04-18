@@ -121,14 +121,14 @@ public class Books {
 
     /**
      * Returns a list of the author's books in alphabetical order
-     * @param author author
+     * @param id author id
      * @return list of the author's books
      */
-    public List<Book> getAuthorsWorks(Author author) {
+    public List<Book> getAuthorsWorks(int id) {
         List<Book> works = new ArrayList<>();
         for (int i = 0; i < getNoOfBooks(); i++) {
             Book book = getBookByIndex(i);
-            if (book.getAuthorId() == author.getId()) works.add(book);
+            if (book.getAuthorId() == id) works.add(book);
         }
 
         Collections.sort(works);
@@ -137,14 +137,14 @@ public class Books {
 
     /**
      * Returns a list of the publisher's books
-     * @param publisher publisher
+     * @param id publisher id
      * @return list of publisher's books
      */
-    public List<Book> getPublishersBooks(Publisher publisher) {
+    public List<Book> getPublishersBooks(int id) {
         List<Book> books = new ArrayList<>();
         for (int i = 0; i < getNoOfBooks(); i++) {
             Book book = getBookByIndex(i);
-            if (book.getAuthorId() == publisher.getId()) books.add(book);
+            if (book.getAuthorId() == id) books.add(book);
         }
 
         return books;

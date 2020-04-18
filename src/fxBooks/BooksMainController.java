@@ -77,7 +77,7 @@ public class BooksMainController implements Initializable {
     void handleAbout() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxBooks/BooksEnterView.fxml"));
-            Parent aboutRoot = (Parent) fxmlLoader.load();
+            Parent aboutRoot = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(aboutRoot));
             stage.show();
@@ -128,29 +128,31 @@ public class BooksMainController implements Initializable {
     }
 
     /**
-     * Adds a new book with test values
+     * Opens a dialog for adding a new book, sets the currently selected author as default author
      */
     private void newBook() {
         Author author = chooserAuthors.getSelectedObject();
         Book book = new Book();
         if (author != null) book.setAuthorId(author.getId());
         book = BookDialogController.getBook(null, book);
-        if (book == null) return;
+        if (book == null || book.getTitle().trim().isEmpty()) return;
         book.register();
-        books.add(book);
+        this.books.add(book);
         addAuthorToList(book.getAuthorId());
         showAuthorsWorks();
+        chooserBooks.setSelectedIndex(this.books.getBookIndex(book));
     }
 
     /**
-     * Edit the selected book
+     * Opens a dialog for editing the selected book
      */
     private void editBook() {
         Book selectedBook = chooserBooks.getSelectedObject();
         if (selectedBook == null) return;
         BookDialogController.getBook(null, selectedBook);
-        books.replaceOrAdd(selectedBook);
+        this.books.replaceOrAdd(selectedBook);
         showAuthorsWorks();
+        chooserBooks.setSelectedIndex(this.books.getBookIndex(selectedBook));
     }
 
     /**
@@ -159,10 +161,10 @@ public class BooksMainController implements Initializable {
      */
     private void addAuthorToList(int id) {
         chooserAuthors.clear();
-        int index = books.getNoOfAuthors() - 1;
-        for (int i = 0; i < books.getNoOfAuthors(); i++) {
-            Author author = books.getAuthor(i);
-            if (books.getAuthor(i).getId() == id) {
+        int index = this.books.getNoOfAuthors() - 1;
+        for (int i = 0; i < this.books.getNoOfAuthors(); i++) {
+            Author author = this.books.getAuthor(i);
+            if (this.books.getAuthor(i).getId() == id) {
                 index = i;
             }
 
@@ -179,8 +181,7 @@ public class BooksMainController implements Initializable {
         if (chooserBooks.getObjects().isEmpty()) return;
         Author selectedAuthor = chooserAuthors.getSelectedObject();
         Book selectedBook = chooserBooks.getSelectedObject();
-        Publisher publisher = books.getPublisherById(selectedBook.getPubId());
-        if (selectedBook == null) return;
+        Publisher publisher = this.books.getPublisherById(selectedBook.getPubId());
 
         labelBookTitle.setText(selectedBook.getTitle());
         labelOrigTitle.setText(selectedBook.getOrigTitle());
@@ -196,31 +197,15 @@ public class BooksMainController implements Initializable {
     }
 
     /**
-     * Shows empty attribute values of a book
-     */
-    private void showEmptyBook() {
-        labelBookTitle.setText("");
-        labelOrigTitle.setText("");
-        labelAuthor.setText("");
-        labelPubYear.setText("");
-        labelPub.setText("");
-        labelLang.setText("");
-        chooserStatus.setSelectedIndex(chooserStatus.getSelectedIndex(), false);
-        //chooserRating.setSelectedIndex(0, true);
-        chooserRating.setSelectedIndex(0, false);
-    }
-
-    /**
      * Shows the books by the selected author
      */
     private void showAuthorsWorks() {
         Author selectedAuthor = chooserAuthors.getSelectedObject();
         if (selectedAuthor == null) return;
 
-        List<Book> works = books.getAuthorsWorks(selectedAuthor);
-        if (works.isEmpty()) showEmptyBook();
-
+        List<Book> works = this.books.getAuthorsWorks(selectedAuthor.getId());
         chooserBooks.clear();
+
         for (int i = 0; i < works.size(); i++) {
             chooserBooks.add("" + works.get(i).getTitle(), works.get(i));
             chooserBooks.setSelectedIndex(i);
@@ -231,8 +216,8 @@ public class BooksMainController implements Initializable {
      * Search and display authors based on the search term
      * @param str search term
      */
-    public void search(String str) {
-        List<Author> foundAuthors = books.search(str);
+    private void search(String str) {
+        List<Author> foundAuthors = this.books.search(str);
         chooserAuthors.clear();
         for (int i = 0; i < foundAuthors.size(); i++) {
             Author author = foundAuthors.get(i);
@@ -242,12 +227,15 @@ public class BooksMainController implements Initializable {
         chooserAuthors.setSelectedIndex(foundAuthors.size() - 1);
     }
 
+    /**
+     * Remove the selected book
+     */
     private void remove() {
         Book book = chooserBooks.getSelectedObject();
         if (book == null) return;
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Remove book");
+        alert.setTitle("Remove");
         alert.setHeaderText(null);
         alert.setContentText("Remove selected book?");
 
@@ -255,10 +243,12 @@ public class BooksMainController implements Initializable {
         ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(ok, cancel);
         Optional<ButtonType> result = alert.showAndWait();
+
         if (result.get() == ok) {
-            books.remove(book);
-            search(""); // updates author list
-            chooserAuthors.setSelectedIndex(this.books.getAuthorIndex(book.getAuthorId()));
+            int index = this.books.getAuthorIndex(book.getAuthorId());
+            this.books.remove(book);
+            search(""); // refreshes author list
+            chooserAuthors.setSelectedIndex(index);
         }
     }
 
@@ -266,7 +256,7 @@ public class BooksMainController implements Initializable {
      * Check if changes are saved
      * @return true if saved
      */
-    public boolean canClose() {
+    protected boolean canClose() {
         save();
         return true;
     }
@@ -276,7 +266,7 @@ public class BooksMainController implements Initializable {
      */
     private void save() {
         try {
-            books.save();
+            this.books.save();
         } catch (StoreException e) {
             Dialogs.showMessageDialog("Error in saving files: " + e.getMessage());
         }
@@ -285,9 +275,9 @@ public class BooksMainController implements Initializable {
     /**
      * Reads files
      */
-    public void readFile() {
+    protected void readFile() {
         try {
-            books.readFile();
+            this.books.readFile();
             search(""); //refreshes the author list
         } catch (StoreException e) {
             Dialogs.showMessageDialog("Error in reading file: " + e.getMessage());
@@ -298,7 +288,7 @@ public class BooksMainController implements Initializable {
      * Set BookCollection as one given by the controller
      * @param books referred BookCollection
      */
-    public void setBookCollection(BookCollection books) {
+    protected void setBookCollection(BookCollection books) {
         this.books = books;
         BookDialogController.setBookCollection(books);
     }

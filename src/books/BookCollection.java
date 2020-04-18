@@ -130,20 +130,20 @@ public class BookCollection {
 
     /**
      * Returns the list of the author's books
-     * @param author author
+     * @param id author id
      * @return list of the author's books
      */
-    public List<Book> getAuthorsWorks(Author author) {
-        return this.books.getAuthorsWorks(author);
+    public List<Book> getAuthorsWorks(int id) {
+        return this.books.getAuthorsWorks(id);
     }
 
     /**
      * Returns the list of the publisher's books
-     * @param publisher
+     * @param id publisher id
      * @return list of publisher's books
      */
-    public List<Book> getPublishersBooks(Publisher publisher) {
-        return this.books.getPublishersBooks(publisher);
+    public List<Book> getPublishersBooks(int id) {
+        return this.books.getPublishersBooks(id);
     }
 
     /**
@@ -180,6 +180,20 @@ public class BookCollection {
     }
 
     /**
+     * Get the index of the book in the list
+     * @param book book
+     * @return index of the book
+     */
+    public int getBookIndex(Book book) {
+        List<Book> works = getAuthorsWorks(book.getAuthorId());
+        for (int i = 0; i < works.size(); i++) {
+            if (works.get(i).getId() == book.getId()) return i;
+        }
+
+        return -1;
+    }
+
+    /**
      * Sets new file names
      * @param booksFile file name for books
      * @param authFile file name for authors
@@ -208,8 +222,8 @@ public class BookCollection {
         Author author = getAuthorById(book.getAuthorId());
         Publisher publisher = getPublisherById(book.getPubId());
         this.books.remove(book);
-        if (getAuthorsWorks(author).size() == 0) this.authors.remove(author);
-        if (getPublishersBooks(publisher).size() == 0) this.publishers.remove(publisher);
+        if (getAuthorsWorks(author.getId()).size() == 0) this.authors.remove(author);
+        if (getPublishersBooks(publisher.getId()).size() == 0) this.publishers.remove(publisher);
     }
 
     /**

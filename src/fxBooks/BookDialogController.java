@@ -39,6 +39,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     void handleNewAuthor() {
         Author author = new Author();
         author = AuthorDialogController.getAuthor(null, author);
+        if (author.getName().trim().isEmpty()) return;
         books.add(author);
         updateAuthors();
         dropdownAuthors.setValue(author);
@@ -48,6 +49,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     void handleNewPublisher() {
         Publisher publisher = new Publisher();
         publisher = PubDialogController.getPublisher(null, publisher);
+        if (publisher.getName().trim().isEmpty()) return;
         books.add(publisher);
         updatePublishers();
         dropdownPublishers.setValue(publisher);
@@ -103,7 +105,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      */
     @Override
     public Book getResult() {
-        return selectedBook;
+        return this.selectedBook;
     }
 
     /**
@@ -112,8 +114,8 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      */
     @Override
     public void setDefault(Book book) {
-        selectedBook = book;
-        showBook(selectedBook);
+        this.selectedBook = book;
+        showBook(book);
     }
 
     /**
@@ -142,7 +144,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     }
 
     /**
-     * Show the book's values in the window
+     * Show the book's values in the fields
      * @param book shown book
      */
     public void showBook(Book book) {
@@ -156,7 +158,12 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
         textTitle.setText(book.getTitle());
         textOrigTitle.setText(book.getOrigTitle());
-        textPubYear.setText("" + book.getPubYear());
+
+        int pubYear = book.getPubYear();
+        if (pubYear != 0) {
+            textPubYear.setText("" + book.getPubYear());
+        }
+
         textLang.setText(book.getLanguage());
 
         int status = book.getStatus() == 1 ? 1 : 0;
@@ -177,7 +184,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      */
     private void updatePublishers() {
         ObservableList<Publisher> pubList = FXCollections.observableArrayList(books.getPublishers());
-        dropdownPublishers.setItems(pubList);
+        dropdownPublishers.setItems(pubList.sorted());
     }
 
     /**

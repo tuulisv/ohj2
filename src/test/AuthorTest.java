@@ -46,6 +46,15 @@ public class AuthorTest {
         Author author = new Author();
         author.register();
         author.exampleAuthor();
-        assertEquals("1|J. R. R. Tolkien 1", author.toString());
+        assertEquals("J. R. R. Tolkien 1", author.toString());
+    }
+
+    @Test
+    public void testPrintAuthor() {
+        Author.clearIdentifier();
+        Author author = new Author();
+        author.register();
+        author.exampleAuthor();
+        assertEquals("1|J. R. R. Tolkien 1", author.print());
     }
 }

@@ -62,7 +62,7 @@ public class BooksTest {
         books.add(book1);
         books.add(book2);
         books.add(book3);
-        List<Book> works1 = books.getAuthorsWorks(author1);
+        List<Book> works1 = books.getAuthorsWorks(author1.getId());
         assertEquals(2, works1.size());
     }
 
@@ -70,7 +70,7 @@ public class BooksTest {
     public void testGetEmptyAuthorsWorks() {
         Books books = new Books();
         Author author = new Author();
-        List<Book> works = books.getAuthorsWorks(author);
+        List<Book> works = books.getAuthorsWorks(author.getId());
         assertEquals(0, works.size());
     }
 }
