@@ -147,7 +147,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      * Show the book's values in the fields
      * @param book shown book
      */
-    public void showBook(Book book) {
+    private void showBook(Book book) {
         if (book == null) return;
 
         int author = book.getAuthorId();

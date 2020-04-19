@@ -64,7 +64,7 @@ public class Books {
     /**
      * Grows the size of the book array if it's full
      */
-    public void updateBookArray() {
+    private void updateBookArray() {
         MAX_BOOKS += 10;
         Book[] updatedArray = new Book[MAX_BOOKS];
         for (int i = 0; i < this.books.length; i++) {
@@ -96,7 +96,7 @@ public class Books {
      * Removes book
      * @param book removed book
      */
-    public void remove(Book book) {
+    protected void remove(Book book) {
         int index = getIndex(book.getId());
         this.no--;
         for (int i = index; i < getNoOfBooks(); i++) {
@@ -155,7 +155,7 @@ public class Books {
      * Sets a new file name
      * @param fileName file name
      */
-    public void setFile(String fileName) {
+    protected void setFile(String fileName) {
         if (fileName.isEmpty()) return;
         this.file = new File(fileName);
     }
@@ -164,7 +164,7 @@ public class Books {
      * Saves changes to books file
      * @throws StoreException if problems in writing in the file
      */
-    public void save() throws StoreException {
+    protected void save() throws StoreException {
         if (!this.changed) return;
         try (PrintStream ps = new PrintStream(new FileOutputStream(file))) {
             ps.println(";id|title|original title|author|publication year|publisher|language|status|rating");
@@ -183,7 +183,7 @@ public class Books {
      * Read the books file
      * @throws StoreException if failed to open file
      */
-    public void readFile() throws StoreException {
+    protected void readFile() throws StoreException {
         try (Scanner s = new Scanner(new FileInputStream(file))) {
             while (s.hasNextLine()) {
                 String line = s.nextLine().trim();

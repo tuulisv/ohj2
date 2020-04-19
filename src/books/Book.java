@@ -1,9 +1,7 @@
 package books;
 
 import fi.jyu.mit.ohj2.Mjonot;
-
 import java.io.PrintStream;
-import java.util.Random;
 
 /**
  * Class for creating Book objects that have a title, author, publication year
@@ -47,19 +45,6 @@ public class Book implements Comparable<Book> {
     public Book(int authorId, int pubId) {
         this.authorId = authorId;
         this.pubId = pubId;
-    }
-
-    /**
-     * Sets example values for the book
-     */
-    public void exampleBook() {
-        this.title = "The Lord of the Rings " + this.identifier;
-        this.originalTitle = "The Lord of the Rings";
-        this.pubYear = 1954;
-        this.language = "English";
-        this.status = 1;
-        Random r = new Random();
-        this.rating = r.nextInt(6);
     }
 
     /**

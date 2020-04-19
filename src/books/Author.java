@@ -22,13 +22,6 @@ public class Author implements Comparable<Author> {
     }
 
     /**
-     * Sets an example value
-     */
-    public void exampleAuthor() {
-        this.author = "J. R. R. Tolkien " + this.identifier;
-    }
-
-    /**
      * Assigns the next available identifier for the author
      */
     public void register() {
@@ -78,7 +71,7 @@ public class Author implements Comparable<Author> {
 
     /**
      * Parse author information from the line
-     * @param line
+     * @param line line containing author information
      */
     public void parse(String line) {
         StringBuilder sb = new StringBuilder(line);

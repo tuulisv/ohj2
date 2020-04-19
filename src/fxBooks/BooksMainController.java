@@ -11,8 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -70,7 +73,12 @@ public class BooksMainController implements Initializable {
 
     @FXML
     void handleHelp() {
-        BooksMain.errorGeneral();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Help");
+        alert.setHeaderText(null);
+        alert.setContentText("View program manual at https://tim.jyu.fi/view/kurssit/tie/ohj2/2020k/ht/tumavein");
+        alert.getDialogPane().setMinWidth(500);
+        alert.show();
     }
 
     @FXML
@@ -81,8 +89,8 @@ public class BooksMainController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(aboutRoot));
             stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            Dialogs.showMessageDialog("Error in opening about view: " + e.getMessage());
         }
     }
 
@@ -197,6 +205,20 @@ public class BooksMainController implements Initializable {
     }
 
     /**
+     * Shows null values for book
+     */
+    private void showEmptyBook() {
+        labelBookTitle.setText("");
+        labelOrigTitle.setText("");
+        labelAuthor.setText("");
+        labelPubYear.setText("");
+        labelPub.setText("");
+        labelLang.setText("");
+        chooserStatus.setSelectedIndex(chooserStatus.getSelectedIndex(), false);
+        chooserRating.setSelectedIndex(chooserRating.getSelectedIndex(), false);
+    }
+
+    /**
      * Shows the books by the selected author
      */
     private void showAuthorsWorks() {
@@ -219,6 +241,13 @@ public class BooksMainController implements Initializable {
     private void search(String str) {
         List<Author> foundAuthors = this.books.search(str);
         chooserAuthors.clear();
+
+        if (foundAuthors.isEmpty()) {
+            chooserBooks.clear();
+            showEmptyBook();
+            return;
+        }
+
         for (int i = 0; i < foundAuthors.size(); i++) {
             Author author = foundAuthors.get(i);
             chooserAuthors.add("" + author.getName(), author);

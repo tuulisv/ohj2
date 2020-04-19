@@ -18,7 +18,7 @@
       <TextField fx:id="textAuthor" />
       <HBox spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" fx:id="okButton" onAction="#handleOk" text="OK" />
+            <Button mnemonicParsing="false" onAction="#handleOk" text="OK" />
             <Button mnemonicParsing="false" fx:id="cancelButton" onAction="#handleCancel" text="Cancel" />
             <Label fx:id="labelError" />
          </children>

@@ -1,7 +1,6 @@
 package books;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Handles cooperation between classes Books, Authors, and Publishers
@@ -131,7 +130,7 @@ public class BookCollection {
      * @param id publisher id
      * @return list of publisher's books
      */
-    public List<Book> getPublishersBooks(int id) {
+    private List<Book> getPublishersBooks(int id) {
         return this.books.getPublishersBooks(id);
     }
 
@@ -218,7 +217,7 @@ public class BookCollection {
 
     /**
      * Save changes to all files
-     * @throws StoreException
+     * @throws StoreException if saving fails
      */
     public void save() throws StoreException {
         String error = "";
@@ -245,7 +244,7 @@ public class BookCollection {
 
     /**
      * Reads all files
-     * @throws StoreException
+     * @throws StoreException if reading fails
      */
     public void readFile() throws StoreException {
         books.readFile();

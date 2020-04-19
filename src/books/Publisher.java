@@ -22,13 +22,6 @@ public class Publisher {
     }
 
     /**
-     * Sets an example value
-     */
-    public void examplePublisher() {
-        this.publisher = "Allen & Unwin " + this.identifier;
-    }
-
-    /**
      * Assigns the next available id for the publisher
      */
     public void register() {
@@ -77,8 +70,8 @@ public class Publisher {
     }
 
     /**
-     * Parse author information from the line
-     * @param line
+     * Parse publisher information from the line
+     * @param line line containing publisher information
      */
     public void parse(String line) {
         StringBuilder sb = new StringBuilder(line);

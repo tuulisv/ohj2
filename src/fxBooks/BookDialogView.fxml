@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import fi.jyu.mit.fxgui.ComboBoxChooser?>
 <?import fi.jyu.mit.fxgui.RadioButtonChooser?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>

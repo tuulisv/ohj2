@@ -99,23 +99,18 @@ public class BookTest {
     }
 
     @Test
-    public void testGetExampleRatings() {
-        List<Book> books = new ArrayList<>();
-        Book book1 = new Book();
-        Book book2 = new Book();
-        Book book3 = new Book();
-        Book book4 = new Book();
-        Book book5 = new Book();
-        books.add(book1);
-        books.add(book2);
-        books.add(book3);
-        books.add(book4);
-        books.add(book5);
+    public void testGetDefaultRating() {
+        Book.clearIdentifier();
+        Book book = new Book();
+        book.register();
+        assertEquals(0, book.getRating());
+    }
 
-        for (Book book: books) {
-            book.exampleBook();
-            assertTrue(book.getRating() >= 0 && book.getRating() <= 5);
-        }
+    @Test
+    public void testGetExampleRating() {
+        Book book = new Book();
+        book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        assertEquals(4, book.getRating());
     }
 
     @Test
@@ -133,7 +128,7 @@ public class BookTest {
     }
 
     @Test
-    public void testOlderBookIsSmaller() {
+    public void testCompareBooks() {
         Book book1 = new Book();
         Book book2 = new Book();
         book1.setPubYear(1999);

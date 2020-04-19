@@ -42,7 +42,7 @@ public class Authors {
      * Returns the list of authors
      * @return list of authors
      */
-    public List<Author> getAuthors() {
+    protected List<Author> getAuthors() {
         Collections.sort(this.authors);
         return this.authors;
     }
@@ -129,7 +129,7 @@ public class Authors {
      * Sets a new file name
      * @param fileName file name
      */
-    public void setFile(String fileName) {
+    protected void setFile(String fileName) {
         if (fileName.isEmpty()) return;
         this.file = new File(fileName);
     }
@@ -138,7 +138,7 @@ public class Authors {
      * Saves changes to authors file
      * @throws StoreException if problems in writing in the file
      */
-    public void save() throws StoreException {
+    protected void save() throws StoreException {
         if (!this.changed) return;
         try (PrintStream ps = new PrintStream(new FileOutputStream(file))) {
             ps.println(";authid|author");
@@ -157,7 +157,7 @@ public class Authors {
      * Read the authors file
      * @throws StoreException if failed to open file
      */
-    public void readFile() throws StoreException {
+    protected void readFile() throws StoreException {
         try (Scanner s = new Scanner(new FileInputStream(file))) {
             while (s.hasNextLine()) {
                 String line = s.nextLine().trim();
