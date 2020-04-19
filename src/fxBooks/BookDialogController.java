@@ -40,7 +40,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         Author author = new Author();
         author = AuthorDialogController.getAuthor(null, author);
         if (author.getName().trim().isEmpty()) return;
-        books.add(author);
+        this.books.add(author);
         updateAuthors();
         dropdownAuthors.setValue(author);
     }
@@ -50,14 +50,14 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         Publisher publisher = new Publisher();
         publisher = PubDialogController.getPublisher(null, publisher);
         if (publisher.getName().trim().isEmpty()) return;
-        books.add(publisher);
+        this.books.add(publisher);
         updatePublishers();
         dropdownPublishers.setValue(publisher);
     }
 
     @FXML
     void handleCancel() {
-        selectedBook = null;
+        this.selectedBook = null;
         ModalController.closeStage(labelError);
     }
 
@@ -82,21 +82,20 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        updateAuthors();
-        updatePublishers();
+
     }
 
     //==============================================================================
 
-    private static BookCollection books;
+    private BookCollection books;
     private Book selectedBook;
 
     /**
      * Sets the BookCollection
-     * @param bc BookCollection
+     * @param books BookCollection
      */
-    protected static void setBookCollection(BookCollection bc) {
-        books = bc;
+    private void setBookCollection(BookCollection books) {
+        this.books = books;
     }
 
     /**
@@ -115,15 +114,16 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     @Override
     public void setDefault(Book book) {
         this.selectedBook = book;
-        showBook(book);
     }
 
     /**
-     * Focuses to the title text field when dialog is opened
+     * What is shown when the dialog is opened
      */
     @Override
     public void handleShown() {
-        textTitle.requestFocus();
+        showBook(this.selectedBook);
+        updateAuthors();
+        updatePublishers();
     }
 
     /**
@@ -152,10 +152,8 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
         int author = book.getAuthorId();
         int publisher = book.getPubId();
-
-        dropdownAuthors.setValue(books.getAuthorById(author));
-        dropdownPublishers.setValue(books.getPublisherById(publisher));
-
+        dropdownAuthors.setValue(this.books.getAuthorById(author));
+        dropdownPublishers.setValue(this.books.getPublisherById(publisher));
         textTitle.setText(book.getTitle());
         textOrigTitle.setText(book.getOrigTitle());
 
@@ -175,7 +173,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      * Updates authors in the dropdown menu
      */
     private void updateAuthors() {
-        ObservableList<Author> authorList = FXCollections.observableArrayList(books.getAuthors());
+        ObservableList<Author> authorList = FXCollections.observableArrayList(this.books.getAuthors());
         dropdownAuthors.setItems(authorList);
     }
 
@@ -183,7 +181,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      * Updates publishers in the dropdown menu
      */
     private void updatePublishers() {
-        ObservableList<Publisher> pubList = FXCollections.observableArrayList(books.getPublishers());
+        ObservableList<Publisher> pubList = FXCollections.observableArrayList(this.books.getPublishers());
         dropdownPublishers.setItems(pubList.sorted());
     }
 
@@ -191,24 +189,29 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
      * Updates all values for the book
      */
     private void handleChanges() {
-        selectedBook.setTitle(textTitle.getText());
-        selectedBook.setOriginalTitle((textOrigTitle.getText()));
-        selectedBook.setAuthorId(dropdownAuthors.getValue().getId());
-        selectedBook.setPubYear(Integer.parseInt(textPubYear.getText()));
-        selectedBook.setPubId(dropdownPublishers.getValue().getId());
-        selectedBook.setLanguage((textLang.getText()));
-        selectedBook.setStatus(chooserStatus.getSelectedIndex());
-        selectedBook.setRating(chooserRating.getSelectedIndex());
+        this.selectedBook.setTitle(textTitle.getText());
+        this.selectedBook.setOriginalTitle((textOrigTitle.getText()));
+        this.selectedBook.setAuthorId(dropdownAuthors.getValue().getId());
+        this.selectedBook.setPubYear(Integer.parseInt(textPubYear.getText()));
+        this.selectedBook.setPubId(dropdownPublishers.getValue().getId());
+        this.selectedBook.setLanguage((textLang.getText()));
+        this.selectedBook.setStatus(chooserStatus.getSelectedIndex());
+        this.selectedBook.setRating(chooserRating.getSelectedIndex());
     }
 
     /**
      * Creates a dialog for retrieving a book
      * @param stage modality stage, for the application the value is null
      * @param book default book shown
+     * @param bc book collection
      * @return edited data or null if pressed cancel
      */
-    public static Book getBook(Stage stage, Book book) {
-        return ModalController.showModal(BookDialogController.class.getResource("BookDialogView.fxml"),
-                                         "Book", stage, book, null);
+    public static Book getBook(Stage stage, Book book, BookCollection bc) {
+        return ModalController.<Book, BookDialogController>showModal(
+                BookDialogController.class.getResource("/fxBooks/BookDialogView.fxml"),
+                "Book",
+                stage, book,
+                ctrl -> ctrl.setBookCollection(bc)
+        );
     }
 }

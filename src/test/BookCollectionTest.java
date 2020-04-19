@@ -242,9 +242,6 @@ public class BookCollectionTest {
                 "3|The Hobbit 3|The Hobbit|2|1954|1|English|1|3\n";
 
         assertEquals(str, sb.toString());
-        tempBooks.delete();
-        tempAuthors.delete();
-        tempPublishers.delete();
     }
 
     @Test
@@ -285,9 +282,6 @@ public class BookCollectionTest {
         String str = ";authid|author\n1|Donna Tartt\n2|Elena Ferrante\n3|Emily St. John Mandel\n";
 
         assertEquals(str, sb.toString());
-        tempBooks.delete();
-        tempAuthors.delete();
-        tempPublishers.delete();
     }
 
     @Test
@@ -328,8 +322,5 @@ public class BookCollectionTest {
         String str = ";pubid|publisher\n1|Allen & Unwin\n2|Bloomsbury\n3|Alfred A. Knopf\n";
 
         assertEquals(str, sb.toString());
-        tempBooks.delete();
-        tempAuthors.delete();
-        tempPublishers.delete();
     }
 }

@@ -38,16 +38,6 @@ public class Book implements Comparable<Book> {
     }
 
     /**
-     * Constructor that sets the author id
-     * @param authorId author id
-     * @param pubId publisher id
-     */
-    public Book(int authorId, int pubId) {
-        this.authorId = authorId;
-        this.pubId = pubId;
-    }
-
-    /**
      * Assigns the next available identifier to the book
      */
     public void register() {
@@ -152,7 +142,7 @@ public class Book implements Comparable<Book> {
     }
 
     /**
-     * Sets new publiscation year
+     * Sets new publication year
      * @param year publication year
      */
     public void setPubYear(int year) {
