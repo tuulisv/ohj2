@@ -73,3 +73,11 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+
+
+##############################
+## Project
+##############################
+testAuthors
+testBooks
+testPublishers

@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for Publishers class
+ */
 public class PublishersTest {
 
     @Test
@@ -26,31 +29,45 @@ public class PublishersTest {
 
     @Test
     public void testGetPublisherById() {
-        Publisher.clearIdentifier();
         Publishers pub = new Publishers();
         Publisher pub1 = new Publisher();
         Publisher pub2 = new Publisher();
-        pub1.register();
-        pub2.register();
-        pub1.examplePublisher();
-        pub2.examplePublisher();
+        pub1.parse("4|Edizioni E/O");
+        pub2.parse("5|Knopf");
         pub.add(pub1);
         pub.add(pub2);
-        assertEquals("Allen & Unwin 2", pub.getPublisherById(2).getName());
+        assertEquals("Knopf", pub.getPublisherById(5).getName());
+    }
+
+    @Test
+    public void testGetNonexistentPublisher() {
+        Publishers pub = new Publishers();
+        Publisher pub1 = new Publisher();
+        Publisher pub2 = new Publisher();
+        pub1.parse("4|Edizioni E/O");
+        pub2.parse("5|Knopf");
+        assertEquals("", pub.getPublisherById(6).getName());
     }
 
     @Test
     public void testGetPublisherByIndex() {
-        Publisher.clearIdentifier();
         Publishers pub = new Publishers();
         Publisher p1 = new Publisher();
         Publisher p2 = new Publisher();
-        p1.register();
-        p2.register();
-        p1.examplePublisher();
-        p2.examplePublisher();
+        p1.parse("4|Edizioni E/O");
+        p2.parse("5|Knopf");
         pub.add(p1);
         pub.add(p2);
-        assertEquals("Allen & Unwin 2", pub.getPublisherByIndex(1).getName());
+        assertEquals("Knopf", pub.getPublisherByIndex(1).getName());
+    }
+
+    @Test
+    public void testRemovePublisher() {
+        Publishers pub = new Publishers();
+        Publisher p1 = new Publisher();
+        p1.parse("4|Edizioni E/O");
+        pub.add(p1);
+        pub.remove(p1);
+        assertEquals(0, pub.getNoOfPublishers());
     }
 }

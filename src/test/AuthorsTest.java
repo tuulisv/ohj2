@@ -4,6 +4,8 @@ import books.Author;
 import books.Authors;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -26,6 +28,21 @@ public class AuthorsTest {
     }
 
     @Test
+    public void testAuthorsAreSorted() {
+        Authors authors = new Authors();
+        Author auth1 = new Author();
+        auth1.parse("7|Haruki Murakami");
+        Author auth2 = new Author();
+        auth2.parse("1|J. R. R. Tolkien");
+        Author auth3 = new Author();
+        auth3.parse("4|Elena Ferrante");
+        authors.add(auth1);
+        authors.add(auth2);
+        authors.add(auth3);
+        assertEquals("Elena Ferrante", authors.getAuthorByIndex(0).getName());
+    }
+
+    @Test
     public void testGetAuthorById() {
         Author.clearIdentifier();
         Authors authors = new Authors();
@@ -33,22 +50,53 @@ public class AuthorsTest {
         Author auth2 = new Author();
         auth1.register();
         auth2.register();
-        auth2.exampleAuthor();
+        auth2.setName("J. R. R. Tolkien");
         authors.add(auth1);
         authors.add(auth2);
-        assertEquals("J. R. R. Tolkien 2", authors.getAuthorById(2).getName());
+        assertEquals("J. R. R. Tolkien", authors.getAuthorById(2).getName());
     }
 
     @Test
-    public void testGetAuthorByIndex() {
-        Author.clearIdentifier();
-        Authors a = new Authors();
-        Author a1 = new Author();
-        Author a2 = new Author();
-        a1.register();
-        a2.register();
-        a.add(a1);
-        a.add(a2);
-        assertEquals(1, a.getAuthorByIndex(0).getId());
+    public void testGetAuthorsIndex() {
+        Authors authors = new Authors();
+        Author auth1 = new Author();
+        auth1.parse("7|Haruki Murakami");
+        Author auth2 = new Author();
+        auth2.parse("1|J. R. R. Tolkien");
+        Author auth3 = new Author();
+        auth3.parse("4|Elena Ferrante");
+        authors.add(auth1);
+        authors.add(auth2);
+        authors.add(auth3);
+        assertEquals(2, authors.getIndex(1));
+    }
+
+    @Test
+    public void testSearchAuthors() {
+        Authors authors = new Authors();
+        Author auth1 = new Author();
+        auth1.parse("7|Haruki Murakami");
+        Author auth2 = new Author();
+        auth2.parse("1|J. R. R. Tolkien");
+        Author auth3 = new Author();
+        auth3.parse("4|Elena Ferrante");
+        authors.add(auth1);
+        authors.add(auth2);
+        authors.add(auth3);
+        List<Author> list = authors.search("ur");
+        assertEquals(1, list.size());
+    }
+
+    @Test
+    public void testRemoveAuthor() {
+        Authors authors = new Authors();
+        Author auth1 = new Author();
+        auth1.parse("7|Haruki Murakami");
+        Author auth2 = new Author();
+        auth2.parse("1|J. R. R. Tolkien");
+        authors.add(auth1);
+        authors.add(auth2);
+        authors.remove(auth1);
+        assertEquals(1, authors.getNoOfAuthors());
     }
 }

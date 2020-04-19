@@ -71,7 +71,7 @@ public class PubDialogController implements ModalControllerInterface<Publisher> 
      * Updates values for the publisher
      */
     private void handleChanges() {
-        newPublisher.setPublisher(textPublisher.getText());
+        newPublisher.setName(textPublisher.getText());
         newPublisher.register();
     }
 

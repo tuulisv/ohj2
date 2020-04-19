@@ -65,7 +65,7 @@ public class Publisher {
      * Sets publisher name
      * @param publisher publisher name
      */
-    public void setPublisher(String publisher) {
+    public void setName(String publisher) {
         this.publisher = publisher;
     }
 

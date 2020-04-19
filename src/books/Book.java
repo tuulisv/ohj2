@@ -144,7 +144,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Sets new title
-     * @param title
+     * @param title book title
      */
     public void setTitle(String title) {
         this.title = title;
@@ -152,7 +152,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Sets new original title
-     * @param ogTitle
+     * @param ogTitle original title
      */
     public void setOriginalTitle(String ogTitle) {
         this.originalTitle = ogTitle;
@@ -160,7 +160,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Sets new author id
-     * @param id
+     * @param id author id
      */
     public void setAuthorId(int id) {
         this.authorId = id;
@@ -168,7 +168,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Sets new publiscation year
-     * @param year
+     * @param year publication year
      */
     public void setPubYear(int year) {
         this.pubYear = year;
@@ -176,7 +176,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Sets new publisher id
-     * @param id
+     * @param id publisher id
      */
     public void setPubId(int id) {
         this.pubId = id;
@@ -184,7 +184,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Sets new language
-     * @param lang
+     * @param lang book language
      */
     public void setLanguage(String lang) {
         this.language = lang;
@@ -192,7 +192,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Sets reading status
-     * @param status
+     * @param status reading status
      */
     public void setStatus(int status) {
         this.status = status;
@@ -200,7 +200,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Sets rating
-     * @param rating
+     * @param rating rating
      */
     public void setRating(int rating) {
         this.rating = rating;
@@ -224,7 +224,7 @@ public class Book implements Comparable<Book> {
 
     /**
      * Parse book information from the line
-     * @param line
+     * @param line String containing book information
      */
     public void parse(String line) {
         StringBuilder sb = new StringBuilder(line);

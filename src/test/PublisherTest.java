@@ -17,13 +17,6 @@ public class PublisherTest {
     }
 
     @Test
-    public void testGetExampleName() {
-        Publisher pub = new Publisher();
-        pub.examplePublisher();
-        assertEquals("Allen & Unwin 0", pub.getName());
-    }
-
-    @Test
     public void testRegisteringGrowsId() {
         Publisher.clearIdentifier();
         Publisher pub1 = new Publisher();
@@ -34,6 +27,13 @@ public class PublisherTest {
     }
 
     @Test
+    public void testSetPublisherName() {
+        Publisher pub = new Publisher();
+        pub.setName("Edizioni E/O");
+        assertEquals("Edizioni E/O", pub.getName());
+    }
+
+    @Test
     public void testParseSetsPublisherName() {
         Publisher pub = new Publisher();
         pub.parse("4|Edizioni E/O");
@@ -41,20 +41,26 @@ public class PublisherTest {
     }
 
     @Test
-    public void testPublisherToString() {
+    public void testParseGrowsNextId() {
         Publisher.clearIdentifier();
+        Publisher pub1 = new Publisher();
+        pub1.parse("14|Kodansha");
+        Publisher pub2 = new Publisher();
+        pub2.register();
+        assertEquals(15, pub2.getId());
+    }
+
+    @Test
+    public void testPublisherToString() {
         Publisher pub = new Publisher();
-        pub.register();
-        pub.examplePublisher();
-        assertEquals("Allen & Unwin 1", pub.toString());
+        pub.parse("4|Edizioni E/O");
+        assertEquals("Edizioni E/O", pub.toString());
     }
 
     @Test
     public void testPrintPublisher() {
-        Publisher.clearIdentifier();
         Publisher pub = new Publisher();
-        pub.register();
-        pub.examplePublisher();
-        assertEquals("1|Allen & Unwin 1", pub.print());
+        pub.parse("4|Edizioni E/O");
+        assertEquals("4|Edizioni E/O", pub.print());
     }
 }

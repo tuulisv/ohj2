@@ -80,8 +80,9 @@ public class Books {
      * @param book new book
      */
     public void replaceOrAdd(Book book) {
+        int id = book.getId();
         for (int i = 0; i < getNoOfBooks(); i++) {
-            if (this.books[i].getId() == book.getId()) {
+            if (this.books[i].getId() == id) {
                 this.books[i] = book;
                 this.changed = true;
                 return;
@@ -144,7 +145,7 @@ public class Books {
         List<Book> books = new ArrayList<>();
         for (int i = 0; i < getNoOfBooks(); i++) {
             Book book = getBookByIndex(i);
-            if (book.getAuthorId() == id) books.add(book);
+            if (book.getPubId() == id) books.add(book);
         }
 
         return books;

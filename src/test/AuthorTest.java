@@ -17,13 +17,6 @@ public class AuthorTest {
     }
 
     @Test
-    public void testGetExampleName() {
-       Author author = new Author();
-       author.exampleAuthor();
-       assertEquals("J. R. R. Tolkien 0", author.getName());
-    }
-
-    @Test
     public void testRegisteringGrowsId() {
         Author.clearIdentifier();
         Author author1 = new Author();
@@ -34,6 +27,13 @@ public class AuthorTest {
     }
 
     @Test
+    public void testSetAuthorName() {
+        Author author = new Author();
+        author.setName("Elena Ferrante");
+        assertEquals("Elena Ferrante", author.getName());
+    }
+
+    @Test
     public void testParseSetsAuthorName() {
         Author author = new Author();
         author.parse("7|Haruki Murakami");
@@ -41,20 +41,44 @@ public class AuthorTest {
     }
 
     @Test
-    public void testAuthorToString() {
+    public void testParseGrowsNextId() {
         Author.clearIdentifier();
+        Author author1 = new Author();
+        author1.parse("4|Elena Ferrante");
+        Author author2 = new Author();
+        author2.register();
+        assertEquals(5, author2.getId());
+    }
+
+    @Test
+    public void testAuthorToString() {
         Author author = new Author();
-        author.register();
-        author.exampleAuthor();
-        assertEquals("J. R. R. Tolkien 1", author.toString());
+        author.parse("4|Elena Ferrante");
+        assertEquals("Elena Ferrante", author.toString());
     }
 
     @Test
     public void testPrintAuthor() {
-        Author.clearIdentifier();
         Author author = new Author();
-        author.register();
-        author.exampleAuthor();
-        assertEquals("1|J. R. R. Tolkien 1", author.print());
+        author.parse("4|Elena Ferrante");
+        assertEquals("4|Elena Ferrante", author.print());
+    }
+
+    @Test
+    public void testCompareDifferentAuthors() {
+        Author author1 = new Author();
+        author1.parse("4|Elena Ferrante");
+        Author author2 = new Author();
+        author2.parse("7|Haruki Murakami");
+        assertEquals(-3, author1.compareTo(author2));
+    }
+
+    @Test
+    public void testCompareSameAuthors() {
+        Author author1 = new Author();
+        author1.parse("4|Elena Ferrante");
+        Author author2 = new Author();
+        author2.parse("5|Elena Ferrante");
+        assertEquals(0, author1.compareTo(author2));
     }
 }

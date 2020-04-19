@@ -21,7 +21,7 @@ public class BookTest {
     }
 
     @Test
-    public void testGetDefaultBookTitle() {
+    public void testGetDefaultTitle() {
         Book book = new Book();
         assertEquals("", book.getTitle());
     }
@@ -29,15 +29,15 @@ public class BookTest {
     @Test
     public void testGetExampleTitle() {
         Book book = new Book();
-        book.exampleBook();
-        assertEquals("The Lord of the Rings 0", book.getTitle());
+        book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        assertEquals("My Brilliant Friend", book.getTitle());
     }
 
     @Test
     public void testGetExampleOrigTitle() {
         Book book = new Book();
-        book.exampleBook();
-        assertEquals("The Lord of the Rings", book.getOrigTitle());
+        book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        assertEquals("L'amica geniale", book.getOrigTitle());
     }
 
     @Test
@@ -47,16 +47,17 @@ public class BookTest {
     }
 
     @Test
-    public void testGetGivenAuthorId() {
-        Book book = new Book(5, 3);
-        assertEquals(5, book.getAuthorId());
+    public void testGetExampleAuthorId() {
+        Book book = new Book();
+        book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        assertEquals(4, book.getAuthorId());
     }
 
     @Test
     public void testGetExamplePubYear() {
         Book book = new Book();
-        book.exampleBook();
-        assertEquals(1954, book.getPubYear());
+        book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        assertEquals(2011, book.getPubYear());
     }
 
     @Test
@@ -66,16 +67,17 @@ public class BookTest {
     }
 
     @Test
-    public void testGetGivenPubId() {
-        Book book = new Book(5, 3);
-        assertEquals(3, book.getPubId());
+    public void testGetExamplePubId() {
+        Book book = new Book();
+        book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        assertEquals(4, book.getPubId());
     }
 
     @Test
     public void testGetExampleLanguage() {
         Book book = new Book();
-        book.exampleBook();
-        assertEquals("English", book.getLanguage());
+        book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        assertEquals("Italian", book.getLanguage());
     }
 
     @Test
@@ -117,27 +119,33 @@ public class BookTest {
     }
 
     @Test
-    public void testParseBookSetsBookTitle() {
+    public void testSetTitle() {
         Book book = new Book();
-        book.parse("10|1Q84|1Q84|7|2009|7|Japanese|0|0");
-        assertEquals("1Q84", book.getTitle());
+        book.setTitle("The Lord of the Rings");
+        assertEquals("The Lord of the Rings", book.getTitle());
     }
 
     @Test
-    public void testParseBookSetsAuthorId() {
+    public void testSetPubYear() {
         Book book = new Book();
-        book.parse("10|1Q84|1Q84|7|2009|7|Japanese|0|0");
-        assertEquals(7, book.getAuthorId());
+        book.setPubYear(1954);
+        assertEquals(1954, book.getPubYear());
+    }
+
+    @Test
+    public void testOlderBookIsSmaller() {
+        Book book1 = new Book();
+        Book book2 = new Book();
+        book1.setPubYear(1999);
+        book2.setPubYear(1979);
+        assertEquals(20, book1.compareTo(book2));
     }
 
     @Test
     public void testBookToString() {
-        Book.clearIdentifier();
-        Book book = new Book(1, 1);
-        book.register();
-        book.exampleBook();
-        int rating = book.getRating();
-        assertEquals("1|The Lord of the Rings 1|The Lord of the Rings|1|1954|1|English|1|" + rating,
+        Book book = new Book();
+        book.parse("8|Kafka on the Shore|海辺のカフカ|7|2002|7|Japanese|1|4");
+        assertEquals("8|Kafka on the Shore|海辺のカフカ|7|2002|7|Japanese|1|4",
                      book.toString());
     }
 }

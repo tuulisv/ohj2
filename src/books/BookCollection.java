@@ -1,6 +1,5 @@
 package books;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -103,16 +102,6 @@ public class BookCollection {
     }
 
     /**
-     * Get a random publisher
-     * @return random publisher
-     */
-    public Publisher getRandomPublisher() {
-        Random r = new Random();
-        int i = r.nextInt(getNoOfPublishers());
-        return this.publishers.getPublisherByIndex(i);
-    }
-
-    /**
      * Returns the list of authors
      * @return authors in a list
      */
@@ -180,14 +169,15 @@ public class BookCollection {
     }
 
     /**
-     * Get the index of the book in the list
+     * Get the index of the book in the author's list of books
      * @param book book
      * @return index of the book
      */
     public int getBookIndex(Book book) {
+        int id = book.getId();
         List<Book> works = getAuthorsWorks(book.getAuthorId());
         for (int i = 0; i < works.size(); i++) {
-            if (works.get(i).getId() == book.getId()) return i;
+            if (works.get(i).getId() == id) return i;
         }
 
         return -1;

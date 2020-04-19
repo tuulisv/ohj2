@@ -21,69 +21,69 @@ public class BookCollectionTest {
     public void testGetExampleBook() {
         BookCollection bc = new BookCollection();
         Book book = new Book();
-        book.exampleBook();
+        book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
         bc.add(book);
-        assertEquals("The Lord of the Rings 0", bc.getBook(0).getTitle());
+        assertEquals("My Brilliant Friend", bc.getBook(0).getTitle());
+    }
+
+    @Test
+    public void testReplaceBookWithSameId() {
+        BookCollection bc = new BookCollection();
+        Book book1 = new Book();
+        book1.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        bc.replaceOrAdd(book1);
+        Book book2 = new Book();
+        book2.parse("5|Station Eleven|Station Eleven|5|2014|5|English|0|0");
+        bc.replaceOrAdd(book2);
+        assertEquals("Station Eleven", bc.getBook(0).getTitle());
     }
 
     @Test
     public void testGetExampleAuthor() {
-        Author.clearIdentifier();
         BookCollection bc = new BookCollection();
         Author author = new Author();
-        author.register();
-        author.exampleAuthor();
+        author.parse("1|J. R. R. Tolkien");
         bc.add(author);
-        assertEquals("J. R. R. Tolkien 1", bc.getAuthor(0).getName());
+        assertEquals("J. R. R. Tolkien", bc.getAuthor(0).getName());
     }
 
     @Test
     public void testGetExamplePublisher() {
-        Publisher.clearIdentifier();
         BookCollection bc = new BookCollection();
         Publisher pub1 = new Publisher();
         Publisher pub2 = new Publisher();
-        pub1.register();
-        pub2.register();
-        pub1.examplePublisher();
-        pub2.examplePublisher();
+        pub1.parse("4|Edizioni E/O");
+        pub2.parse("5|Knopf");
         bc.add(pub1);
         bc.add(pub2);
-        assertEquals("Allen & Unwin 2", bc.getPublisher(1).getName());
+        assertEquals("Knopf", bc.getPublisher(1).getName());
     }
 
     @Test
     public void testGetAuthorById() {
-        Author.clearIdentifier();
         BookCollection bc = new BookCollection();
         Author auth1 = new Author();
         Author auth2 = new Author();
         Author auth3 = new Author();
-        auth1.register();
-        auth2.register();
-        auth3.register();
-        auth1.exampleAuthor();
-        auth2.exampleAuthor();
-        auth3.exampleAuthor();
+        auth1.parse("4|Elena Ferrante");
+        auth2.parse("5|Emily St. John Mandel");
+        auth3.parse("7|Haruki Murakami");
         bc.add(auth1);
         bc.add(auth2);
         bc.add(auth3);
-        assertEquals("J. R. R. Tolkien 2", bc.getAuthorById(2).getName());
+        assertEquals("Haruki Murakami", bc.getAuthorById(7).getName());
     }
 
     @Test
     public void testGetPublisherById() {
-        Publisher.clearIdentifier();
         BookCollection bc1 = new BookCollection();
         Publisher pub1 = new Publisher();
         Publisher pub2 = new Publisher();
-        pub1.register();
-        pub2.register();
-        pub1.examplePublisher();
-        pub2.examplePublisher();
+        pub1.parse("4|Edizioni E/O");
+        pub2.parse("5|Knopf");
         bc1.add(pub1);
         bc1.add(pub2);
-        assertEquals("Allen & Unwin 2", bc1.getPublisherById(2).getName());
+        assertEquals("Knopf", bc1.getPublisherById(5).getName());
     }
 
     @Test
@@ -133,10 +133,76 @@ public class BookCollectionTest {
     }
 
     @Test
+    public void testGetBookIndex() {
+        BookCollection bc = new BookCollection();
+        Book book1 = new Book();
+        Book book2 = new Book();
+        Book book3 = new Book();
+        book1.parse("8|Kafka on the Shore|海辺のカフカ|7|2002|7|Japanese|1|4");
+        book2.parse("10|1Q84|1Q84|7|2009|7|Japanese|0|0");
+        book3.parse("12|Dance Dance Dance|ダンス・ダンス・ダンス|7|1988|14|Japanese|1|5");
+        bc.add(book1);
+        bc.add(book2);
+        bc.add(book3);
+        assertEquals(2, bc.getBookIndex(book2));
+    }
+
+    @Test
+    public void testRemoveOneOfAuthorsBooks() {
+        BookCollection bc = new BookCollection();
+        Book book1 = new Book();
+        Book book2 = new Book();
+        Book book3 = new Book();
+        book1.parse("8|Kafka on the Shore|海辺のカフカ|7|2002|7|Japanese|1|4");
+        book2.parse("10|1Q84|1Q84|7|2009|7|Japanese|0|0");
+        book3.parse("12|Dance Dance Dance|ダンス・ダンス・ダンス|7|1988|14|Japanese|1|5");
+        bc.add(book1);
+        bc.add(book2);
+        bc.add(book3);
+        bc.remove(book1);
+        assertEquals(2, bc.getAuthorsWorks(7).size());
+    }
+
+    @Test
+    public void testRemovingAuthorsBooksRemovesAuthor() {
+        BookCollection bc = new BookCollection();
+        Author auth1 = new Author();
+        Author auth2 = new Author();
+        auth1.parse("4|Elena Ferrante");
+        auth2.parse("5|Emily St. John Mandel");
+        bc.add(auth1);
+        bc.add(auth2);
+        Book book1 = new Book();
+        Book book2 = new Book();
+        book1.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        book2.parse("6|Station Eleven|Station Eleven|5|2014|5|English|0|0");
+        bc.add(book1);
+        bc.add(book2);
+        bc.remove(book1);
+        assertEquals(1, bc.getNoOfAuthors());
+    }
+
+    @Test
+    public void testRemovingPublishersBooksRemovesPublisher() {
+        BookCollection bc = new BookCollection();
+        Publisher pub1 = new Publisher();
+        Publisher pub2 = new Publisher();
+        pub1.parse("4|Edizioni E/O");
+        pub2.parse("5|Knopf");
+        bc.add(pub1);
+        bc.add(pub2);
+        Book book1 = new Book();
+        Book book2 = new Book();
+        book1.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
+        book2.parse("6|Station Eleven|Station Eleven|5|2014|5|English|0|0");
+        bc.add(book1);
+        bc.add(book2);
+        bc.remove(book1);
+        assertEquals("Knopf", bc.getPublisher(0).getName());
+    }
+
+    @Test
     public void testSaveBooksToFile() throws IOException, StoreException {
-        Book.clearIdentifier();
-        Author.clearIdentifier();
-        Publisher.clearIdentifier();
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";
         String filePublishers = "testPublishers";
@@ -183,9 +249,6 @@ public class BookCollectionTest {
 
     @Test
     public void testSaveAuthorsToFile() throws IOException, StoreException {
-        Book.clearIdentifier();
-        Author.clearIdentifier();
-        Publisher.clearIdentifier();
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";
         String filePublishers = "testPublishers";
@@ -229,9 +292,6 @@ public class BookCollectionTest {
 
     @Test
     public void testSavePublishersToFile() throws IOException, StoreException {
-        Book.clearIdentifier();
-        Author.clearIdentifier();
-        Publisher.clearIdentifier();
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";
         String filePublishers = "testPublishers";
