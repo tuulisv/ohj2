@@ -205,7 +205,8 @@ public class BookCollection {
     }
 
     /**
-     * Remove book and its author and publisher if they have no other books
+     * Remove book and its author and publisher if they have no other books;
+     * last book in the collection is moved to the place of the removed book
      * @param book removed book
      */
     public void remove(Book book) {

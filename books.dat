@@ -1,12 +1,12 @@
 ;id|title|original title|author|publication year|publisher|language|status|rating
 1|The Lord of the Rings|The Lord of the Rings|1|1954|1|English|1|4
-2|Harry Potter and the Philosopher's Stone|Harry Potter and the Philosopher's Stone|2|1997|2|English|1|4
+2|Harry Potter and the Philosopher's Stone|Harry Potter and the Philosopher's Stone|2|1997|2|English|1|3
 3|The Secret History|The Secret History|3|1992|3|English|1|5
 4|The Hobbit|The Hobbit|1|1937|1|English|1|3
 5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4
 6|Station Eleven|Station Eleven|5|2014|5|English|0|0
 7|The Long Way to a Small, Angry Planet|The Long Way to a Small Angry Planet|6|2014|6|English|1|3
-8|Kafka on the Shore|海辺のカフカ|7|2002|7|Japanese|1|4
+22|Norwegian Wood|ノルウェイの森|7|1987|14|Japanese|0|0
 10|1Q84|1Q84|7|2009|7|Japanese|0|0
 11|The Goldfinch|The Goldfinch|3|2013|9|English|1|5
 12|Dance Dance Dance|ダンス・ダンス・ダンス|7|1988|14|Japanese|1|5
@@ -15,6 +15,5 @@
 18|A House of Pomegranates|A House of Pomegranates|11|1891|0|English|1|2
 19|The Picture of Dorian Gray|The Picture of Dorian Gray|11|1891|12|English|1|5
 20|The Importance of Being Earnest|The Importance of Being Earnest|11|1898|0|English|0|0
-21|Opus Pistorum|Opus Pistorum|12|1983|13|English|1|1
-22|Norwegian Wood|ノルウェイの森|7|1987|14|Japanese|0|0
 24|The Limit|Raja|14|2006|16|Finnish|1|3
+25|Kafka on the Shore|海辺のカフカ|7|2002|7|Japanese|1|4

@@ -1,11 +1,14 @@
 package fxBooks;
 
 import books.BookCollection;
+import fi.jyu.mit.fxgui.Dialogs;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * Main class for launching the book catalogue program
@@ -37,8 +40,8 @@ public class BooksMain extends Application {
 
             stage.show();
             booksCtrl.readFile();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            Dialogs.showMessageDialog("Failed to load FXML: " + e.getMessage());
         }
     }
 

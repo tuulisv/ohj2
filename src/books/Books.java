@@ -95,17 +95,14 @@ public class Books {
     }
 
     /**
-     * Removes book
+     * Removes book; last book in the collection is moved to the place of the removed book
      * @param book removed book
      */
     protected void remove(Book book) {
         int index = getIndex(book.getId());
+        this.books[index] = this.books[no - 1];
+        this.books[no - 1] = null;
         this.no--;
-        for (int i = index; i < getNoOfBooks(); i++) {
-            this.books[i] = this.books[i + 1];
-        }
-
-        this.books[no] = null;
         this.changed = true;
     }
 
