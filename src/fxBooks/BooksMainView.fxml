@@ -22,23 +22,17 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="File">
-                <items>
-                    <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Save"/>
-                    <MenuItem mnemonicParsing="false" onAction="#handleQuit" text="Quit"/>
-                </items>
+                <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Save"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleQuit" text="Quit"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
-                <items>
-                    <MenuItem mnemonicParsing="false" onAction="#handleAddBook" text="Add a book..."/>
-                    <MenuItem mnemonicParsing="false" onAction="#handleEdit" text="Edit a book..."/>
-                    <MenuItem mnemonicParsing="false" onAction="#handleRemove" text="Remove a book..."/>
-                </items>
+                <MenuItem mnemonicParsing="false" onAction="#handleAddBook" text="Add a book..."/>
+                <MenuItem mnemonicParsing="false" onAction="#handleEdit" text="Edit a book..."/>
+                <MenuItem mnemonicParsing="false" onAction="#handleRemove" text="Remove a book..."/>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
-                <items>
-                    <MenuItem mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
-                    <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About"/>
-                </items>
+                <MenuItem mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About"/>
             </Menu>
         </MenuBar>
     </top>
@@ -122,127 +116,125 @@
             <Separator maxWidth="1.7976931348623157E308"/>
             <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400"
                         VBox.vgrow="ALWAYS">
-                <content>
-                    <VBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
-                        <children>
-                            <GridPane hgap="10.0" maxHeight="1.7976931348623157E308" vgap="10.0">
-                                <columnConstraints>
-                                    <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS"
-                                                       maxWidth="1.7976931348623157E308"/>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308"
-                                                       minWidth="20.0" prefWidth="200.0"/>
-                                </columnConstraints>
-                                <rowConstraints>
-                                    <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                                    <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                                    <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                                    <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                                    <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                                    <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
-                                    <RowConstraints fillHeight="false" prefHeight="40.0" valignment="TOP"
-                                                    vgrow="NEVER"/>
-                                    <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS"/>
-                                </rowConstraints>
-                                <children>
-                                    <Label text="Title">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                    </Label>
-                                    <Label fx:id="labelBookTitle" wrapText="true" GridPane.columnIndex="1"/>
-                                    <Label text="Original Title" GridPane.rowIndex="1">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                    </Label>
-                                    <Label fx:id="labelOrigTitle" wrapText="true" GridPane.columnIndex="1"
-                                           GridPane.rowIndex="1"/>
-                                    <Label text="Author" GridPane.rowIndex="2">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                    </Label>
-                                    <Label fx:id="labelAuthor" wrapText="true" GridPane.columnIndex="1"
-                                           GridPane.rowIndex="2"/>
-                                    <Label text="Publication Year" GridPane.rowIndex="3">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                    </Label>
-                                    <Label fx:id="labelPubYear" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                                    <Label text="Publisher" GridPane.rowIndex="4">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                    </Label>
-                                    <Label fx:id="labelPub" wrapText="true" GridPane.columnIndex="1"
-                                           GridPane.rowIndex="4"/>
-                                    <Label text="Language" GridPane.rowIndex="5">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                    </Label>
-                                    <Label fx:id="labelLang" wrapText="true" GridPane.columnIndex="1"
-                                           GridPane.rowIndex="5"/>
-                                    <Label alignment="TOP_RIGHT" contentDisplay="TOP" text="Reading Status"
-                                           GridPane.rowIndex="6" GridPane.valignment="TOP">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                        <GridPane.margin>
-                                            <Insets/>
-                                        </GridPane.margin>
-                                    </Label>
-                                    <Label text="Rating" GridPane.rowIndex="7" GridPane.valignment="TOP">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                        <GridPane.margin>
-                                            <Insets/>
-                                        </GridPane.margin>
-                                    </Label>
-                                    <RadioButtonChooser fx:id="chooserStatus" onMouseClicked="#handleSelectStatus"
-                                                        rivit="unread&#10;read" spacing="5.0" GridPane.columnIndex="1"
-                                                        GridPane.rowIndex="6">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                        <padding>
-                                            <Insets left="-1.0"/>
-                                        </padding>
-                                    </RadioButtonChooser>
-                                    <RadioButtonChooser fx:id="chooserRating" onMouseClicked="#handleSelectRating"
-                                                        rivit="0&#10;1&#10;2&#10;3&#10;4&#10;5" spacing="5.0"
-                                                        GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                        <opaqueInsets>
-                                            <Insets/>
-                                        </opaqueInsets>
-                                        <padding>
-                                            <Insets left="-1.0"/>
-                                        </padding>
-                                    </RadioButtonChooser>
-                                </children>
-                                <padding>
-                                    <Insets bottom="10.0" left="25.0" right="25.0" top="10.0"/>
-                                </padding>
-                            </GridPane>
-                            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false"
-                                    onAction="#handleRemove" text="Remove book">
-                                <VBox.margin>
-                                    <Insets bottom="10.0" top="20.0"/>
-                                </VBox.margin>
-                            </Button>
-                        </children>
-                    </VBox>
-                </content>
                 <VBox.margin>
                     <Insets top="13.0"/>
                 </VBox.margin>
+                <VBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
+                    <children>
+                        <GridPane hgap="10.0" maxHeight="1.7976931348623157E308" vgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS"
+                                                   maxWidth="1.7976931348623157E308"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308"
+                                                   minWidth="20.0" prefWidth="200.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                                <RowConstraints fillHeight="false" maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                                <RowConstraints fillHeight="false" prefHeight="40.0" valignment="TOP"
+                                                vgrow="NEVER"/>
+                                <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS"/>
+                            </rowConstraints>
+                            <children>
+                                <Label text="Title">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                </Label>
+                                <Label fx:id="labelBookTitle" wrapText="true" GridPane.columnIndex="1"/>
+                                <Label text="Original Title" GridPane.rowIndex="1">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                </Label>
+                                <Label fx:id="labelOrigTitle" wrapText="true" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="1"/>
+                                <Label text="Author" GridPane.rowIndex="2">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                </Label>
+                                <Label fx:id="labelAuthor" wrapText="true" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="2"/>
+                                <Label text="Publication Year" GridPane.rowIndex="3">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                </Label>
+                                <Label fx:id="labelPubYear" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                <Label text="Publisher" GridPane.rowIndex="4">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                </Label>
+                                <Label fx:id="labelPub" wrapText="true" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="4"/>
+                                <Label text="Language" GridPane.rowIndex="5">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                </Label>
+                                <Label fx:id="labelLang" wrapText="true" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="5"/>
+                                <Label alignment="TOP_RIGHT" contentDisplay="TOP" text="Reading Status"
+                                       GridPane.rowIndex="6" GridPane.valignment="TOP">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                    <GridPane.margin>
+                                        <Insets/>
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="Rating" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                    <GridPane.margin>
+                                        <Insets/>
+                                    </GridPane.margin>
+                                </Label>
+                                <RadioButtonChooser fx:id="chooserStatus" onMouseClicked="#handleSelectStatus"
+                                                    rivit="unread&#10;read" spacing="5.0" GridPane.columnIndex="1"
+                                                    GridPane.rowIndex="6">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="-1.0"/>
+                                    </padding>
+                                </RadioButtonChooser>
+                                <RadioButtonChooser fx:id="chooserRating" onMouseClicked="#handleSelectRating"
+                                                    rivit="0&#10;1&#10;2&#10;3&#10;4&#10;5" spacing="5.0"
+                                                    GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="-1.0"/>
+                                    </padding>
+                                </RadioButtonChooser>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="25.0" right="25.0" top="10.0"/>
+                            </padding>
+                        </GridPane>
+                        <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false"
+                                onAction="#handleRemove" text="Remove book">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="20.0"/>
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
             </ScrollPane>
         </VBox>
     </right>
     <bottom>
-        <HBox alignment="TOP_RIGHT" prefWidth="754.0" spacing="10.0" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_RIGHT" prefWidth="754.0" spacing="10.0" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets/>
             </BorderPane.margin>

@@ -203,14 +203,15 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     /**
      * Creates a dialog for retrieving a book
      * @param stage modality stage, for the application the value is null
+     * @param title dialog title
      * @param book default book shown
      * @param bc book collection
      * @return edited data or null if pressed cancel
      */
-    public static Book getBook(Stage stage, Book book, BookCollection bc) {
+    public static Book getBook(Stage stage, String title, Book book, BookCollection bc) {
         return ModalController.<Book, BookDialogController>showModal(
                 BookDialogController.class.getResource("/fxBooks/BookDialogView.fxml"),
-                "Book",
+                title,
                 stage, book,
                 ctrl -> ctrl.setBookCollection(bc)
         );

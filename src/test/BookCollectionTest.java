@@ -202,6 +202,7 @@ public class BookCollectionTest {
     }
 
     @Test
+    @SuppressWarnings("unused")
     public void testSaveBooksToFile() throws IOException, StoreException {
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";
@@ -245,6 +246,7 @@ public class BookCollectionTest {
     }
 
     @Test
+    @SuppressWarnings("unused")
     public void testSaveAuthorsToFile() throws IOException, StoreException {
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";
@@ -285,6 +287,7 @@ public class BookCollectionTest {
     }
 
     @Test
+    @SuppressWarnings("unused")
     public void testSavePublishersToFile() throws IOException, StoreException {
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";

@@ -145,7 +145,7 @@ public class BooksMainController implements Initializable {
         Author author = chooserAuthors.getSelectedObject();
         Book book = new Book();
         if (author != null) book.setAuthorId(author.getId());
-        book = BookDialogController.getBook(null, book, this.books);
+        book = BookDialogController.getBook(null, "New book", book, this.books);
         if (book == null || book.getTitle().trim().isEmpty()) return;
         book.register();
         this.books.add(book);
@@ -160,7 +160,7 @@ public class BooksMainController implements Initializable {
     private void editBook() {
         Book selectedBook = chooserBooks.getSelectedObject();
         if (selectedBook == null) return;
-        BookDialogController.getBook(null, selectedBook, this.books);
+        BookDialogController.getBook(null, "Edit book", selectedBook, this.books);
         this.books.replaceOrAdd(selectedBook);
         showAuthorsWorks();
         chooserBooks.setSelectedIndex(this.books.getBookIndex(selectedBook));

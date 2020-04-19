@@ -1,7 +1,6 @@
 package books;
 
 import fi.jyu.mit.ohj2.Mjonot;
-import java.io.PrintStream;
 
 /**
  * Class for creating Book objects that have a title, author, publication year
@@ -213,18 +212,6 @@ public class Book implements Comparable<Book> {
         this.language = Mjonot.erota(sb, '|', this.language);
         this.status = (Mjonot.erota(sb, '|', 0) == 1) ? 1 : 0;
         this.rating = Mjonot.erota(sb, '|', this.rating);
-    }
-
-    /**
-     * Prints information about the book
-     * @param out output stream
-     */
-    public void print(PrintStream out) {
-        out.println(this.identifier + " " + this.title + " (" + this.originalTitle + ")");
-        out.println("  author: " + this.authorId);
-        out.println("  published by: " + this.pubId + ", " + this.pubYear);
-        out.println("  read: " + this.status);
-        out.println("  rating: " + this.rating);
     }
 
     /**

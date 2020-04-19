@@ -19,17 +19,15 @@
         </VBox.margin>
     </Label>
     <TextField fx:id="textPublisher"/>
-    <HBox spacing="10.0">
-        <children>
-            <Button mnemonicParsing="false" fx:id="okButton" onAction="#handleAddPublisher" text="OK"/>
-            <Button mnemonicParsing="false" fx:id="cancelButton" onAction="#handleCancel" text="Cancel"/>
-            <Label fx:id="labelError"/>
-        </children>
+    <HBox alignment="CENTER_LEFT" spacing="10.0">
         <VBox.margin>
             <Insets/>
         </VBox.margin>
         <padding>
             <Insets top="10.0"/>
         </padding>
+        <Button mnemonicParsing="false" fx:id="okButton" onAction="#handleAddPublisher" text="OK"/>
+        <Button mnemonicParsing="false" fx:id="cancelButton" onAction="#handleCancel" text="Cancel"/>
+        <Label fx:id="labelError"/>
     </HBox>
 </VBox>
