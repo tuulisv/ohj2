@@ -5,8 +5,9 @@ import java.util.List;
 /**
  * Handles cooperation between classes Books, Authors, and Publishers
  *
- * @author Tuuli Veini
+ * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 21.2.2020
+ * @version 7.0 19.4.2020
  */
 public class BookCollection {
 

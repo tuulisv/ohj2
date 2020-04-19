@@ -2,8 +2,8 @@ package books;
 
 /**
  * Exception class for exceptions in the data structure
- * @author Tuuli Veini
- * @version 21.2.2020
+ * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
+ * @version 1.0 21.2.2020
  */
 public class StoreException extends Exception {
 

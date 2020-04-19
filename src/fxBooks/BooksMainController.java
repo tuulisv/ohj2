@@ -23,8 +23,10 @@ import java.util.ResourceBundle;
 
 /**
  * Event handling in the main view
- * @author Tuuli Veini
- * @version 31.1.2020
+ *
+ * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
+ * @version 1.0 31.1.2020
+ * @version 7.0 19.4.2020
  */
 public class BooksMainController implements Initializable {
 
@@ -85,7 +87,7 @@ public class BooksMainController implements Initializable {
     @FXML
     void handleAbout() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxBooks/BooksEnterView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxBooks/BooksAboutView.fxml"));
             Parent aboutRoot = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(aboutRoot));

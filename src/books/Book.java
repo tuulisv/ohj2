@@ -6,8 +6,9 @@ import java.io.PrintStream;
 /**
  * Class for creating Book objects that have a title, author, publication year
  * and other information about the book.
- * @author Tuuli Veini
+ * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 21.2.2020
+ * @version 7.0 19.4.2020
  */
 public class Book implements Comparable<Book> {
 

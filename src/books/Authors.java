@@ -10,8 +10,9 @@ import java.util.regex.Pattern;
 /**
  * Handles having several authors in the program
  *
- * @author Tuuli Veini
+ * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 26.2.2020
+ * @version 7.0 19.4.2020
  */
 public class Authors {
 

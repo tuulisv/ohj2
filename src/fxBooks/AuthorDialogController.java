@@ -11,15 +11,15 @@ import javafx.stage.Stage;
 /**
  * Handles adding a new author
  *
- * @author Tuuli Veini
- * @version 31.1.2020
+ * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
+ * @version 1.0 31.1.2020
+ * @version 7.0 19.4.2020
  */
 public class AuthorDialogController implements ModalControllerInterface<Author> {
 
     @FXML private TextField textAuthor;
     @FXML private javafx.scene.control.Button cancelButton;
     @FXML private Label labelError;
-
 
     @FXML
     void handleOk() {

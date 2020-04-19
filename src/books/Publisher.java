@@ -4,8 +4,10 @@ import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * Class for creating a Publisher object
- * @author Tuuli Veini
+ *
+ * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 11.3.2020
+ * @version 7.0 19.4.2020
  */
 public class Publisher {
 

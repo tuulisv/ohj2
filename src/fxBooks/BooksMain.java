@@ -1,19 +1,18 @@
 package fxBooks;
 
 import books.BookCollection;
-import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 /**
- * @author Tuuli Veini
- * @version 31.1.2020
- *
  * Main class for launching the book catalogue program
+ *
+ * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
+ * @version 1.0 31.1.2020
+ * @version 7.0 19.4.2020
  */
 public class BooksMain extends Application {
 
@@ -25,22 +24,10 @@ public class BooksMain extends Application {
             final BooksMainController booksCtrl = ldr.getController();
             final Scene scene = new Scene(root, 850, 550);
 
-            final FXMLLoader enterLdr = new FXMLLoader(getClass().getResource("/fxBooks/BooksEnterView.fxml"));
-            final Pane enterPane = enterLdr.load();
-            final Scene enterScene = new Scene(enterPane);
-
-            stage.setTitle("Book Collection");
-            stage.setScene(enterScene);
-            stage.show();
-            PauseTransition delay = new PauseTransition(Duration.seconds(3));
-            delay.setOnFinished((event) -> {
-                stage.close();
-                stage.setScene(scene);
-                stage.show();
-            });
-            delay.play();
-
             scene.getStylesheets().add(getClass().getResource("books.css").toExternalForm());
+            stage.setTitle("Book Collection");
+            stage.setScene(scene);
+
             BookCollection books = new BookCollection();
             booksCtrl.setBookCollection(books);
 
@@ -48,6 +35,7 @@ public class BooksMain extends Application {
                 if (!booksCtrl.canClose()) event.consume();
             });
 
+            stage.show();
             booksCtrl.readFile();
         } catch (Exception e) {
             e.printStackTrace();
