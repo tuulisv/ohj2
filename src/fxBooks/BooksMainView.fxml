@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ToggleGroup?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxBooks.BooksMainController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
@@ -226,6 +227,7 @@
     <bottom>
         <HBox alignment="TOP_RIGHT" prefWidth="754.0" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
+                <Label fx:id="labelUnsaved" />
                 <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleEdit" text="Edit">
                     <HBox.margin>
                         <Insets />

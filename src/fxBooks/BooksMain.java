@@ -62,15 +62,4 @@ public class BooksMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-    /**
-     * Error popup
-     */
-    protected static void errorGeneral() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Ei toimi");
-        alert.showAndWait();
-    }
 }

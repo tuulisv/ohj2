@@ -39,6 +39,7 @@ public class BooksMainController implements Initializable {
     @FXML private Label labelLang;
     @FXML private RadioButtonChooser<Boolean> chooserStatus;
     @FXML private RadioButtonChooser<Integer> chooserRating;
+    @FXML private Label labelUnsaved;
 
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
@@ -106,12 +107,12 @@ public class BooksMainController implements Initializable {
 
     @FXML
     void handleSelectRating() {
-
+        selectRating();
     }
 
     @FXML
     void handleSelectStatus() {
-
+        selectStatus();
     }
 
     //==============================================================================
@@ -282,6 +283,43 @@ public class BooksMainController implements Initializable {
     }
 
     /**
+     * Change the rating of the book
+     */
+    private void selectRating() {
+        Book book = chooserBooks.getSelectedObject();
+        int rating = chooserRating.getSelectedIndex();
+        if (book.getRating() != rating) {
+            book.setRating(chooserRating.getSelectedIndex());
+            unsavedChanges(true);
+        }
+    }
+
+    /**
+     * Change the status of the book
+     */
+    private void selectStatus() {
+        Book book = chooserBooks.getSelectedObject();
+        int status = chooserStatus.getSelectedIndex();
+        if (book.getStatus() != status) {
+            book.setStatus(chooserStatus.getSelectedIndex());
+            unsavedChanges(true);
+        }
+    }
+
+    /**
+     * Shows a warning about unsaved changes
+     */
+    private void unsavedChanges(boolean changes) {
+        if (changes) {
+            labelUnsaved.setText("Unsaved changes");
+            labelUnsaved.getStyleClass().add("error");
+        } else {
+            labelUnsaved.setText("");
+            labelUnsaved.getStyleClass().removeAll("error");
+        }
+    }
+
+    /**
      * Check if changes are saved
      * @return true if saved
      */
@@ -296,6 +334,7 @@ public class BooksMainController implements Initializable {
     private void save() {
         try {
             this.books.save();
+            unsavedChanges(false);
         } catch (StoreException e) {
             Dialogs.showMessageDialog("Error in saving files: " + e.getMessage());
         }
