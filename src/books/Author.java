@@ -7,7 +7,7 @@ import fi.jyu.mit.ohj2.Mjonot;
  * 
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 26.2.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class Author implements Comparable<Author> {
 
@@ -67,7 +67,7 @@ public class Author implements Comparable<Author> {
     /**
      * Resets the id to 1
      */
-    public static void clearIdentifier(){
+    public static void clearIdentifier() {
         Author.nextIdentifier = 1;
     }
 

@@ -29,6 +29,7 @@ public class PublishersTest {
 
     @Test
     public void testGetPublisherById() {
+        Publisher.clearIdentifier();
         Publishers pub = new Publishers();
         Publisher pub1 = new Publisher();
         Publisher pub2 = new Publisher();
@@ -41,6 +42,7 @@ public class PublishersTest {
 
     @Test
     public void testGetNonexistentPublisher() {
+        Publisher.clearIdentifier();
         Publishers pub = new Publishers();
         Publisher pub1 = new Publisher();
         Publisher pub2 = new Publisher();
@@ -51,6 +53,7 @@ public class PublishersTest {
 
     @Test
     public void testGetPublisherByIndex() {
+        Publisher.clearIdentifier();
         Publishers pub = new Publishers();
         Publisher p1 = new Publisher();
         Publisher p2 = new Publisher();
@@ -63,6 +66,7 @@ public class PublishersTest {
 
     @Test
     public void testRemovePublisher() {
+        Publisher.clearIdentifier();
         Publishers pub = new Publishers();
         Publisher p1 = new Publisher();
         p1.parse("4|Edizioni E/O");

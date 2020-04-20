@@ -15,7 +15,7 @@ import java.io.IOException;
  *
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 31.1.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class BooksMain extends Application {
 

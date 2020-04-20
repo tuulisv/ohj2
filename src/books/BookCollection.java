@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 21.2.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class BookCollection {
 
@@ -162,7 +162,7 @@ public class BookCollection {
     /**
      * Get the index of the author corresponding to the id
      * @param id author id
-     * @return index
+     * @return index of the author
      */
     public int getAuthorIndex(int id) {
         return this.authors.getIndex(id);

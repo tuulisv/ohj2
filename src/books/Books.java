@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 21.2.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class Books {
 
@@ -109,7 +109,7 @@ public class Books {
     /**
      * Returns the index of the book
      * @param id book id
-     * @return index of the book
+     * @return index of the book or -1 if not found
      */
     public int getIndex(int id) {
         for (int i = 0; i < getNoOfBooks(); i++) {

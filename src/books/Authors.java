@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 26.2.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class Authors {
 
@@ -89,7 +89,7 @@ public class Authors {
     /**
      * Returns the index of the author
      * @param id author id
-     * @return index of the author
+     * @return index of the author or -1 if not found
      */
     public int getIndex(int id) {
         for (int i = 0; i < getNoOfAuthors(); i++) {
@@ -131,7 +131,7 @@ public class Authors {
      * @param fileName file name
      */
     protected void setFile(String fileName) {
-        if (fileName.isEmpty()) return;
+        if (fileName.trim().isEmpty()) return;
         this.file = new File(fileName);
     }
 

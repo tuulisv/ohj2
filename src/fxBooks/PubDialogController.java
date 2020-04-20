@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  *
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 31.1.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class PubDialogController implements ModalControllerInterface<Publisher> {
 
@@ -43,8 +43,8 @@ public class PubDialogController implements ModalControllerInterface<Publisher> 
     private Publisher newPublisher;
 
     /**
-     * Defines what is returned
-     * @return new author
+     * Defines that new publisher is returned
+     * @return new publisher
      */
     @Override
     public Publisher getResult() {
@@ -53,7 +53,7 @@ public class PubDialogController implements ModalControllerInterface<Publisher> 
 
     /**
      * Default value for the publisher
-     * @param publisher publisher
+     * @param publisher default publisher
      */
     @Override
     public void setDefault(Publisher publisher) {
@@ -72,8 +72,8 @@ public class PubDialogController implements ModalControllerInterface<Publisher> 
      * Updates values for the publisher
      */
     private void handleChanges() {
-        newPublisher.setName(textPublisher.getText());
-        newPublisher.register();
+        this.newPublisher.setName(textPublisher.getText());
+        this.newPublisher.register();
     }
 
     /**
@@ -87,7 +87,7 @@ public class PubDialogController implements ModalControllerInterface<Publisher> 
     /**
      * Creates a dialog for adding a new publisher
      * @param stage modality stage
-     * @param publisher default author shown
+     * @param publisher default publisher shown
      * @return edited data or null if pressed cancel
      */
     public static Publisher getPublisher(Stage stage, Publisher publisher) {

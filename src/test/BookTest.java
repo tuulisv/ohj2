@@ -24,6 +24,7 @@ public class BookTest {
 
     @Test
     public void testGetExampleTitle() {
+        Book.clearIdentifier();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
         assertEquals("My Brilliant Friend", book.getTitle());
@@ -31,6 +32,7 @@ public class BookTest {
 
     @Test
     public void testGetExampleOrigTitle() {
+        Book.clearIdentifier();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
         assertEquals("L'amica geniale", book.getOrigTitle());
@@ -44,6 +46,7 @@ public class BookTest {
 
     @Test
     public void testGetExampleAuthorId() {
+        Book.clearIdentifier();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
         assertEquals(4, book.getAuthorId());
@@ -51,6 +54,7 @@ public class BookTest {
 
     @Test
     public void testGetExamplePubYear() {
+        Book.clearIdentifier();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
         assertEquals(2011, book.getPubYear());
@@ -64,6 +68,7 @@ public class BookTest {
 
     @Test
     public void testGetExamplePubId() {
+        Book.clearIdentifier();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
         assertEquals(4, book.getPubId());
@@ -71,6 +76,7 @@ public class BookTest {
 
     @Test
     public void testGetExampleLanguage() {
+        Book.clearIdentifier();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
         assertEquals("Italian", book.getLanguage());
@@ -104,6 +110,7 @@ public class BookTest {
 
     @Test
     public void testGetExampleRating() {
+        Book.clearIdentifier();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
         assertEquals(4, book.getRating());
@@ -134,6 +141,7 @@ public class BookTest {
 
     @Test
     public void testBookToString() {
+        Book.clearIdentifier();
         Book book = new Book();
         book.parse("8|Kafka on the Shore|海辺のカフカ|7|2002|7|Japanese|1|4");
         assertEquals("8|Kafka on the Shore|海辺のカフカ|7|2002|7|Japanese|1|4",

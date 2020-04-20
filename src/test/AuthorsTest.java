@@ -29,6 +29,7 @@ public class AuthorsTest {
 
     @Test
     public void testAuthorsAreSorted() {
+        Author.clearIdentifier();
         Authors authors = new Authors();
         Author auth1 = new Author();
         auth1.parse("7|Haruki Murakami");
@@ -58,6 +59,7 @@ public class AuthorsTest {
 
     @Test
     public void testGetAuthorsIndex() {
+        Author.clearIdentifier();
         Authors authors = new Authors();
         Author auth1 = new Author();
         auth1.parse("7|Haruki Murakami");
@@ -73,6 +75,7 @@ public class AuthorsTest {
 
     @Test
     public void testSearchAuthors() {
+        Author.clearIdentifier();
         Authors authors = new Authors();
         Author auth1 = new Author();
         auth1.parse("7|Haruki Murakami");
@@ -89,6 +92,7 @@ public class AuthorsTest {
 
     @Test
     public void testRemoveAuthor() {
+        Author.clearIdentifier();
         Authors authors = new Authors();
         Author auth1 = new Author();
         auth1.parse("7|Haruki Murakami");

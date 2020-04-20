@@ -30,7 +30,7 @@
                     <Insets bottom="15.0" top="5.0"/>
                 </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Last updated: 19.4.2020">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Last updated: 20.4.2020">
                 <padding>
                     <Insets bottom="5.0" top="15.0"/>
                 </padding>

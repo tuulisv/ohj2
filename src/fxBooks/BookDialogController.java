@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  *
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 31.1.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class BookDialogController implements ModalControllerInterface<Book>, Initializable {
 
@@ -110,7 +110,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
 
     /**
      * Default value for the book
-     * @param book book
+     * @param book default book
      */
     @Override
     public void setDefault(Book book) {
@@ -118,7 +118,8 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
     }
 
     /**
-     * What is shown when the dialog is opened
+     * Selected book and updated author and publisher lists
+     * are shown when the dialog is opened
      */
     @Override
     public void handleShown() {
@@ -195,7 +196,7 @@ public class BookDialogController implements ModalControllerInterface<Book>, Ini
         this.selectedBook.setAuthorId(dropdownAuthors.getValue().getId());
         this.selectedBook.setPubYear(Integer.parseInt(textPubYear.getText()));
         this.selectedBook.setPubId(dropdownPublishers.getValue().getId());
-        this.selectedBook.setLanguage((textLang.getText()));
+        this.selectedBook.setLanguage(textLang.getText());
         this.selectedBook.setStatus(chooserStatus.getSelectedIndex());
         this.selectedBook.setRating(chooserRating.getSelectedIndex());
     }

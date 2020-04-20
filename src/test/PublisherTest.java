@@ -35,6 +35,7 @@ public class PublisherTest {
 
     @Test
     public void testParseSetsPublisherName() {
+        Publisher.clearIdentifier();
         Publisher pub = new Publisher();
         pub.parse("4|Edizioni E/O");
         assertEquals("Edizioni E/O", pub.getName());
@@ -52,6 +53,7 @@ public class PublisherTest {
 
     @Test
     public void testPublisherToString() {
+        Publisher.clearIdentifier();
         Publisher pub = new Publisher();
         pub.parse("4|Edizioni E/O");
         assertEquals("Edizioni E/O", pub.toString());
@@ -59,6 +61,7 @@ public class PublisherTest {
 
     @Test
     public void testPrintPublisher() {
+        Publisher.clearIdentifier();
         Publisher pub = new Publisher();
         pub.parse("4|Edizioni E/O");
         assertEquals("4|Edizioni E/O", pub.print());

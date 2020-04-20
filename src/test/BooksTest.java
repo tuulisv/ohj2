@@ -17,6 +17,7 @@ public class BooksTest {
 
     @Test
     public void testGetExampleBookByIndex() {
+        Book.clearIdentifier();
         Books books = new Books();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
@@ -40,6 +41,7 @@ public class BooksTest {
 
     @Test
     public void testGetBookAtIndexI() {
+        Book.clearIdentifier();
         Books books = new Books();
         Book book1 = new Book();
         book1.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
@@ -63,6 +65,7 @@ public class BooksTest {
 
     @Test
     public void testBookWithSameIdIsReplaced() {
+        Book.clearIdentifier();
         Books books = new Books();
         Book book1 = new Book();
         book1.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|0|0");
@@ -75,6 +78,7 @@ public class BooksTest {
 
     @Test
     public void testGetBookIndex() {
+        Book.clearIdentifier();
         Books books = new Books();
         Book book1 = new Book();
         book1.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
@@ -90,6 +94,7 @@ public class BooksTest {
 
     @Test
     public void testGetIndexForBookNotInList() {
+        Book.clearIdentifier();
         Books books = new Books();
         Book book1 = new Book();
         book1.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");

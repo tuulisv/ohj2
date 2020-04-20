@@ -19,6 +19,7 @@ public class BookCollectionTest {
 
     @Test
     public void testGetExampleBook() {
+        Book.clearIdentifier();
         BookCollection bc = new BookCollection();
         Book book = new Book();
         book.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
@@ -28,6 +29,7 @@ public class BookCollectionTest {
 
     @Test
     public void testReplaceBookWithSameId() {
+        Book.clearIdentifier();
         BookCollection bc = new BookCollection();
         Book book1 = new Book();
         book1.parse("5|My Brilliant Friend|L'amica geniale|4|2011|4|Italian|1|4");
@@ -40,6 +42,7 @@ public class BookCollectionTest {
 
     @Test
     public void testGetExampleAuthor() {
+        Author.clearIdentifier();
         BookCollection bc = new BookCollection();
         Author author = new Author();
         author.parse("1|J. R. R. Tolkien");
@@ -49,6 +52,7 @@ public class BookCollectionTest {
 
     @Test
     public void testGetExamplePublisher() {
+        Publisher.clearIdentifier();
         BookCollection bc = new BookCollection();
         Publisher pub1 = new Publisher();
         Publisher pub2 = new Publisher();
@@ -61,6 +65,7 @@ public class BookCollectionTest {
 
     @Test
     public void testGetAuthorById() {
+        Author.clearIdentifier();
         BookCollection bc = new BookCollection();
         Author auth1 = new Author();
         Author auth2 = new Author();
@@ -76,6 +81,7 @@ public class BookCollectionTest {
 
     @Test
     public void testGetPublisherById() {
+        Publisher.clearIdentifier();
         BookCollection bc1 = new BookCollection();
         Publisher pub1 = new Publisher();
         Publisher pub2 = new Publisher();
@@ -134,6 +140,7 @@ public class BookCollectionTest {
 
     @Test
     public void testGetBookIndex() {
+        Book.clearIdentifier();
         BookCollection bc = new BookCollection();
         Book book1 = new Book();
         Book book2 = new Book();
@@ -149,6 +156,7 @@ public class BookCollectionTest {
 
     @Test
     public void testRemoveOneOfAuthorsBooks() {
+        Book.clearIdentifier();
         BookCollection bc = new BookCollection();
         Book book1 = new Book();
         Book book2 = new Book();
@@ -165,6 +173,8 @@ public class BookCollectionTest {
 
     @Test
     public void testRemovingAuthorsBooksRemovesAuthor() {
+        Author.clearIdentifier();
+        Book.clearIdentifier();
         BookCollection bc = new BookCollection();
         Author auth1 = new Author();
         Author auth2 = new Author();
@@ -184,6 +194,8 @@ public class BookCollectionTest {
 
     @Test
     public void testRemovingPublishersBooksRemovesPublisher() {
+        Book.clearIdentifier();
+        Publisher.clearIdentifier();
         BookCollection bc = new BookCollection();
         Publisher pub1 = new Publisher();
         Publisher pub2 = new Publisher();
@@ -204,6 +216,7 @@ public class BookCollectionTest {
     @Test
     @SuppressWarnings("unused")
     public void testSaveBooksToFile() throws IOException, StoreException {
+        Book.clearIdentifier();
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";
         String filePublishers = "testPublishers";
@@ -248,6 +261,7 @@ public class BookCollectionTest {
     @Test
     @SuppressWarnings("unused")
     public void testSaveAuthorsToFile() throws IOException, StoreException {
+        Author.clearIdentifier();
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";
         String filePublishers = "testPublishers";
@@ -289,6 +303,7 @@ public class BookCollectionTest {
     @Test
     @SuppressWarnings("unused")
     public void testSavePublishersToFile() throws IOException, StoreException {
+        Publisher.clearIdentifier();
         String fileBooks = "testBooks";
         String fileAuthors = "testAuthors";
         String filePublishers = "testPublishers";

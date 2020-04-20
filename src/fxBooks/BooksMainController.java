@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  *
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 31.1.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class BooksMainController implements Initializable {
 
@@ -139,7 +139,8 @@ public class BooksMainController implements Initializable {
     }
 
     /**
-     * Opens a dialog for adding a new book, sets the currently selected author as default author
+     * Opens a dialog for adding a new book, sets the
+     * currently selected author as default author
      */
     private void newBook() {
         Author author = chooserAuthors.getSelectedObject();
@@ -196,9 +197,9 @@ public class BooksMainController implements Initializable {
 
         labelBookTitle.setText(selectedBook.getTitle());
         labelOrigTitle.setText(selectedBook.getOrigTitle());
-        labelAuthor.setText("" + selectedAuthor.getName());
+        labelAuthor.setText(selectedAuthor.getName());
         labelPubYear.setText("" + selectedBook.getPubYear());
-        labelPub.setText("" + publisher.getName());
+        labelPub.setText(publisher.getName());
         labelLang.setText(selectedBook.getLanguage());
 
         int status = selectedBook.getStatus() == 1 ? 1 : 0;
@@ -259,7 +260,8 @@ public class BooksMainController implements Initializable {
     }
 
     /**
-     * Remove the selected book
+     * Shows a confirmation alert for deleting the
+     * selected book and deletes it if pressed ok
      */
     private void remove() {
         Book book = chooserBooks.getSelectedObject();
@@ -290,7 +292,7 @@ public class BooksMainController implements Initializable {
         Book book = chooserBooks.getSelectedObject();
         int rating = chooserRating.getSelectedIndex();
         if (book.getRating() != rating) {
-            book.setRating(chooserRating.getSelectedIndex());
+            book.setRating(rating);
             unsavedChanges(true);
         }
     }
@@ -302,7 +304,7 @@ public class BooksMainController implements Initializable {
         Book book = chooserBooks.getSelectedObject();
         int status = chooserStatus.getSelectedIndex();
         if (book.getStatus() != status) {
-            book.setStatus(chooserStatus.getSelectedIndex());
+            book.setStatus(status);
             unsavedChanges(true);
         }
     }
@@ -321,7 +323,7 @@ public class BooksMainController implements Initializable {
     }
 
     /**
-     * Check if changes are saved
+     * Saves changes and returns confirmation
      * @return true if saved
      */
     protected boolean canClose() {

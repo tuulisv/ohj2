@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  *
  * @author Tuuli Veini (tuuli.m.veini at student.jyu.fi)
  * @version 1.0 31.1.2020
- * @version 7.0 19.4.2020
+ * @version 7.0 20.4.2020
  */
 public class AuthorDialogController implements ModalControllerInterface<Author> {
 
@@ -43,21 +43,21 @@ public class AuthorDialogController implements ModalControllerInterface<Author> 
     private Author newAuthor;
 
     /**
-     * Defines what is returned
+     * Defines that new author is returned
      * @return new author
      */
     @Override
     public Author getResult() {
-        return newAuthor;
+        return this.newAuthor;
     }
 
     /**
      * Default value for the author
-     * @param author author
+     * @param author default author
      */
     @Override
     public void setDefault(Author author) {
-        newAuthor = author;
+        this.newAuthor = author;
     }
 
     /**
@@ -72,8 +72,8 @@ public class AuthorDialogController implements ModalControllerInterface<Author> 
      * Updates values for the author
      */
     private void handleChanges() {
-        newAuthor.setName(textAuthor.getText());
-        newAuthor.register();
+        this.newAuthor.setName(textAuthor.getText());
+        this.newAuthor.register();
     }
 
     /**

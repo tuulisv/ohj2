@@ -35,6 +35,7 @@ public class AuthorTest {
 
     @Test
     public void testParseSetsAuthorName() {
+        Author.clearIdentifier();
         Author author = new Author();
         author.parse("7|Haruki Murakami");
         assertEquals("Haruki Murakami", author.getName());
@@ -52,6 +53,7 @@ public class AuthorTest {
 
     @Test
     public void testAuthorToString() {
+        Author.clearIdentifier();
         Author author = new Author();
         author.parse("4|Elena Ferrante");
         assertEquals("Elena Ferrante", author.toString());
@@ -59,6 +61,7 @@ public class AuthorTest {
 
     @Test
     public void testPrintAuthor() {
+        Author.clearIdentifier();
         Author author = new Author();
         author.parse("4|Elena Ferrante");
         assertEquals("4|Elena Ferrante", author.print());
@@ -66,6 +69,7 @@ public class AuthorTest {
 
     @Test
     public void testCompareDifferentAuthors() {
+        Author.clearIdentifier();
         Author author1 = new Author();
         author1.parse("4|Elena Ferrante");
         Author author2 = new Author();
@@ -75,6 +79,7 @@ public class AuthorTest {
 
     @Test
     public void testCompareSameAuthors() {
+        Author.clearIdentifier();
         Author author1 = new Author();
         author1.parse("4|Elena Ferrante");
         Author author2 = new Author();
