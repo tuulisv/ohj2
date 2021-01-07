@@ -1,3 +1,3 @@
-# ohj2
+Book catalogue program done as a course assignment for Programming 2 at the Unviersity of Jyväskylä.
 
-Kirjarekisteri. Harjoitustyö Jyväskylän yliopiston kevään 2020 Ohjelmointi 2 -kurssille.
+To try it out, run books.jar or src/fxBooks/BooksMain.java.
